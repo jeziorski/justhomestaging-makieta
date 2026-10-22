@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kontakt i wycena | Just Home Staging</title>
-<meta name="description" content="Napisz lub zadzwoń: 512 012 909, justyna@justhomestaging.pl. Prześlij zdjęcia mieszkania, a przygotuję wycenę home stagingu. Warszawa i okolice.">
+<meta name="description" content="Napisz lub zadzwoń: 512 012 909, justyna@justhomestaging.pl. Prześlij zdjęcia mieszkania, a przygotuję wycenę. Warszawa i realizacje zdalne.">
 <link rel="icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -475,27 +494,8 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-ct-card{padding:clamp(20px,3.5vw,40px);border-radius:var(--jhs-r);background:#fff;box-shadow:var(--jhs-shadow),inset 0 0 0 1px var(--jhs-line)}
 .jhs-ct-card>h2{font-size:clamp(26px,3vw,36px);line-height:1.12}
 .jhs-ct-card>p{margin-top:10px;color:var(--jhs-txt);font-size:17px}
-.jhs-ct-form{margin-top:24px;scroll-margin-top:110px}
+.jhs-ct-card .jhs-wf{margin-top:24px;scroll-margin-top:110px}
 #wycena{scroll-margin-top:110px}
-.jhs-ct-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
-.jhs-ct-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
-.jhs-ct-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
-.jhs-ct-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
-.jhs-ct-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
-.jhs-ct-step--2 .jhs-ct-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
-.jhs-ct-req{font-size:15px;color:var(--jhs-txt)}
-.jhs-ct-next{display:none}
-html.jhs-js .jhs-ct-form.is-steps .jhs-ct-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
-.jhs-ct-next p{font-size:15px;color:var(--jhs-txt)}
-html.jhs-js .jhs-ct-form.is-steps:not(.is-open) .jhs-ct-step--2{display:none}
-html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
-.jhs-ct-step--2 .jhs-ct-step-in{display:grid;gap:16px}
-.jhs-ct-step--2 legend:focus{outline:none}
-.jhs-ct-field-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
-.jhs-ct-field-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
-.jhs-ct-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
-.jhs-ct-foot .jhs-btn{justify-self:start}
-.jhs-ct-sub{display:grid;gap:10px}
 /* Boczna kolumna: co dalej */
 .jhs-ct-side{position:sticky;top:110px;display:grid;gap:16px}
 @media (max-width:1000px){.jhs-ct-side{position:static}}
@@ -529,10 +529,6 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
 .jhs-ct-soc a:hover{background:var(--jhs-sand-2)}
 .jhs-ct-soc svg{width:18px;height:18px}
 .jhs-ct-nap{font-style:normal;font-size:16.5px;line-height:1.6;color:var(--jhs-ink-2)}
-/* Tekst Justyny 13.08.2026: fraza SEO jako pierwsza linia H1 */
-.jhs-ct-h1k{display:block;margin-bottom:14px;font-family:inherit;font-style:normal;font-size:clamp(15px,1.3vw,17px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;color:var(--jhs-acc-d)}
-#formularz{scroll-margin-top:90px}
-.jhs-ct-talk{align-items:center}
 /* Tekst Justyny 13.08.2026: fraza SEO jako pierwsza linia H1 */
 .jhs-ct-h1k{display:block;margin-bottom:14px;font-family:inherit;font-style:normal;font-size:clamp(15px,1.3vw,17px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;color:var(--jhs-acc-d)}
 #formularz{scroll-margin-top:90px}
@@ -591,9 +587,10 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -608,20 +605,17 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -635,12 +629,13 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -684,21 +679,28 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
 <section class="wp-section alignfull jhs-sec jhs-sec--white" id="formularz" aria-labelledby="jhs-ct-form-h"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-ct-grid">
   <div class="jhs-ct-card">
-   <h2 id="jhs-ct-form-h">Formularz <span class="jhs-acc">kontaktowy</span></h2>
-   <p>Wypełnij formularz, a wrócę do Ciebie z odpowiedzią.</p>
-   <!-- Fluent Forms: formularz w 2 krokach. Bez JS wszystko widać w jednym formularzu; z JS przycisk „Dalej” odsłania krok 2, wysyłka jest możliwa w każdej chwili. W WP: method="post" i enctype="multipart/form-data" (pole zdjęć). -->
-   <form class="jhs-form jhs-ct-form" id="wycena" data-gl-part="ff-wycena" action="DZIEKUJEMY.html" method="get">
-    <fieldset class="jhs-ct-step">
-     <legend><span class="jhs-ct-num" aria-hidden="true">1</span><span>Krok 1 z 2: podstawy<small>Wymagane są tylko cel, imię i telefon.</small></span></legend>
+   <h2 id="jhs-ct-form-h">Formularz <span class="jhs-acc">wyceny</span></h2>
+   <p>Wyślij zdjęcia oraz miasto i dzielnicę, w której jest Twoja nieruchomość. Wypełnij formularz, a wrócę do Ciebie z odpowiedzią i wyceną.</p>
+   <!-- Fluent Forms ff-wycena: ten sam formularz na stronie głównej i w kontakcie (feedback Justyny 19.10.2026: liczba pomieszczeń zamiast metrażu, zdjęcia wymagane do wyceny, miasto i dzielnica). Bez JS widać oba kroki; z JS przycisk „Dalej” odsłania krok 2, wysyłka jest możliwa po kroku 1. W WP: method="post" i enctype="multipart/form-data" (pole zdjęć). -->
+   <form class="jhs-form jhs-wf" id="wycena" data-gl-part="ff-wycena" action="DZIEKUJEMY.html" method="get">
+    <fieldset class="jhs-wf-step">
+     <legend><span class="jhs-wf-num" aria-hidden="true">1</span><span>Krok 1 z 2: do wyceny<small>Tych informacji potrzebuję, żeby przygotować wycenę.</small></span></legend>
      <fieldset class="jhs-choices"><legend>Czego potrzebujesz?</legend>
-      <label><input type="radio" name="cel" value="sprzedaz" required><span>Sprzedaż</span></label>
-      <label><input type="radio" name="cel" value="wynajem-dlugi"><span>Wynajem długoterminowy</span></label>
-      <label><input type="radio" name="cel" value="wynajem-krotki"><span>Wynajem krótkoterminowy</span></label>
-      <label><input type="radio" name="cel" value="metamorfoza"><span>Metamorfoza dla siebie</span></label>
-      <label><input type="radio" name="cel" value="firma"><span>Przestrzeń firmowa</span></label>
-      <label><input type="radio" name="cel" value="inne"><span>Inne pytanie</span></label>
+      <label><input type="radio" name="cel" value="sprzedaz" required><span>Home staging pod sprzedaż</span></label>
+      <label><input type="radio" name="cel" value="wynajem"><span>Home staging pod wynajem</span></label>
+      <label><input type="radio" name="cel" value="metamorfoza"><span>Metamorfoza wnętrza</span></label>
+      <label><input type="radio" name="cel" value="projekt"><span>Projekt wnętrza</span></label>
      </fieldset>
-     <label class="jhs-field"><span>Metraż <small>(opcjonalnie)</small></span><select name="metraz"><option value="">Wybierz</option><option>do 40 m²</option><option>40 do 60 m²</option><option>60 do 80 m²</option><option>80 do 120 m²</option><option>ponad 120 m²</option><option>Nie dotyczy</option></select></label>
+     <fieldset class="jhs-choices"><legend>Liczba pomieszczeń</legend>
+      <label><input type="radio" name="pomieszczenia" value="1" required><span>1</span></label>
+      <label><input type="radio" name="pomieszczenia" value="2"><span>2</span></label>
+      <label><input type="radio" name="pomieszczenia" value="3"><span>3</span></label>
+      <label><input type="radio" name="pomieszczenia" value="4"><span>4</span></label>
+      <label><input type="radio" name="pomieszczenia" value="5+"><span>5 i więcej</span></label>
+     </fieldset>
+     <label class="jhs-field"><span>Miasto i dzielnica</span><input type="text" name="lokalizacja" autocomplete="address-level2" placeholder="np. Warszawa, Mokotów" required></label>
+     <label class="jhs-field jhs-wf-file"><span>Zdjęcia pomieszczeń</span><input type="file" name="zdjecia" accept="image/*" multiple required aria-describedby="jhs-wf-zdj-hint"><small class="jhs-field-hint" id="jhs-wf-zdj-hint">Zdjęcia każdego pomieszczenia, mogą być z telefonu. Możesz zaznaczyć kilka plików naraz.</small></label>
+     <!-- DO-POTWIERDZENIA: limit liczby i rozmiaru zdjęć w Fluent Forms (ustawić w WP i dopisać w podpowiedzi) -->
      <label class="jhs-field"><span>Imię</span><input type="text" name="imie" autocomplete="given-name" placeholder="np. Anna" required></label>
      <div class="jhs-form-row">
       <label class="jhs-field"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" inputmode="tel" placeholder="np. 600 000 000" required></label>
@@ -706,15 +708,14 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
      </div>
     </fieldset>
 
-    <div class="jhs-ct-next">
-     <button class="jhs-btn jhs-btn--dark" type="button" aria-controls="jhs-ct-krok2" aria-expanded="false" data-jhs-next>Dalej: kilka pytań więcej <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
+    <div class="jhs-wf-next">
+     <button class="jhs-btn jhs-btn--dark" type="button" aria-controls="jhs-wf-krok2" aria-expanded="false" data-jhs-next>Dalej: kilka pytań więcej <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
      <p>To nieobowiązkowe. Możesz też od razu wysłać formularz niżej.</p>
     </div>
 
-    <fieldset class="jhs-ct-step jhs-ct-step--2" id="jhs-ct-krok2">
-     <legend tabindex="-1"><span class="jhs-ct-num" aria-hidden="true">2</span><span>Krok 2 z 2: szczegóły<small>Wszystkie pola w tym kroku są opcjonalne.</small></span></legend>
-     <div class="jhs-ct-step-in">
-      <label class="jhs-field"><span>Lokalizacja</span><input type="text" name="lokalizacja" autocomplete="address-level2" placeholder="np. Warszawa, Mokotów albo Piaseczno"></label>
+    <fieldset class="jhs-wf-step jhs-wf-step--2" id="jhs-wf-krok2">
+     <legend tabindex="-1"><span class="jhs-wf-num" aria-hidden="true">2</span><span>Krok 2 z 2: szczegóły<small>Wszystkie pola w tym kroku są opcjonalne.</small></span></legend>
+     <div class="jhs-wf-in">
       <fieldset class="jhs-choices"><legend>Stan mieszkania</legend>
        <label><input type="radio" name="stan" value="puste"><span>Puste</span></label>
        <label><input type="radio" name="stan" value="zamieszkane"><span>Umeblowane, ktoś mieszka</span></label>
@@ -737,18 +738,15 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
        <label><input type="radio" name="posrednik" value="tak"><span>Tak</span></label>
        <label><input type="radio" name="posrednik" value="nie"><span>Nie</span></label>
       </fieldset>
-      <label class="jhs-field"><span>Nazwa biura nieruchomości</span><input type="text" name="biuro" autocomplete="organization" placeholder="Jeśli pracujesz z pośrednikiem"></label>
       <label class="jhs-field"><span>Link do ogłoszenia</span><input type="url" name="ogloszenie" inputmode="url" placeholder="np. https://www.otodom.pl/..."></label>
-      <label class="jhs-field jhs-ct-field-file"><span>Zdjęcia pomieszczeń</span><input type="file" name="zdjecia" accept="image/*" multiple aria-describedby="jhs-ct-zdj-hint"><small class="jhs-field-hint" id="jhs-ct-zdj-hint">Zdjęcia z telefonu wystarczą. Możesz zaznaczyć kilka plików naraz.</small></label>
-      <!-- DO-POTWIERDZENIA: limit liczby i rozmiaru zdjęć w Fluent Forms (ustawić w WP i dopisać w podpowiedzi) -->
       <label class="jhs-field"><span>Wiadomość</span><textarea name="wiadomosc" rows="4" placeholder="Twoje pytanie albo to, na czym Ci zależy"></textarea></label>
      </div>
     </fieldset>
 
-    <div class="jhs-ct-foot">
-     <p class="jhs-form-info">Administratorem danych jest Just Home Staging Justyna Zaniewska. Dane i zdjęcia wykorzystam wyłącznie do odpowiedzi na zapytanie. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+    <div class="jhs-wf-foot">
+     <p class="jhs-form-info">Administratorem danych jest Just Home Staging Justyna Zaniewska. Dane i zdjęcia wykorzystam wyłącznie do odpowiedzi na zapytanie. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
      <label class="jhs-check-row"><input type="checkbox" name="zgoda_marketing" value="tak"><span>Chcę dostawać od Justyny wiadomości z poradami i ofertami (opcjonalnie, możesz zrezygnować w każdej chwili).</span></label>
-     <button class="jhs-btn jhs-btn--acc" type="submit">Wysyłam wiadomość! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
+     <button class="jhs-btn jhs-btn--acc" type="submit">Poproś o wycenę <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
     </div>
    </form>
   </div>
@@ -759,26 +757,25 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
     <h2 id="jhs-ct-next-h">Co dzieje się po wysłaniu</h2>
     <!-- DO-POTWIERDZENIA: czas odpowiedzi (np. „oddzwonię w ciągu 1 dnia roboczego”) i najbliższy wolny termin realizacji; do czasu potwierdzenia bez liczb w widoku -->
     <ol>
-     <li><span><strong>Czytam Twoje zgłoszenie</strong>Sprawdzam cel, metraż i to, co dopisałaś w drugim kroku.</span></li>
+     <li><span><strong>Czytam Twoje zgłoszenie</strong>Oglądam zdjęcia, sprawdzam cel, liczbę pomieszczeń i lokalizację.</span></li>
      <li><span><strong>Oddzwaniam</strong>Dopytuję o szczegóły, na przykład piętro, windę i termin.</span></li>
-     <li><span><strong>Proszę o zdjęcia</strong>Jeśli ich nie dołączyłaś, poproszę o zdjęcia każdego pomieszczenia i lokalizację.</span></li>
-     <li><span><strong>Dostajesz ofertę</strong>Zakres prac i cenę. Decyzja należy do Ciebie.</span></li>
+          <li><span><strong>Dostajesz ofertę</strong>Zakres prac i cenę. Decyzja należy do Ciebie.</span></li>
     </ol>
    </div>
-   <p class="jhs-ct-tip"><svg aria-hidden="true"><use href="#jhs-i-camera"/></svg><span>Masz pod ręką zdjęcia mieszkania albo link do ogłoszenia? Dołącz je w drugim kroku, a wycena będzie szybsza.</span></p>
+   <p class="jhs-ct-tip"><svg aria-hidden="true"><use href="#jhs-i-camera"/></svg><span>Zdjęcia każdego pomieszczenia zrobione telefonem wystarczą. Masz już ogłoszenie? Link możesz dodać w drugim kroku.</span></p>
   </aside>
  </div>
 </div></section>
 
-<!-- 3. Bezpłatna rozmowa wstępna (blok końcowy) -->
+<!-- 3. Bezpłatna konsultacja (blok końcowy) -->
 <section class="wp-section alignfull jhs-sec jhs-sec--sand" id="rozmowa"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-ct-talk">
   <div>
-   <p class="jhs-eyebrow">Bezpłatna rozmowa wstępna</p>
-   <h2 class="jhs-h2">A może od razu umówimy się na bezpłatną rozmowę <span class="jhs-acc">wstępną</span>?</h2>
+   <p class="jhs-eyebrow">Bezpłatna konsultacja</p>
+   <h2 class="jhs-h2">A może od razu umówimy się na bezpłatną <span class="jhs-acc">konsultację</span>?</h2>
    <p class="jhs-lead">Sprawdź dostępne terminy i wybierz ten, który Ci odpowiada. Nie mogę się doczekać kolejnych wnętrzarskich wyzwań!</p>
    <div class="jhs-ct-talk-box">
-    <strong>15-minutowa bezpłatna konsultacja</strong>
+    <strong>Bezpłatna konsultacja, 15 minut przez telefon</strong>
     <p>To rozmowa przez telefon: w wybranym terminie dzwonię na Twój numer.</p>
     <!-- DO-POTWIERDZENIA: adres Zencal do przycisku (w crawlu: app.zencal.io/u/justynazaniewska/darmowa-konsultacja-15-min) i czy osadzić kalendarz (widget), czy zostawić link -->
     <a class="jhs-btn jhs-btn--light" href="https://app.zencal.io/u/justynazaniewska/darmowa-konsultacja-15-min" rel="noopener">Umawiam się na spotkanie! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span></a>
@@ -808,7 +805,7 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
   <div class="jhs-ct-map-ph">
    <span class="jhs-ct-map-pin"><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg></span>
    <h2 id="jhs-ct-map-h">Just Home Staging Warszawa - Justyna Zaniewska</h2>
-   <p>Warszawa i okolice, projekty zdalne</p>
+   <p>Warszawa i realizacje zdalne</p>
    <div class="jhs-ct-map-btns">
     <button class="jhs-btn jhs-btn--dark" type="button" data-jhs-map-show hidden>Pokaż mapę Google <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg></span></button>
     <a class="jhs-link" href="https://www.google.com/maps/search/?api=1&amp;query=Just+Home+Staging+Warszawa+Justyna+Zaniewska" target="_blank" rel="noopener">Otwórz w Mapach Google <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a>
@@ -829,16 +826,15 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -846,26 +842,26 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -875,7 +871,7 @@ html.jhs-js .jhs-ct-form.is-open .jhs-ct-next{display:none}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -948,6 +944,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
 });
 
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
+});
+
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */
 const cookie=page.querySelector('#jhs-cookie');
 if(cookie){
@@ -961,18 +966,6 @@ if(cookie){
 </script>
 <!-- SHELL:END js -->
 <script data-wp-block-html="js">
-(()=>{'use strict';
-/* Formularz wyceny: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
-const f=document.querySelector('.jhs-ct-form');if(!f)return;
-const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('#jhs-ct-krok2');if(!btn||!step)return;
-f.classList.add('is-steps');
-btn.addEventListener('click',()=>{
- f.classList.add('is-open');btn.setAttribute('aria-expanded','true');
- const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});
-});
-/* Gdy przeglądarka zgłosi błąd w ukrytym kroku 2, odsłoń go */
-f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open')){f.classList.add('is-open');btn.setAttribute('aria-expanded','true');}},true);
-})();
 (()=>{'use strict';
 /* Mapa Google: iframe wstawiany dopiero po kliknięciu (bez cookies Google przed decyzją użytkownika) */
 document.querySelectorAll('[data-jhs-map]').forEach(box=>{

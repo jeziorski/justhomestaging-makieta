@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Konsultacja home stagingu online i stacjonarna | Sklep</title>
-<meta name="description" content="Konsultacja home stagingu: około godziny rozmowy i brief z zaleceniami w PDF. Online za 547 zł albo w Twoim mieszkaniu za 697 zł. Raty 0% PayU.">
+<title>Konsultacja home stagingu online z briefem | Sklep</title>
+<meta name="description" content="Konsultacja home stagingu online: wysyłasz zdjęcia i pomiary, spotykamy się online, dostajesz brief z wytycznymi. 697 zł brutto, raty 0% PayU.">
 <link rel="icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -458,12 +477,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <style data-wp-block-html="css">
 /* KARTA PRODUKTU (sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/), klasy jhs-pr-*
    WDROŻENIE WooCommerce (single-product.php, klasycznie, bez bloków produktu):
-   div#product-ID.product.type-product.product-type-variable.virtual
+   div#product-ID.product.type-product.product-type-simple.virtual (produkt prosty, bez wariantów)
     > div.woocommerce-product-gallery.woocommerce-product-gallery--with-images (u nas .jhs-pr-gal: własny szablon single-product/product-image.php albo filtr galerii)
     > div.summary.entry-summary: h1.product_title.entry-title, p.price (span.woocommerce-Price-amount.amount > bdi), div.woocommerce-product-details__short-description
-      > form.variations_form.cart[data-product_variations] : table.variations (select#pa_wariant ukryty, radio jako „swatches” naszym kodem: filtr woocommerce_dropdown_variation_attribute_options_html)
-        > div.single_variation_wrap > div.woocommerce-variation.single_variation (cena wariantu) + div.woocommerce-variation-add-to-cart.variations_button
-          > input.qty (ukryte: produkt wirtualny, sold_individually) + button.single_add_to_cart_button.button.alt + input[name=add-to-cart] + input[name=variation_id]
+      > form.cart > input.qty (ukryte: produkt wirtualny, sold_individually) + button.single_add_to_cart_button.button.alt[name=add-to-cart]
     > div.woocommerce-tabs (zastępujemy sekcjami: opis jako treść GLAI pod produktem, opinie Woo wyłączone, bo produkt ma 0 opinii)
     > section.related.products (ul.products > li.product; nasze karty jhs-pcard)
    Baner „Raty 0% od PayU”: wtyczka woo-payu-payment-gateway (hook woocommerce_after_add_to_cart_button), tu podgląd.
@@ -478,7 +495,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-pr-track::-webkit-scrollbar{display:none}
 .jhs-pr-slide{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1/1;margin:0}
 .jhs-pr-slide img{width:100%;height:100%;object-fit:cover}
-.jhs-pr-thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.jhs-pr-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
 .jhs-pr-thumbs a{display:block;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--jhs-photo);box-shadow:inset 0 0 0 2px transparent;opacity:.75;transition:opacity .2s,box-shadow .2s}
 .jhs-pr-thumbs a:hover,.jhs-pr-thumbs a[aria-current]{opacity:1}
 .jhs-pr-thumbs a[aria-current]{outline:2px solid var(--jhs-ink);outline-offset:2px}
@@ -492,16 +509,6 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-pr-price{display:flex;align-items:baseline;gap:10px;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--jhs-ink)}
 .jhs-pr-price small{font-size:15px;font-weight:600;letter-spacing:0;color:var(--jhs-mute)}
 .jhs-pr-form{display:grid;gap:14px;margin-top:4px;padding:clamp(18px,2.4vw,24px);border-radius:var(--jhs-r-s);background:#fff;box-shadow:var(--jhs-shadow),inset 0 0 0 1px var(--jhs-line)}
-.jhs-pr-vars{display:grid;gap:10px;border:0;margin:0;padding:0;min-width:0}
-.jhs-pr-vars legend{padding:0;margin-bottom:10px;font-size:15px;font-weight:700;color:var(--jhs-ink)}
-.jhs-pr-var{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:4px 12px;align-items:start;padding:16px 18px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1.5px var(--jhs-beige);cursor:pointer;transition:box-shadow .2s,background-color .2s}
-.jhs-pr-var:hover{box-shadow:inset 0 0 0 1.5px var(--jhs-acc)}
-.jhs-pr-var:has(input:checked){background:#fff;box-shadow:inset 0 0 0 2px var(--jhs-ink)}
-.jhs-pr-var:has(input:focus-visible){outline:3px solid var(--jhs-acc-d);outline-offset:2px}
-.jhs-pr-var input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--jhs-ink)}
-.jhs-pr-var strong{display:block;font-size:17px;color:var(--jhs-ink);line-height:1.35}
-.jhs-pr-var small{display:block;margin-top:2px;font-size:15px;line-height:1.45;color:var(--jhs-txt)}
-.jhs-pr-var b{font-size:17px;color:var(--jhs-ink);white-space:nowrap}
 .jhs-pr-form .jhs-btn{width:100%;justify-content:space-between;min-height:60px;font-size:17.5px}
 .jhs-pr-payu{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:var(--jhs-sage-l);font-size:15px;font-weight:600;color:#33493b}
 .jhs-pr-payu svg{width:18px;height:18px;flex:none}
@@ -509,6 +516,16 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-pr-facts li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15.5px;line-height:1.5;color:var(--jhs-ink-2)}
 .jhs-pr-facts svg{width:18px;height:18px;margin-top:3px;color:var(--jhs-sage-d)}
 .jhs-pr-facts a{font-weight:700;color:var(--jhs-ink);text-decoration:underline;text-underline-offset:3px}
+.jhs-pr-only{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start;padding:14px 16px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1.5px var(--jhs-beige);font-size:15px;line-height:1.45;color:var(--jhs-txt)}
+.jhs-pr-only svg{width:22px;height:22px;margin-top:1px;color:var(--jhs-sage-d)}
+.jhs-pr-only strong{display:block;font-size:17px;color:var(--jhs-ink)}
+.jhs-pr-up{display:grid;gap:10px;padding:18px 20px;border-radius:var(--jhs-r-s);background:var(--jhs-sand);font-size:15.5px;line-height:1.5;color:var(--jhs-ink-2)}
+.jhs-pr-up strong{display:block;font-size:17px;color:var(--jhs-ink)}
+.jhs-pr-up-price{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--jhs-ink)}
+.jhs-pr-up-price small{font-size:14px;font-weight:600;letter-spacing:0;color:var(--jhs-mute)}
+.jhs-pr-up .jhs-btn{justify-self:start}
+.jhs-pr-who-price{font-size:24px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.jhs-pr-who-price small{font-size:14px;font-weight:600;letter-spacing:0;color:#cfc6ba}
 /* Co dostajesz */
 .jhs-pr-gets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 @media (max-width:1080px){.jhs-pr-gets{grid-template-columns:1fr 1fr}}
@@ -592,9 +609,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -609,20 +627,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -636,12 +651,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -656,15 +672,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <!-- SHELL:END naglowek -->
 
 <main id="jhs-main" tabindex="-1">
-<!-- DO-POTWIERDZENIA: połączenie dwóch produktów (konsultacja online 547 zł i stacjonarna 697 zł) w jeden produkt z wariantem; adres zostaje /produkt/konsultacja-home-staging-online/, 301 z /produkt/konsultacja-home-staging-stacjonarna/ na ten adres z wybranym wariantem. -->
-<!-- DO-POTWIERDZENIA: zdjęcia produktu (mogą być stockowe, img.json); docelowo zdjęcia Justyny z konsultacji. Narzędzie do spotkań online (Google Meet, Zoom?) nie jest podane w źródłach. -->
+<!-- Produkt „Konsultacja + brief”, 697 zł brutto, tylko online (decyzja Justyny 19.10.2026). Wariant stacjonarny usunięty. WDROŻENIE: 301 z /produkt/konsultacja-home-staging-stacjonarna/ na ten produkt (/produkt/konsultacja-home-staging-online/), do ustawienia przy wdrożeniu. -->
+<!-- DO-POTWIERDZENIA: zdjęcia produktu (mogą być stockowe, img.json); docelowo zdjęcia Justyny przy pracy online. Narzędzie do spotkań online (Google Meet, Zoom?) nie jest podane w źródłach. -->
 
 <section class="wp-section alignfull jhs-crumbs-sec" aria-label="Okruszki"><div class="wp-content-wrap jhs-wrap">
  <nav class="jhs-crumbs" aria-label="Jesteś tutaj"><ol>
   <li><a href="index.html" data-href="https://justhomestaging.pl/">Just Home Staging</a></li>
   <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
   <li><a href="SKLEP.html#produkty" data-href="https://sklep.justhomestaging.pl/kategoria-produktu/konsultacje/">Konsultacje</a></li>
-  <li><span aria-current="page">Konsultacja home stagingu</span></li>
+  <li><span aria-current="page">Konsultacja + brief</span></li>
  </ol></nav>
 </div></section>
 
@@ -673,42 +689,43 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div class="jhs-pr-gal" data-jhs-pr-gal>
    <div class="jhs-pr-track" tabindex="0" role="region" aria-label="Zdjęcia produktu, przewiń w bok">
     <figure class="jhs-pr-slide" id="jhs-pr-g1"><img src="img/produkt-konsultacja-home-staging-online.webp" width="900" height="900" alt="Konsultacja home stagingu online: kobieta przy laptopie z notatkami" fetchpriority="high"></figure>
-    <figure class="jhs-pr-slide" id="jhs-pr-g2"><img src="img/produkt-konsultacja-home-staging-stacjonarna.webp" width="900" height="900" alt="Konsultacja home stagingu stacjonarna: spotkanie w jasnym salonie" loading="lazy"></figure>
-    <figure class="jhs-pr-slide" id="jhs-pr-g3"><img src="img/justyna-praca-laptop.webp" width="900" height="600" alt="Justyna Zaniewska przy laptopie przygotowuje brief z zaleceniami" loading="lazy"></figure>
-    <figure class="jhs-pr-slide" id="jhs-pr-g4"><img src="img/hs-berensona-sypialnia-po.webp" width="1600" height="1067" alt="Sypialnia przygotowana do sprzedaży: niebieski fotel, pościel, obraz i żyrandol" loading="lazy"></figure>
+    <figure class="jhs-pr-slide" id="jhs-pr-g2"><img src="img/justyna-praca-laptop.webp" width="900" height="600" alt="Justyna Zaniewska przy laptopie przygotowuje brief z wytycznymi" loading="lazy"></figure>
+    <figure class="jhs-pr-slide" id="jhs-pr-g3"><img src="img/hs-berensona-sypialnia-po.webp" width="1600" height="1067" alt="Sypialnia przygotowana do sprzedaży: niebieski fotel, pościel, obraz i żyrandol" loading="lazy"></figure>
    </div>
    <nav class="jhs-pr-thumbs" aria-label="Wybierz zdjęcie">
     <a href="#jhs-pr-g1" aria-current="true" aria-label="Zdjęcie 1: konsultacja online"><img src="img/produkt-konsultacja-home-staging-online.webp" width="900" height="900" alt="" loading="lazy"></a>
-    <a href="#jhs-pr-g2" aria-label="Zdjęcie 2: konsultacja stacjonarna"><img src="img/produkt-konsultacja-home-staging-stacjonarna.webp" width="900" height="900" alt="" loading="lazy"></a>
-    <a href="#jhs-pr-g3" aria-label="Zdjęcie 3: przygotowanie briefu"><img src="img/justyna-praca-laptop.webp" width="900" height="600" alt="" loading="lazy"></a>
-    <a href="#jhs-pr-g4" aria-label="Zdjęcie 4: sypialnia po home stagingu"><img src="img/hs-berensona-sypialnia-po.webp" width="1600" height="1067" alt="" loading="lazy"></a>
+    <a href="#jhs-pr-g2" aria-label="Zdjęcie 2: przygotowanie briefu"><img src="img/justyna-praca-laptop.webp" width="900" height="600" alt="" loading="lazy"></a>
+    <a href="#jhs-pr-g3" aria-label="Zdjęcie 3: sypialnia po home stagingu"><img src="img/hs-berensona-sypialnia-po.webp" width="1600" height="1067" alt="" loading="lazy"></a>
    </nav>
   </div>
 
   <div class="jhs-pr-sum">
    <span class="jhs-pcard-coll"><a href="SKLEP.html#produkty" data-href="https://sklep.justhomestaging.pl/kategoria-produktu/konsultacje/">Konsultacje</a></span>
-   <h1>Konsultacja home <span class="jhs-acc">stagingu</span></h1>
-   <p class="jhs-pr-short">W godzinę dowiesz się, co zmienić w mieszkaniu przed sprzedażą lub wynajmem, a czego nie ruszać. Potem dostaniesz brief z zaleceniami w PDF i zrobisz resztę samodzielnie, bez wydawania pieniędzy na zbędne zmiany.</p>
-   <p class="jhs-pr-price" aria-live="polite"><span data-jhs-pr-price>547 zł</span><small>z VAT</small></p>
+   <h1>Konsultacja home stagingu z <span class="jhs-acc">briefem</span></h1>
+   <p class="jhs-pr-short">Wysyłasz mi zdjęcia i pomiary mieszkania, a potem spotykamy się online. Dopytuję o wszystko, czego potrzebuję, i dostajesz brief z wytycznymi, co zrobić. Resztę robisz samodzielnie, bez wydawania pieniędzy na zbędne zmiany.</p>
+   <p class="jhs-pr-price"><span>697 zł</span><small>brutto</small></p>
 
    <form class="jhs-pr-form" action="SKLEP-ZAMOWIENIE.html" method="get" data-jhs-pr-form>
-    <fieldset class="jhs-pr-vars">
-     <legend>Wybierz formę konsultacji</legend>
-     <label class="jhs-pr-var"><input type="radio" name="wariant" value="online" data-price="547" data-slide="jhs-pr-g1" checked><span><strong>Online</strong><small>Spotkanie online, z każdego miejsca w Polsce</small></span><b>547 zł</b></label>
-     <label class="jhs-pr-var"><input type="radio" name="wariant" value="stacjonarna" data-price="697" data-slide="jhs-pr-g2"><span><strong>Stacjonarna</strong><small>W Twoim mieszkaniu, z pomiarami. Warszawa i okolice</small></span><b>697 zł</b></label>
-    </fieldset>
-    <input type="hidden" name="produkt" value="konsultacja-home-staging">
+    <p class="jhs-pr-only"><svg aria-hidden="true"><use href="#jhs-i-globe"/></svg><span><strong>Tylko online</strong>Spotkanie online, z każdego miejsca w Polsce</span></p>
+    <input type="hidden" name="produkt" value="konsultacja-home-staging-online">
     <button class="jhs-btn jhs-btn--acc" type="submit">Dodaj do koszyka <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg></span></button>
     <p class="jhs-pr-payu"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Raty 0% od PayU</p>
    </form>
-   <!-- DO-POTWIERDZENIA: czy raty PayU są dostępne dla kwoty 547 zł (próg kwotowy rat ustala PayU). -->
+   <!-- DO-POTWIERDZENIA: czy raty PayU są dostępne dla kwoty 697 zł (próg kwotowy rat ustala PayU). -->
 
    <ul class="jhs-pr-facts">
     <li><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg><span>Termin ustalamy po zakupie. Zwykle udaje się go znaleźć w ciągu tygodnia lub dwóch.</span></li>
-    <li><svg aria-hidden="true"><use href="#jhs-i-clock"/></svg><span>Spotkanie trwa około godziny, brief w PDF dostajesz po spotkaniu.</span></li>
+    <li><svg aria-hidden="true"><use href="#jhs-i-clock"/></svg><span>Spotkanie online trwa około godziny, brief dostajesz po spotkaniu.</span></li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span>Faktura z 23% VAT, także na firmę.</span></li>
     <li><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg><span>Masz pytanie przed zakupem? Zadzwoń: <a href="tel:+48512012909">512 012 909</a></span></li>
    </ul>
+
+   <!-- DO-POTWIERDZENIA: nowy produkt „Konsultacja + brief + lista zakupów” w WooCommerce, adres URL (roboczo /produkt/konsultacja-home-staging-lista-zakupow/); 1845 zł czy 1847 zł (jak Metamorfoza w sklepie)? -->
+   <div class="jhs-pr-up" id="lista-zakupow">
+    <p><strong>Chcesz też listę zakupów?</strong>Pakiet Konsultacja + brief + lista zakupów to wszystko powyżej plus lista zakupów z linkami do sklepów. Dalej działasz samodzielnie.</p>
+    <p class="jhs-pr-up-price">1845 zł <small>brutto</small></p>
+    <a class="jhs-btn jhs-btn--light jhs-btn--sm" href="SKLEP.html#produkty" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-lista-zakupow/">Zobacz pakiet z listą zakupów <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
+   </div>
   </div>
  </div>
 </div></section>
@@ -716,27 +733,27 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec jhs-sec--white" id="co-dostajesz" aria-labelledby="jhs-pr-gets-h"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
   <div><p class="jhs-eyebrow">Co dostajesz</p><h2 class="jhs-h2" id="jhs-pr-gets-h">Plan, z którym od razu możesz <span class="jhs-acc">działać</span></h2></div>
-  <p>Konsultacja to nie ogólne porady. Patrzę na Twoje mieszkanie oczami osoby, która ma je kupić albo wynająć.</p>
+  <p>Konsultacja to nie ogólne porady. Patrzę na Twoje mieszkanie oczami osoby, która zobaczy je w ogłoszeniu.</p>
  </div>
  <ul class="jhs-pr-gets">
   <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-trend"/></svg></span><h3>Wiesz, w co inwestować</h3><p>Dowiesz się, które zmiany są warte Twojego czasu i pieniędzy, a które są zupełnie zbędne.</p></li>
-  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg></span><h3>Mieszkanie pod właściwego klienta</h3><p>Zalecenia dobieram do tego, kto najpewniej kupi lub wynajmie Twoje mieszkanie, a nie do mojego gustu.</p></li>
-  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg></span><h3>Brief z zaleceniami w PDF</h3><p>Po spotkaniu dostajesz podsumowanie z konkretnymi krokami. Wracasz do niego na każdym etapie przygotowań.</p></li>
-  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-key"/></svg></span><h3>Decyzja: sprzedaż czy wynajem</h3><p>Odpowiem na wszystkie Twoje pytania, także na to, czy lepiej sprzedać, czy wynająć.</p></li>
+  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg></span><h3>Mieszkanie pod właściwego klienta</h3><p>Wytyczne dobieram do tego, kto najpewniej zamieszka w Twoim mieszkaniu, a nie do mojego gustu.</p></li>
+  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg></span><h3>Brief z wytycznymi</h3><p>Po spotkaniu dostajesz podsumowanie z konkretnymi krokami. Wracasz do niego na każdym etapie przygotowań.</p></li>
+  <li class="jhs-rv"><span class="jhs-pr-gets-ico"><svg aria-hidden="true"><use href="#jhs-i-search"/></svg></span><h3>Dopytuję o wszystko</h3><p>Na spotkaniu online dopytuję o szczegóły ze zdjęć i pomiarów i odpowiadam na Twoje pytania.</p></li>
  </ul>
 </div></section>
 
 <section class="wp-section alignfull jhs-sec" id="jak-przebiega" aria-labelledby="jhs-pr-steps-h"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
   <div><p class="jhs-eyebrow">Krok po kroku</p><h2 class="jhs-h2" id="jhs-pr-steps-h">Jak przebiega <span class="jhs-acc">konsultacja</span></h2></div>
-  <p>Od zakupu do briefu w PDF. Online i stacjonarnie wygląda to tak samo, różni się tylko miejsce spotkania.</p>
+  <p>Od zakupu do briefu z wytycznymi. Całość odbywa się online, więc nie musisz być w Warszawie.</p>
  </div>
  <ol class="jhs-steps">
-  <li class="jhs-rv"><h3>Kupujesz konsultację</h3><p>Wybierasz formę i płacisz online: BLIK, przelewem, kartą albo w ratach 0%.</p></li>
-  <li class="jhs-rv"><h3>Wypełniasz formularz</h3><p>Link dostajesz w mailu. Na podstawie Twoich odpowiedzi przygotowuję się do spotkania.</p></li>
+  <li class="jhs-rv"><h3>Kupujesz konsultację</h3><p>Płacisz online: BLIK, przelewem, kartą albo w ratach 0%.</p></li>
+  <li class="jhs-rv"><h3>Wysyłasz zdjęcia i pomiary</h3><p>Link do formularza dostajesz w mailu. Na podstawie zdjęć i pomiarów przygotowuję się do spotkania.</p></li>
   <li class="jhs-rv"><h3>Umawiamy termin</h3><p>Wysyłam Ci listę wolnych terminów. Zwykle spotykamy się w ciągu tygodnia lub dwóch.</p></li>
-  <li class="jhs-rv"><h3>Spotkanie</h3><p>Około godziny online albo w Twoim mieszkaniu. Na miejscu oglądam stan mieszkania i robię pomiary.</p></li>
-  <li class="jhs-rv"><h3>Brief w PDF</h3><p>Po spotkaniu dostajesz zalecenia dla Twojej nieruchomości i przygotowujesz ją samodzielnie.</p></li>
+  <li class="jhs-rv"><h3>Spotkanie online</h3><p>Około godziny. Dopytuję o wszystko, czego potrzebuję, i odpowiadam na Twoje pytania.</p></li>
+  <li class="jhs-rv"><h3>Brief z wytycznymi</h3><p>Po spotkaniu dostajesz wytyczne, co zrobić, i przygotowujesz mieszkanie samodzielnie.</p></li>
  </ol>
 </div></section>
 
@@ -749,15 +766,16 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div>
    <h3>Konsultacja jest dla Ciebie, jeśli:</h3>
    <ul>
-    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>przygotowujesz mieszkanie do sprzedaży lub wynajmu samodzielnie,</li>
+    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>przygotowujesz mieszkanie samodzielnie i potrzebujesz planu,</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>chcesz wiedzieć, co zrobić, żeby nieruchomość prezentowała się jak najlepiej,</li>
-    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>nie możesz się zdecydować, czy sprzedać, czy wynająć,</li>
+    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>możesz zrobić zdjęcia i pomiary pomieszczeń,</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>nie chcesz wydawać pieniędzy na zmiany, które nic nie dadzą.</li>
    </ul>
    <a class="jhs-btn jhs-btn--dark" href="#jhs-main" data-jhs-pr-top>Wybierz konsultację <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
   </div>
   <div>
    <h3>Lepiej wybierz pełną realizację, jeśli:</h3>
+   <p class="jhs-pr-who-price">od 2 500 zł <small>netto</small></p>
    <ul>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>nie masz czasu na zakupy, fachowców i stylizację,</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>mieszkasz w innym mieście albo za granicą,</li>
@@ -786,16 +804,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div class="jhs-pr-faq-side">
    <p class="jhs-eyebrow">Pytania</p>
    <h2 class="jhs-h2" id="jhs-pr-faq-h">O konsultacji <span class="jhs-acc">krótko</span></h2>
-   <p>Nie wiesz, czy konsultacja wystarczy? Zadzwoń. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+   <p>Nie wiesz, czy konsultacja wystarczy? Zadzwoń. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
    <a class="jhs-btn jhs-btn--dark" href="tel:+48512012909">512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
   </div>
   <div class="jhs-faq-list">
-   <details class="jhs-faq"><summary>Online czy stacjonarnie: co wybrać?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Stacjonarnie przyjeżdżam do Twojego mieszkania w Warszawie lub okolicach, oglądam jego stan i robię pomiary. Online spotykamy się bez względu na to, gdzie jest nieruchomość. Jeśli mieszkanie jest daleko od Warszawy albo zależy Ci na czasie, wybierz online.</p></div></details>
+   <details class="jhs-faq"><summary>Czy przyjeżdżasz do mieszkania?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Nie, ta konsultacja odbywa się tylko online. Zdjęcia i pomiary wysyłasz mi przed spotkaniem, więc nieruchomość może być w dowolnym miejscu w Polsce.</p></div></details>
    <details class="jhs-faq"><summary>Kiedy odbędzie się konsultacja?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Po opłaceniu konsultacji wysyłam Ci listę wolnych terminów. Zwykle udaje się ją umówić w ciągu tygodnia lub dwóch.</p></div></details>
-   <details class="jhs-faq"><summary>Jak przygotować się do spotkania?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Wypełnij formularz, który dostaniesz w mailu po zakupie. Na jego podstawie przygotowuję indywidualne zalecenia, więc im więcej mi o mieszkaniu napiszesz, tym konkretniej porozmawiamy.</p></div></details>
+   <details class="jhs-faq"><summary>Jak przygotować się do spotkania?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Zrób zdjęcia każdego pomieszczenia i zmierz je. Wyślij je przez formularz, który dostaniesz w mailu po zakupie. Im więcej mi o mieszkaniu napiszesz, tym konkretniej porozmawiamy.</p></div></details>
+   <details class="jhs-faq"><summary>Czym różni się pakiet z listą zakupów?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>W pakiecie Konsultacja + brief + lista zakupów (1845 zł brutto) dostajesz to samo co tutaj plus listę zakupów z linkami do sklepów. Dalej działasz samodzielnie.</p></div></details>
    <details class="jhs-faq"><summary>Czy mogę zapłacić w ratach?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, w sklepie działają raty 0% od PayU. Możesz też zapłacić BLIK-iem, szybkim przelewem albo kartą.</p></div></details>
    <details class="jhs-faq"><summary>Czy dostanę fakturę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, wystawiam fakturę z 23% VAT. Jeśli kupujesz na firmę, zaznacz to w zamówieniu i podaj NIP.</p></div></details>
-   <details class="jhs-faq"><summary>A jeśli po konsultacji zdecyduję się na pełną realizację?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Powiedz mi o tym na spotkaniu. Pełną realizację wyceniam indywidualnie, a po konsultacji znam już Twoje mieszkanie, więc wycena idzie szybko.</p></div></details>
+   <details class="jhs-faq"><summary>A jeśli po konsultacji zdecyduję się na pełną realizację?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Powiedz mi o tym na spotkaniu. Pełna realizacja kosztuje od 2 500 zł netto, a po konsultacji znam już Twoje mieszkanie, więc dokładna wycena idzie szybko.</p></div></details>
   </div>
  </div>
 </div></section>
@@ -809,31 +828,28 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <a class="jhs-pcard-img" href="https://sklep.justhomestaging.pl/produkt/home-staging-pelna-realizacja/" tabindex="-1" aria-hidden="true"><img src="img/produkt-home-staging-pelna-realizacja.webp" width="900" height="900" alt="" loading="lazy"></a>
    <span class="jhs-pcard-coll">Usługi</span>
    <h3><a href="https://sklep.justhomestaging.pl/produkt/home-staging-pelna-realizacja/">Home staging: pełna realizacja</a></h3>
-   <p class="jhs-pcard-price">Wycena indywidualna</p>
+   <p class="jhs-pcard-price"><small>od</small> 2 500 zł <small>netto</small></p>
   </li>
   <li class="jhs-pcard jhs-rv">
    <a class="jhs-pcard-img" href="https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/" tabindex="-1" aria-hidden="true"><img src="img/produkt-metamorfoza-twojego-wnetrza.webp" width="600" height="600" alt="" loading="lazy"></a>
    <span class="jhs-pcard-coll">Usługi</span>
    <h3><a href="https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/">Metamorfoza Twojego Wnętrza</a></h3>
-   <p class="jhs-pcard-price"><small>od</small> 1847 zł <small>z VAT</small></p>
+   <p class="jhs-pcard-price"><small>od</small> 1847 zł <small>brutto</small></p>
   </li>
   <li class="jhs-pcard jhs-rv">
    <a class="jhs-pcard-img" href="https://sklep.justhomestaging.pl/produkt/e-book-balkon-twoich-marzen/" tabindex="-1" aria-hidden="true"><img src="img/produkt-e-book-balkon-twoich-marzen.webp" width="800" height="800" alt="" loading="lazy"></a>
    <span class="jhs-pcard-coll">E-booki</span>
    <h3><a href="https://sklep.justhomestaging.pl/produkt/e-book-balkon-twoich-marzen/">E-book „Balkon Twoich Marzeń”</a></h3>
-   <p class="jhs-pcard-price">79 zł <small>z VAT</small></p>
+   <p class="jhs-pcard-price">79 zł <small>brutto</small></p>
   </li>
  </ul>
 </div></section>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[
-{"@type":"Product","@id":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/#produkt","name":"Konsultacja home stagingu","description":"Około godziny konsultacji online lub w mieszkaniu klienta i brief z zaleceniami w PDF. Dla osób, które samodzielnie przygotowują nieruchomość do sprzedaży lub wynajmu.","image":["https://sklep.justhomestaging.pl/wp-content/uploads/2024/05/24.png","https://sklep.justhomestaging.pl/wp-content/uploads/2024/05/25.png"],"brand":{"@type":"Brand","name":"Just Home Staging"},"category":"Konsultacje","url":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/","offers":[
-{"@type":"Offer","name":"Konsultacja home stagingu online","price":"547.00","priceCurrency":"PLN","availability":"https://schema.org/InStock","url":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/","seller":{"@id":"https://justhomestaging.pl/#firma"}},
-{"@type":"Offer","name":"Konsultacja home stagingu stacjonarna","price":"697.00","priceCurrency":"PLN","availability":"https://schema.org/InStock","url":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/?attribute_pa_wariant=stacjonarna","areaServed":{"@type":"City","name":"Warszawa"},"seller":{"@id":"https://justhomestaging.pl/#firma"}}
-]},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Home Staging","item":"https://justhomestaging.pl/"},{"@type":"ListItem","position":2,"name":"Sklep","item":"https://sklep.justhomestaging.pl/sklep/"},{"@type":"ListItem","position":3,"name":"Konsultacje","item":"https://sklep.justhomestaging.pl/kategoria-produktu/konsultacje/"},{"@type":"ListItem","position":4,"name":"Konsultacja home stagingu"}]}
+{"@type":"Product","@id":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/#produkt","name":"Konsultacja + brief","description":"Konsultacja home stagingu tylko online: klient wysyła zdjęcia i pomiary, spotkanie online, brief z wytycznymi, co zrobić. Dla osób, które samodzielnie przygotowują mieszkanie.","image":["https://sklep.justhomestaging.pl/wp-content/uploads/2024/05/24.png"],"brand":{"@type":"Brand","name":"Just Home Staging"},"category":"Konsultacje","url":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/","offers":{"@type":"Offer","price":"697.00","priceCurrency":"PLN","priceSpecification":{"@type":"PriceSpecification","price":"697.00","priceCurrency":"PLN","valueAddedTaxIncluded":true},"availability":"https://schema.org/InStock","url":"https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/","seller":{"@id":"https://justhomestaging.pl/#firma"}}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Home Staging","item":"https://justhomestaging.pl/"},{"@type":"ListItem","position":2,"name":"Sklep","item":"https://sklep.justhomestaging.pl/sklep/"},{"@type":"ListItem","position":3,"name":"Konsultacje","item":"https://sklep.justhomestaging.pl/kategoria-produktu/konsultacje/"},{"@type":"ListItem","position":4,"name":"Konsultacja + brief"}]}
 ]}</script>
-<!-- DO-POTWIERDZENIA: atrybut wariantu (pa_wariant) i adres wariantu w danych Offer po połączeniu produktów. Bez AggregateRating (produkt nie ma opinii w WooCommerce). -->
+<!-- Dane Product/Offer: jeden produkt prosty, jedna oferta 697 zł brutto. Bez AggregateRating (produkt nie ma opinii w WooCommerce). -->
 </main>
 
 <!-- SHELL:START stopka (wspólna dla wszystkich podstron) -->
@@ -841,16 +857,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -858,26 +873,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -887,7 +902,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -960,6 +975,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
 });
 
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
+});
+
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */
 const cookie=page.querySelector('#jhs-cookie');
 if(cookie){
@@ -973,18 +997,14 @@ if(cookie){
 </script>
 <!-- SHELL:END js -->
 <script data-wp-block-html="js">
-/* KARTA PRODUKTU: wariant z adresu (?wariant=stacjonarna), cena wariantu, galeria bez skoku strony. Bez JS: obie ceny przy wariantach, miniatury jako kotwice. */
-(()=>{const form=document.querySelector('[data-jhs-pr-form]');const gal=document.querySelector('[data-jhs-pr-gal]');if(!form)return;
-const priceEl=document.querySelector('[data-jhs-pr-price]');const radios=[...form.querySelectorAll('input[name="wariant"]')];
+/* KARTA PRODUKTU: galeria bez skoku strony, przycisk „Wybierz konsultację” przewija do formularza. Bez JS: miniatury jako kotwice, przycisk jako kotwica. */
+(()=>{const form=document.querySelector('[data-jhs-pr-form]');const gal=document.querySelector('[data-jhs-pr-gal]');
 const track=gal&&gal.querySelector('.jhs-pr-track');const thumbs=gal?[...gal.querySelectorAll('.jhs-pr-thumbs a')]:[];
 const mark=id=>thumbs.forEach(t=>{if(t.getAttribute('href')==='#'+id)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current');});
 const go=id=>{const s=document.getElementById(id);if(!s||!track)return;track.scrollTo({left:s.offsetLeft-track.offsetLeft,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});mark(id);};
 thumbs.forEach(t=>t.addEventListener('click',e=>{e.preventDefault();go(t.getAttribute('href').slice(1));}));
 if(track){let tm;track.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{const i=Math.round(track.scrollLeft/track.clientWidth);const s=track.children[i];if(s)mark(s.id);},80);});}
-const sync=r=>{if(priceEl)priceEl.textContent=r.dataset.price+' zł';if(r.dataset.slide)go(r.dataset.slide);};
-radios.forEach(r=>r.addEventListener('change',()=>sync(r)));
-const w=new URLSearchParams(location.search).get('wariant');const pre=radios.find(r=>r.value===w);if(pre){pre.checked=true;if(priceEl)priceEl.textContent=pre.dataset.price+' zł';setTimeout(()=>go(pre.dataset.slide),50);}
-document.querySelectorAll('[data-jhs-pr-top]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();form.scrollIntoView({behavior:'smooth',block:'center'});const c=form.querySelector('input:checked');if(c)c.focus({preventScroll:true});}));
+if(form)document.querySelectorAll('[data-jhs-pr-top]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();form.scrollIntoView({behavior:'smooth',block:'center'});const b=form.querySelector('button');if(b)b.focus({preventScroll:true});}));
 })();
 </script>
 </body>

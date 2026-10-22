@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aranżacja przestrzeni komercyjnej | Just Home Staging</title>
-<meta name="description" content="Aranżacja lokali usługowych, gabinetów, biur i miejsc na krótki najem: koncepcja, lista zakupów, stylizacja i aranżacje sezonowe. Warszawa i okolice.">
+<title>Polityka prywatności | Just Home Staging</title>
+<meta name="description" content="Polityka prywatności Just Home Staging: kto jest administratorem danych, w jakich celach je przetwarzam, pliki cookies, newsletter i Twoje prawa.">
 <link rel="icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -456,139 +475,48 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 </style>
 <!-- SHELL:END css -->
 <style data-wp-block-html="css">
-/* Podstrona usługi (klasy jhs-pk-*) */
-.jhs-pk-hero{padding-block:clamp(16px,2.5vw,32px) clamp(56px,7vw,96px)}
-.jhs-pk-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
-@media (max-width:980px){.jhs-pk-hero-grid{grid-template-columns:1fr}}
-.jhs-pk-hero h1{font-size:clamp(36px,4.4vw,58px);line-height:1.05;letter-spacing:-.04em;margin-bottom:22px}
-.jhs-pk-hero .jhs-lead{max-width:580px}
-.jhs-pk-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.jhs-pk-trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.jhs-pk-trust .jhs-chip svg{color:var(--jhs-sage-d)}
-.jhs-pk-trust .jhs-chip strong{color:var(--jhs-ink)}
-.jhs-pk-visual{position:relative}
-.jhs-pk-visual .jhs-ba-pair{box-shadow:0 50px 90px -50px rgba(70,48,30,.6)}
-.jhs-pk-photo{position:relative;margin:0;border-radius:var(--jhs-r);overflow:hidden;background:var(--jhs-photo);aspect-ratio:var(--ar,4/3);box-shadow:0 50px 90px -50px rgba(70,48,30,.6)}
-.jhs-pk-photo img{width:100%;height:100%;object-fit:cover}
-.jhs-pk-quote{position:relative;z-index:5;display:grid;gap:10px;max-width:400px;margin:-48px 0 0 auto;padding:20px 22px;border-radius:var(--jhs-r-s);background:#fff;box-shadow:0 30px 60px -30px rgba(70,48,30,.55),inset 0 0 0 1px var(--jhs-line)}
-.jhs-pk-quote blockquote{font-size:15.5px;line-height:1.55;color:var(--jhs-ink-2)}
-.jhs-pk-quote footer{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--jhs-mute)}
-.jhs-pk-quote footer strong{color:var(--jhs-ink)}
-@media (max-width:980px){.jhs-pk-quote{margin:-36px 16px 0 auto}}
-@media (max-width:560px){.jhs-pk-quote{margin:14px 0 0}}
-/* Dwie kolumny: zdjęcie i tekst */
-.jhs-pk-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
-.jhs-pk-split--rev>:first-child{order:2}
-@media (max-width:900px){.jhs-pk-split{grid-template-columns:1fr}.jhs-pk-split--rev>:first-child{order:0}}
-.jhs-pk-split-img{position:relative;border-radius:var(--jhs-r);overflow:hidden;aspect-ratio:var(--ar,3/2);background:var(--jhs-photo)}
-.jhs-pk-split-img img{width:100%;height:100%;object-fit:cover}
-.jhs-pk-split .jhs-h2{margin-bottom:18px}
-.jhs-pk-split p+p{margin-top:12px}
-.jhs-pk-split>div>p{color:var(--jhs-txt)}
-.jhs-pk-list{display:grid;gap:12px;margin:22px 0}
-.jhs-pk-list li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:17px;color:var(--jhs-ink-2)}
-.jhs-pk-list li svg{width:22px;height:22px;margin-top:3px;color:var(--jhs-acc)}
-.jhs-pk-list--check li svg{color:var(--jhs-sage-d)}
-.jhs-pk-out{padding:20px 22px;border-left:4px solid var(--jhs-acc);border-radius:0 var(--jhs-r-s) var(--jhs-r-s) 0;background:#fff;font-size:17px;color:var(--jhs-ink)}
-/* Karty korzyści */
-.jhs-pk-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
-@media (max-width:980px){.jhs-pk-cards{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.jhs-pk-cards{grid-template-columns:1fr}}
-.jhs-pk-card{display:flex;flex-direction:column;gap:10px;padding:26px 24px;border-radius:var(--jhs-r-s);background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-line)}
-.jhs-pk-card-ico{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--jhs-sand);color:var(--jhs-acc-d)}
-.jhs-pk-card-ico svg{width:24px;height:24px}
-.jhs-pk-card h3{font-size:19px;line-height:1.3}
-.jhs-pk-card p{font-size:16px;color:var(--jhs-txt)}
-.jhs-pk-card ul{display:grid;gap:6px;margin-top:4px;font-size:15.5px;color:var(--jhs-ink-2)}
-.jhs-pk-card li{display:grid;grid-template-columns:18px 1fr;gap:8px}
-.jhs-pk-card li svg{width:16px;height:16px;margin-top:5px;color:var(--jhs-sage-d)}
-.jhs-sec--white .jhs-pk-card,.jhs-sec--white .jhs-pk-cmp{background:var(--jhs-bg)}
-/* Przed i po, galeria */
-.jhs-pk-ba-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
-@media (max-width:980px){.jhs-pk-ba-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.jhs-pk-ba-grid{grid-template-columns:1fr}}
-.jhs-pk-ba-grid .jhs-ba-pair{border-radius:var(--jhs-r-s)}
-.jhs-pk-gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
-@media (max-width:900px){.jhs-pk-gal{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.jhs-pk-gal{grid-template-columns:1fr}}
-.jhs-pk-gal figure{margin:0}
-.jhs-pk-gal-img{display:block;border-radius:var(--jhs-r-s);overflow:hidden;aspect-ratio:3/2;background:var(--jhs-photo)}
-.jhs-pk-gal-img img{width:100%;height:100%;object-fit:cover}
-.jhs-pk-gal figcaption{margin-top:10px;font-size:15px;color:var(--jhs-txt)}
-.jhs-pk-gal figcaption strong{color:var(--jhs-ink)}
-.jhs-pk-gal figcaption a{color:var(--jhs-acc-d);text-decoration:underline;text-underline-offset:3px}
-/* Porównanie dwóch wariantów */
-.jhs-pk-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,22px)}
-@media (max-width:760px){.jhs-pk-cmp-grid{grid-template-columns:1fr}}
-.jhs-pk-cmp{display:flex;flex-direction:column;gap:12px;padding:clamp(22px,3vw,32px);border-radius:var(--jhs-r);background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-line)}
-.jhs-pk-cmp-top{display:flex;align-items:center;gap:14px}
-.jhs-pk-cmp h3{font-size:22px;line-height:1.25}
-.jhs-pk-cmp p{font-size:16px;color:var(--jhs-txt)}
-.jhs-pk-cmp ul{display:grid;gap:8px;font-size:16px;color:var(--jhs-ink-2)}
-.jhs-pk-cmp li{display:grid;grid-template-columns:22px 1fr;gap:10px}
-.jhs-pk-cmp li svg{width:18px;height:18px;margin-top:4px;color:var(--jhs-sage-d)}
-/* Ciemny blok */
-.jhs-pk-dark{display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:24px 48px;align-items:center;padding:clamp(26px,4vw,48px);border-radius:var(--jhs-r);background:var(--jhs-night);color:#e6ded3}
-.jhs-pk-dark h2{color:#fff;font-size:clamp(26px,3vw,38px);line-height:1.12}
-.jhs-pk-dark .jhs-acc{color:var(--jhs-glow)}
-.jhs-pk-dark p{margin-top:12px;max-width:620px;color:#cfc6ba}
-.jhs-pk-dark .jhs-eyebrow{color:var(--jhs-glow)}
-@media (max-width:860px){.jhs-pk-dark{grid-template-columns:1fr}}
-/* FAQ w dwóch kolumnach */
-.jhs-pk-faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:start}
-@media (max-width:900px){.jhs-pk-faq{grid-template-columns:1fr}}
-.jhs-pk-faq-side p{margin-top:16px;color:var(--jhs-txt)}
-.jhs-pk-faq-side .jhs-btn{margin-top:24px}
-/* Blok końcowy z CTA zamiast formularza */
-.jhs-pk-final-box{display:grid;gap:14px;align-content:start;padding:clamp(20px,3vw,32px);border-radius:var(--jhs-r-s);background:#fff;box-shadow:var(--jhs-shadow)}
-.jhs-pk-final-box h3{font-size:19px;line-height:1.3}
-.jhs-pk-final-box p{font-size:16px;color:var(--jhs-txt)}
-.jhs-pk-final-box .jhs-btn{justify-self:start}
-.jhs-pk-final-box hr{width:100%;border:0;border-top:1px solid var(--jhs-line);margin:6px 0}
-.jhs-pk-cmp .jhs-pk-cmp-price{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--jhs-ink)}
-.jhs-pk-cmp .jhs-pk-cmp-price small{font-size:15px;font-weight:600;letter-spacing:0;color:var(--jhs-mute)}
-/* Ceny: poprawka kontrastu w ciemnej karcie */
-.jhs-pk-prices .jhs-price--dark li{color:#e6ded3}
-.jhs-pk-prices .jhs-price--dark li svg{color:var(--jhs-glow)}
-.jhs-pk-prices .jhs-price--dark .jhs-price-val{color:#fff}
-.jhs-pk-note{max-width:var(--jhs-narrow)}
-
-/* Przestrzeń komercyjna: własne */
-.jhs-pk-hero-photo{--ar:1/1;max-width:540px;margin-left:auto}
-@media (max-width:980px){.jhs-pk-hero-photo{--ar:4/3;max-width:none}}
-.jhs-pk-hero .jhs-pk-quote{margin-top:-64px;margin-right:auto;margin-left:0}
-@media (max-width:980px){.jhs-pk-hero .jhs-pk-quote{margin:-36px auto 0 16px}}
-@media (max-width:560px){.jhs-pk-hero .jhs-pk-quote{margin:14px 0 0}}
-.jhs-pk-who{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-@media (max-width:980px){.jhs-pk-who{grid-template-columns:1fr 1fr}}
-.jhs-pk-who li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;min-height:76px;padding:14px 16px;border-radius:var(--jhs-r-s);background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);font-weight:600;font-size:16px;line-height:1.35;color:var(--jhs-ink)}
-.jhs-pk-who-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--jhs-sand);color:var(--jhs-acc-d)}
-.jhs-pk-who-ico svg{width:22px;height:22px}
-@media (max-width:420px){.jhs-pk-who{grid-template-columns:1fr}}
-.jhs-pk-scope{grid-template-columns:repeat(4,minmax(0,1fr))}
-@media (max-width:1080px){.jhs-pk-scope{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.jhs-pk-scope{grid-template-columns:1fr}}
-.jhs-pk-case{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:center}
-@media (max-width:900px){.jhs-pk-case{grid-template-columns:1fr}}
-.jhs-pk-case-imgs{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:3/2}
-.jhs-pk-case-imgs>div{border-radius:var(--jhs-r-s);overflow:hidden;background:var(--jhs-photo)}
-.jhs-pk-case-imgs>div:first-child{grid-row:1/3}
-.jhs-pk-case-imgs img{width:100%;height:100%;object-fit:cover}
-.jhs-pk-case h3{font-size:clamp(24px,2.4vw,30px);line-height:1.15;margin-bottom:12px}
-.jhs-pk-case>div>p{color:var(--jhs-txt)}
-.jhs-pk-case>div>p+p{margin-top:12px}
-.jhs-pk-case .jhs-chip{margin:16px 0 6px}
-.jhs-pk-case .jhs-link{margin-top:8px}
-.jhs-pk-mewell{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:clamp(36px,5vw,64px)}
-@media (max-width:900px){.jhs-pk-mewell{grid-template-columns:1fr}}
-.jhs-pk-mewell h3{font-size:clamp(24px,2.4vw,30px);line-height:1.15;margin-bottom:12px}
-.jhs-pk-mewell>div>p{color:var(--jhs-txt)}
-.jhs-pk-mewell .jhs-rev{box-shadow:var(--jhs-shadow),inset 0 0 0 1px var(--jhs-line)}
-.jhs-pk-mewell .jhs-rev blockquote{font-size:18px}
-.jhs-pk-mewell .jhs-rev-grid{columns:1}
-.jhs-pk-mewell .jhs-rev-grid .jhs-rev{margin-bottom:0}
-@media (min-width:1081px){.jhs-pk-steps{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.jhs-pk-gal-h{margin:clamp(36px,5vw,56px) 0 16px;font-size:20px}
+/* Strony prawne (klasy jhs-pr-*) */
+.jhs-pr-head{padding-block:clamp(20px,3vw,40px) clamp(20px,3vw,32px)}
+.jhs-pr-head-in{max-width:720px;margin-inline:auto}
+.jhs-pr-head h1{font-size:clamp(34px,4.6vw,56px);line-height:1.06;letter-spacing:-.04em}
+.jhs-pr-head .jhs-lead{margin-top:16px;max-width:640px}
+.jhs-pr-sec{padding-block:0 clamp(56px,7vw,96px)}
+.jhs-pr-body{max-width:720px;margin-inline:auto;font-size:17px;line-height:1.72;color:var(--jhs-ink-2);overflow-wrap:anywhere}
+.jhs-pr-body>*+*{margin-top:18px}
+.jhs-pr-body h2{font-size:clamp(24px,2.4vw,30px);line-height:1.2;letter-spacing:-.02em;color:var(--jhs-ink);margin-top:clamp(44px,5vw,60px);padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--jhs-line);scroll-margin-top:100px}
+.jhs-pr-body--caps h2{font-size:clamp(19px,1.8vw,22px);letter-spacing:.04em}
+.jhs-pr-body h2+*{margin-top:14px}
+.jhs-pr-body strong{color:var(--jhs-ink);font-weight:700}
+.jhs-pr-body a{color:var(--jhs-acc-d);font-weight:600;text-decoration:underline;text-decoration-color:rgba(180,80,26,.35);text-decoration-thickness:2px;text-underline-offset:4px}
+.jhs-pr-body a:hover{text-decoration-color:var(--jhs-acc)}
+.jhs-pr-body ul,.jhs-pr-body ol{display:grid;gap:10px;padding-left:1.4em}
+.jhs-pr-body ul{list-style:disc}
+.jhs-pr-body ol{list-style:decimal}
+.jhs-pr-body li::marker{color:var(--jhs-acc-d);font-weight:700}
+.jhs-pr-body li>ul,.jhs-pr-body li>ol{margin-top:10px}
+.jhs-pr-body ul ul{list-style:circle}
+.jhs-pr-body table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.6;background:#fff;border-radius:var(--jhs-r-s);box-shadow:inset 0 0 0 1px var(--jhs-line);overflow:hidden}
+.jhs-pr-body table+table{margin-top:0;border-top-left-radius:0;border-top-right-radius:0}
+.jhs-pr-body table:has(+table){border-bottom-left-radius:0;border-bottom-right-radius:0}
+.jhs-pr-body th,.jhs-pr-body td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--jhs-line)}
+.jhs-pr-body th{background:var(--jhs-sand);font-size:14px;letter-spacing:.04em;color:var(--jhs-ink)}
+.jhs-pr-body td:first-child,.jhs-pr-body th:first-child{width:34%}
+@media (max-width:640px){
+ .jhs-pr-body table,.jhs-pr-body tbody,.jhs-pr-body thead,.jhs-pr-body tr,.jhs-pr-body th,.jhs-pr-body td{display:block;width:100%!important}
+ .jhs-pr-body td:first-child{padding-bottom:4px;border-bottom:0}
+}
+.jhs-pr-meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:15px;color:var(--jhs-txt)}
+.jhs-pr-toc{border-radius:var(--jhs-r-s);background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-line);padding:0 18px}
+.jhs-pr-toc>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;font-weight:700;color:var(--jhs-ink);cursor:pointer}
+.jhs-pr-toc>summary::-webkit-details-marker{display:none}
+.jhs-pr-toc .jhs-caret{width:14px;height:14px;transition:transform .25s var(--jhs-ease)}
+.jhs-pr-toc[open] .jhs-caret{transform:rotate(180deg)}
+.jhs-pr-body .jhs-pr-toc ol{gap:0;margin:0 0 14px;font-size:16px}
+.jhs-pr-toc li a{display:inline-flex;align-items:center;min-height:44px;font-weight:500}
+.jhs-pr-contact{max-width:720px;margin:clamp(40px,5vw,56px) auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:clamp(20px,3vw,28px);border-radius:var(--jhs-r-s);background:var(--jhs-sand);box-shadow:inset 0 0 0 1px var(--jhs-line)}
+.jhs-pr-contact p{font-size:17px;color:var(--jhs-ink-2)}
+.jhs-pr-contact strong{display:block;color:var(--jhs-ink);font-size:18px}
+.jhs-pr-contact-links{display:flex;flex-wrap:wrap;gap:10px}
 </style>
 </head>
 <body>
@@ -630,9 +558,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -647,20 +576,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -674,12 +600,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -698,189 +625,255 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-crumbs-sec" aria-label="Okruszki"><div class="wp-content-wrap jhs-wrap">
  <nav class="jhs-crumbs" aria-label="Jesteś tutaj"><ol>
   <li><a href="index.html" data-href="https://justhomestaging.pl/">Just Home Staging</a></li>
-  <li><a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/">Oferta</a></li>
-  <li><span aria-current="page">Przestrzeń komercyjna</span></li>
+  <li><span aria-current="page">Polityka prywatności</span></li>
  </ol></nav>
 </div></section>
 
-<!-- 1. Hero -->
-<section class="wp-section alignfull jhs-pk-hero"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-pk-hero-grid">
-  <div>
-   <p class="jhs-eyebrow">Dla firm · Warszawa i okolice</p>
-   <h1>Aranżacja przestrzeni <span class="jhs-acc">komercyjnej</span></h1>
-   <p class="jhs-lead">Klienci instynktownie wybierają miejsca, które wyróżniają się dbałością o detale. Zaaranżuję Twój gabinet, lokal usługowy, biuro czy domek na wynajem tak, żeby goście czuli się dobrze i chcieli zostać dłużej. <strong>Ty prowadzisz firmę, ja zajmuję się wnętrzem.</strong></p>
-   <div class="jhs-pk-ctas">
-    <a class="jhs-btn jhs-btn--acc" href="#zapytanie">Wyślij zapytanie <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
-    <a class="jhs-btn jhs-btn--light" href="#realizacje">Zobacz realizacje <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
-   </div>
-   <ul class="jhs-pk-trust" aria-label="W skrócie">
-    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg>Gabinety, lokale, biura, najem krótki</li>
-    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg>Także aranżacje sezonowe</li>
-    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-tag"/></svg>Faktura VAT</li>
-   </ul>
-  </div>
-  <div class="jhs-pk-visual">
-   <figure class="jhs-pk-photo jhs-pk-hero-photo"><img src="img/oferta-komercyjna-loft.webp" width="1600" height="1600" alt="Loftowa przestrzeń komercyjna z długim stołem i czarnymi lampami w kształcie kul"></figure>
-   <div class="jhs-pk-quote">
-    <span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-heart"/></svg>Poradnia psychoterapii MeWell</span>
-    <blockquote>„Wnętrza poradni robią ogromne wrażenie, są doceniane przez naszych gości (…)”</blockquote>
-    <footer><svg class="jhs-rev-g" aria-hidden="true"><use href="#jhs-i-google"/></svg><span><strong>Aneta S.</strong>, opinia w Google</span></footer>
-   </div>
-  </div>
+<section class="wp-section alignfull jhs-pr-head"><div class="wp-content-wrap jhs-wrap">
+ <div class="jhs-pr-head-in">
+  <p class="jhs-eyebrow">Dokumenty</p>
+  <h1>Polityka <span class="jhs-acc">prywatności</span></h1>
  </div>
 </div></section>
 
-<!-- 2. Dla kogo -->
-<section class="wp-section alignfull jhs-sec jhs-sec--white" id="dla-kogo"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Dla kogo</p><h2 class="jhs-h2">Dla miejsc, do których klienci mają <span class="jhs-acc">wracać</span></h2></div>
-  <p>Wnętrze to pierwsze, co widzi Twój klient lub gość. Przyciąga wzrok, buduje zaufanie i zachęca do dłuższego pobytu.</p>
- </div>
- <ul class="jhs-pk-who">
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-heart"/></svg></span>Poradnie i gabinety</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span>Salony kosmetyczne</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg></span>Restauracje i lokale usługowe</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-home"/></svg></span>Biura</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg></span>Butiki i sklepy</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-camera"/></svg></span>Studia fotograficzne</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-key"/></svg></span>Domki i apartamenty na krótki najem</li>
-  <li class="jhs-rv"><span class="jhs-pk-who-ico"><svg aria-hidden="true"><use href="#jhs-i-leaf"/></svg></span>Inne przestrzenie dla gości</li>
- </ul>
-</div></section>
+<section class="wp-section alignfull jhs-pr-sec"><div class="wp-content-wrap jhs-wrap">
+ <article class="jhs-pr-body jhs-pr-body--caps">
+<p><strong>Dobrze Cię tu widzieć!</strong></p>
+<p>Traktuję Twoje dane oraz ich ochronę odpowiedzialnie i poważnie. Bardzo proszęo zapoznanie się z przygotowanym dla Ciebie dokumentem. Są w nim zawarte zasady przetwarzania danych osobowych oraz wykorzystania plików cookies i innych technologii śledzących w związku z korzystaniem z tej strony internetowej.</p>
+<p>Moja działalność będzie się rozwijać. Razem z nią rozwijać się będzie ta strona internetowa oraz dokument, który właśnie czytasz. Wobec powyższego zachęcam Cię do zaglądania do zakładki regularnie, na której jest on umieszczony.</p>
+<p>Dla Twojej wygody na początku dokumentu podajęinformację o aktualizacji polityki prywatności i plików cookies.</p>
+<h2>PODSTAWOWE INFORMACJE</h2>
+<!-- DO-POTWIERDZENIA: Justyna zmienia adres w tym tygodniu (19.10.2026). Adres poniżej jak w obecnym dokumencie (ul. Powstańców 64c/89); po potwierdzeniu wpisać nowy adres. Uwaga: regulamin na justhomestaging.pl ma ul. Powstańców 64c/89, regulamin sklepu ul. Powstańców 39/41. -->
+<p>1. Administratorem danych jest Justyna Zaniewska, prowadząca działalność gospodarczą pod firmą Just Home Staging Justyna Zaniewska, ze stałym miejscem prowadzenia działalności gospodarczej w Ząbkach, ul. Powstańców 64c/89, 05-091, NIP 546 137 91 70, REGON 520668014</p>
+<p>2. Z administratorem możesz się skontaktować, pisząc na adres e-mail: justyna@justhomestaging.pl</p>
+<p>3. Pamiętaj, że kontaktując się zemną poprzez pocztę e-mail czy zapisując się do newslettera, przekazujesz mi swoje dane osobowe, na przykład imię oraz adres poczty e-mail.</p>
+<p>4. Zapewniam, że dokładam wszelkiej staranności, aby przekazane dane były bezpieczne.</p>
+<p>5. Wszędzie tam, gdzie przetwarzanie danych wymaga zaangażowania zewnętrznych dostawców, gwarantuję, że świadomie dobieram podmioty, z którymi współpracuję, aby zapewnić odpowiedni standard bezpieczeństwa przekazanych mi danych.</p>
+<h2>OBOWIĄZUJĄCE ZASADY</h2>
+<ul>
+<li>Korzystanie z tej strony internetowej jest dobrowolne. Nie jesteś w żaden sposób zmuszana/zmuszany do przekazania danych osobowych. Jednakże nieprzekazanie pewnych informacji może wiązać się z brakiem możliwości wykonania danej usługi i osiągnięcia określonego celu, np. skontaktowania się ze mną za pośrednictwem poczty e‑mail lub zapisu do newslettera.</li>
+<li>Ta strona internetowa, podobnie jak wiele innych stron, wykorzystuje pliki cookies w celu prawidłowego jej działania. W dalszej części wskazuję dokładnie, jak działają pliki cookies i jakie to ma dla Ciebie znaczenie.</li>
+<li>Korzystam z narzędzi analitycznych, które zbierają anonimowe informacje na temat odwiedzin tej strony, np. czasu spędzonego na stronie lub wyświetlonych zakładek. Szczegóły znajdziesz w tym dokumencie.</li>
+</ul>
+<h2>OCHRONA DANYCH OSOBOWYCH</h2>
+<ul>
+<li>Wiem, że dane osobowe są cennym kapitałem. Mam także świadomość zagrożeń wynikających z przetwarzania danych osobowych poprzez korzystanie z sieci Internet.</li>
+<li>Dokładam jednak wszelkich starań, aby zapewnić właściwy sposób ochrony Twoich danych.</li>
+<li>Już na tym etapie chcę Cię poinformować, że nie wszystkie uprawnienia będą Ci przysługiwać bezwzględnie i w stosunku do wszystkich czynności związanych z przetwarzaniem danych osobowych. Nie wynika to z mojej złej woli, lecz z natury przepisów prawa.</li>
+</ul>
+<h2>CEL I PODSTAWA PRZETWARZANIA DANYCH OSOBOWYCH</h2>
+<ul>
+<li>Dane osobowe przekazywane przez Ciebie mogą być przetwarzane w niżej wskazanych celach i na następujących podstawach prawnych:</li>
+</ul>
+<table><thead><tr><th scope="col">CEL</th><th scope="col">PODSTAWA PRZETWARZANIA I INFORMACJE O PRZETWARZANIU DANYCH</th></tr></thead><tbody><tr><td><strong>Obsługa poczty Tworzenie rejestrów czynności przetwarzania danych i ewidencji wynikających z RODO</strong></td><td>Wysyłając wiadomość, przekazujesz adres e-mail oraz inne dane zawarte w treści wiadomości. Podanie adresu e-mail jest dobrowolne, ale niezbędne, by nawiązać kontakt. Dane są wówczas przetwarzane w celu skontaktowania się z Tobą. Podstawą przetwarzania w tym przypadku jest art. 6 ust. 1 lit. a RODO, czyli Twoja zgoda wynikająca z zainicjowania kontaktu. Pamiętaj, proszę, że Twoje dane będą przetwarzane także po zakończeniu kontaktu. Podstawą prawną takiego przetwarzania jest usprawiedliwiony cel w postaci archiwizacji korespondencji na potrzeby wykazania jej przebiegu w przyszłości (art. 6 ust. 1 lit. f RODO). Jest to obowiązek wynikający z przepisów prawa: art. 6 ust. 1 lit. c RODO oraz wynikający z treści art. 6 ust. 1 lit. f RODO, czyli mojego,jako administratora tej strony, prawnie uzasadnionego interesu.</td></tr><tr><td><strong>Analizowanie danych zbieranych automatycznie przy korzystaniu ze strony internetowej</strong></td><td>W tym wypadku dane są przetwarzane na podstawie art. 6 ust. 1 lit. f RODO, czyli prawnie uzasadnionego interesu administratora.</td></tr><tr><td><strong>Wykorzystanie cookies na stronie</strong></td><td>Podstawą jest Twoja zgoda, która jest udzielona jeszcze przed pełnym załadowaniem strony internetowej.</td></tr></tbody></table>
+<table><tbody><tr><td><strong>Zarządzanie stroną internetową i innymi stronami/grupami na zewnętrznych platformach, np. na Facebooku</strong></td><td>Podstawą przetwarzaniajest uprawnienie mnie, jako administratora Twoich danych, realizowane na podstawie art. 6 ust. 1 lit. f RODO: prawnie uzasadniony interes administratora oraz Twoja zgoda w przypadku np. dołączenia do grupy na Facebooku.</td></tr><tr><td><strong>Archiwalny i dowodowy, na potrzeby zabezpieczenia informacji, które mogą służyć wykazywaniu faktów Księgowy/rachunkowy</strong></td><td>Jest to prawnie uzasadniony interes administratora danych osobowych, zgodnie z treścią art. 6 ust. 1 lit. f RODO. Jest to obowiązek wynikający z przepisów prawa, realizowany w celu wystawienia faktury VAT lub innego dokumentu, na podstawie którego dokonujemy rozliczeń: art. 6 ust. 1 lit. c RODO.</td></tr><tr><td><strong>Wysłanie newslettera</strong></td><td>W celu wysłania newslettera na podstawie art. 6 ust. 1 lit. a RODO, czyli zgody udzielonej tuż przed zapisaniem się do newslettera oraz w celu realizacji marketingu bezpośredniego, kierowanego do Ciebie na podstawie art. 6 ust. 1 lit. f RODO, czyli mojego, jako administratora, prawnie uzasadnionego interesu.</td></tr></tbody></table>
+<table><tbody><tr><td><strong>Złożenie zamówienia i wykonanie umowy sprzedaży/ udostępnienia treści cyfrowej</strong></td><td>Poprzez złożenie zamówienia podajesz dane niezbędne do realizacji zamówienia, tj.:Twoje imię i nazwisko, adres e-mail, NIP, adres rozliczeniowy. Podanie danych jest dobrowolne, ale niezbędne do złożenia zamówienia. Dane przekazane mi w związku z zamówieniem przetwarzane są w celu wykonania umowy zawieranej poprzez złożenie zamówienia, w tym umowy sprzedaży (art. 6 ust. 1 lit. b RODO), wystawienia faktury (art. 6 ust. 1 lit. c RODO), uwzględnienia faktury w dokumentacji księgowej (art. 6 ust. 1 lit. c RODO) oraz w celach archiwalnych i statystycznych (art. 6 ust. 1 lit. f RODO). Dane o zamówieniach będą przetwarzane przez czas niezbędny do realizacji zamówienia, a następnie do czasu upływu terminu przedawnienia roszczeń z tytułu zawartej umowy. Ponadto, po upływie tego terminu, dane nadal mogą być przezemnie przetwarzane w celach archiwalnych, statystycznych, w szczególności w celu identyfikacji klienta powracającego. W przypadku danych o zamówieniach niektóre z praw nie będą Ci przysługiwać, np. nie możesz sprzeciwić się przetwarzaniu danych oraz domagać się usunięcia danych zawartych na fakturach. Więcej o swoich prawach przeczytasz w dalszej części tego dokumentu.</td></tr></tbody></table>
+<table><tbody><tr><td><strong>Realizacja reklamacji, odstąpienia od umowy</strong></td><td>Jeżeli składasz reklamację lub odstępujesz od umowy, to przekazujesz dane osobowe zawarte w treści reklamacji lubw oświadczeniu o odstąpieniu od umowy, które obejmują: imię i nazwisko, adres zamieszkania, numer telefonu, adres e-mail, numer rachunku bankowego. Podanie danych jest dobrowolne, ale niezbędne, by złożyć reklamację lub odstąpić od umowy. Dane przekazane w związku ze złożeniem reklamacji lub odstąpieniem od umowy wykorzystywane są w celu realizacji procedury reklamacyjnej lub procedury odstąpienia od umowy (art. 6 ust. 1 lit. c RODO), a następnie w celach archiwalnych, co stanowi mój prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO). Dane będą przetwarzane przez czas niezbędny do realizacji procedury reklamacyjnej lub procedury odstąpienia. Reklamacje oraz oświadczenia o odstąpieniu od umowy mogą być ponadto archiwizowane w celu możliwości wykazania w przyszłości przebiegu procesu reklamacyjnego lub odstąpienia od umowy. W przypadku danych przekazanych w procesie złożenia reklamacji lub odstąpienia od umowy niektóre z praw nie będą Ci przysługiwać zawsze i w każdych warunkach.</td></tr></tbody></table>
+<h2>TWOJE PRAWA</h2>
+<ul>
+<li>RODO przyznaje następujące uprawnienia związane z przetwarzaniem danych osobowych:
+<ul>
+<li><strong>Prawo dostępu do informacji i obowiązek informacyjny</strong>: oznacza, że każda osoba, której dane są przetwarzane,ma prawo wiedzieć, co się dzieje z jej danymi osobowymi. Między innymi w tym celu została stworzona polityka prywatności, którą właśnie czytasz.</li>
+<li><strong>Prawo dostępu do danych osobowych</strong>: oznacza, że jeśli ja, jako administrator Twoich danych, otrzymam od Ciebie żądanie dostępu do Twoich danych, to mam obowiązek udzielić Ci takiej informacji. Swoje obowiązki w tym zakresie, jako administrator danych, mam wykonać niezwłocznie, nie później niż w ciągu miesiąca. Jeśli w tym terminie będzie to niemożliwe, to mam obowiązek poinformować Cię przynajmniej, czy przetwarzam Twoje dane i mogę wtedy przedłużyć termin na kompletną odpowiedź na Twoje żądanie o dwa miesiące.</li>
+<li><strong>Prawo do sprostowania danych osobowych</strong>: oznacza, że możesz żądać, aby administrator Twoich danych sprostował dane nieprawidłowe lub uzupełnił dane niekompletne.</li>
+<li><strong>Prawo do usunięcia danych osobowych, prawo do bycia zapomnianym</strong>: oznacza, że możesz domagać się ode mnie, jako od administratora Twoich danych osobowych, ich usunięcia, poinformowania osoby, której Twoje dane zostały przekazane, o ich usunięciu.Masz także prawo domagać się, aby Twoje dane, które zostały przez mnie upublicznione, podlegały usunięciu także przez innych administratorów. Jako administrator Twoich danych mam też obowiązek na Twoje żądanie poinformować Cię, którym odbiorcom przekazane zostały Twoje dane podlegające usunięciu.</li>
+<li><strong>Prawo do ograniczenia przetwarzania danych osobowych</strong>: oznacza, że możesz domagać się ograniczenia przetwarzania Twoich danych osobowych. Dzieje się tak na przykład wtedy, gdy nie zgadzasz się z prawidłowością przetwarzanych danych albo kiedy uznasz, że nie potrzebujesz już danych do celów przetwarzania.</li>
+<li><strong>Prawo do wniesienia sprzeciwu co do przetwarzania danych osobowych</strong>: oznacza, że możesz sprzeciwić się temu, aby Twoje dane były przetwarzane przez administratora.</li>
+<li><strong>Prawo do przenoszenia danych</strong>: oznacza, że przy spełnieniu określonych warunków możesz żądać przekazania Twoich danych bezpośrednio wskazanemu, innemu administratorowi.</li>
+<li><strong>Prawo do wniesienia skargi</strong>: oznacza, że gdy tylko uznasz, że przetwarzanie przez nas Twoich danych narusza przepisy prawa, możesz wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych.</li>
+</ul></li>
+</ul>
+<ul>
+<li>Pamiętaj, proszę, że nie każde z tych uprawnień będzie Ci przysługiwać zawsze i w każdym wypadku. Nie jest to przejaw złej woli, a natura przepisów prawa.</li>
+</ul>
+<h2>ODBIORCY DANYCH OSOBOWYCH</h2>
+<ul>
+<li>Twoje dane osobowe mogą zostać przekazane podmiotom trzecim, z których usług korzystam w związku z prowadzeniem platformy oraz sprzedażą produktów elektronicznych.</li>
+<li>Zapewniam jednak, że starannie dobieram podmioty, z którymi współpracuję lub z których usług korzystam, i zawsze kieruję się zapewnieniem odpowiedniej ochrony danych.</li>
+<li>Z uwagi na korzystanie z usług Google czy Facebooka Twoje dane mogą być przekazywane do Stanów Zjednoczonych Ameryki (USA) oraz Kanady. Informuję Cię jednak, że podmioty te gwarantują odpowiedni poziom ochrony danych osobowych wymagany przez przepisy europejskie.</li>
+<li>Celem uporządkowania podmiotów, z których usług korzystam, zostały one podzielone na dwie grupy. Pierwsza z nich to podmioty przetwarzające dane w obszarze Unii Europejskiej. Druga grupa to podmioty przetwarzające dane poza Europejskim Obszarem Gospodarczym.
+<ul>
+<li><strong>Podmioty przetwarzające dane w Europejskim Obszarem Gospodarczym:</strong> 
+<ul>
+<li>Zenbox sp. z o.o.: serwis świadczący usługi utrzymania systemu informatycznego oraz hostingu, w celu przechowywania danych osobowych na serwerze;</li>
+<li>Zenbox sp. z o.o.: w celu korzystania z poczty elektronicznej;</li>
+<li>Usługi Księgowe Katarzyna Gnyszka: firma wykonująca usługi księgowania w celu wystawienia dokumentu księgowego za zrealizowaną usługę i produkt, zrealizowania płatności oraz prowadzenia rozliczeń księgowych;</li>
+<li>Zenbox sp. z o.o.: w celu uzyskania wsparcia technicznego w zakresie prowadzenia strony internetowej, obsługi serwera, poczty e-mail;</li>
+<li>MailerLite: w celu wysłania korespondencji e-mail (newsletter) do osób, które uprzednio zapisały się na listę e-mail.</li>
+</ul></li>
+<li><strong>Podmioty przetwarzające dane poza Europejskim Obszarem Gospodarczym:</strong> 
+<ul>
+<li><strong>Vimeo, Inc.</strong>: serwis umożliwiający osadzanie materiałów audiowizualnych na stronie; 2. <strong>Google Analytics by Google LLC</strong>: narzędzie marketingowe;</li>
+<li><strong>YouTube by Google LLC</strong>: osadzanie materiałów audiowizualnych na moich stronach; 4. <strong>GoogleInc</strong>: platforma umożliwiająca przesyłanie formularzy wstępnych rozpoczynających współpracę</li>
+</ul></li>
+<li>W ramach prowadzonej przez administratora działalności na stronie zostały osadzone także wtyczki do mediów społecznościowych. Cel i zakres gromadzenia danych oraz ich dalszego przetwarzania i wykorzystania przez usługodawców zostały opisane w politykach prywatności niżej wskazanych:
+<ul>
+<li>Facebook: https://www.facebook.com/privacy/explanation,</li>
+<li>Instagram: https://help.instagram.com/519522125107875?helpref=page_content, c) YouTube: https://support.google.com/youtube/answer/7671399,</li>
+<li>LinkedIn: https://www.linkedin.com/legal/privacy-policy,</li>
+<li>Vimeo, Inc.: https://vimeo.com/features/video-privacy,</li>
+<li>Pinterest: https://policy.pinterest.com/pl/privacy-policy.</li>
+</ul></li>
+</ul></li>
+</ul>
+<ul>
 
-<!-- 3. Zakres -->
-<section class="wp-section alignfull jhs-sec" id="zakres"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Zakres</p><h2 class="jhs-h2">Od koncepcji po ostatnią <span class="jhs-acc">dekorację</span></h2></div>
-  <p>Korzystam z doświadczenia i kontaktów w branży dekoratorskiej. Zakres dobieram do Twojego miejsca i budżetu.</p>
- </div>
- <!-- DO-POTWIERDZENIA: czy „stylizacja do sesji zdjęciowej” dla firm jest nadal w ofercie (stylizacja sesji dla projektantów wycofana 11.2025; na stronie sklepu przestrzeń komercyjna obejmowała stylizację sesji wnętrz lub produktów) -->
- <div class="jhs-pk-cards jhs-pk-scope">
-  <article class="jhs-pk-card jhs-rv"><span class="jhs-pk-card-ico"><svg aria-hidden="true"><use href="#jhs-i-home"/></svg></span><h3>Projekt aranżacji</h3><p>Spójna koncepcja wnętrza, która łączy funkcjonalność z charakterem Twojej marki.</p></article>
-  <article class="jhs-pk-card jhs-rv"><span class="jhs-pk-card-ico"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg></span><h3>Lista zakupów</h3><p>Meble, tekstylia i dekoracje z linkami. Zamawiasz tylko to, co pasuje do całości.</p></article>
-  <article class="jhs-pk-card jhs-rv"><span class="jhs-pk-card-ico"><svg aria-hidden="true"><use href="#jhs-i-sofa"/></svg></span><h3>Stylizacja na miejscu</h3><p>Przyjeżdżam, rozpakowuję i ustawiam wszystko tak, żeby wnętrze dobrze wyglądało na żywo i na zdjęciach.</p></article>
-  <article class="jhs-pk-card jhs-rv"><span class="jhs-pk-card-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span><h3>Aranżacje sezonowe</h3><p>Na przykład świąteczna odsłona lokalu, która zaskoczy stałych klientów.</p></article>
- </div>
-</div></section>
+</ul>
+<ul>
 
-<!-- 4. Realizacje -->
-<section class="wp-section alignfull jhs-sec jhs-sec--sand" id="realizacje"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Realizacje</p><h2 class="jhs-h2">Przestrzenie, które pracują na <span class="jhs-acc">firmę</span></h2></div>
-  <p>Poradnia, w której goście czują się dobrze, i domki na wynajem z pełnym kalendarzem rezerwacji.</p>
- </div>
- <div class="jhs-pk-mewell">
-  <div class="jhs-rv">
-   <p class="jhs-eyebrow">Poradnia psychoterapii</p>
-   <h3>MeWell: wnętrze, które doceniają goście</h3>
-   <p>Odpowiadałam za projekt aranżacji poradni psychoterapii. Najlepiej opowiada o nim właścicielka.</p>
-  </div>
-  <ul class="jhs-rev-grid" aria-label="Opinia klientki MeWell">
-   <li class="jhs-rev jhs-rv"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a">A</span><span><strong>Aneta S.</strong><small><span class="jhs-stars" aria-label="5 na 5"><svg><use href="#jhs-i-star"/></svg><svg><use href="#jhs-i-star"/></svg><svg><use href="#jhs-i-star"/></svg><svg><use href="#jhs-i-star"/></svg><svg><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Projekt aranżacji poradni MeWell</span><blockquote>„Justyna odpowiadała za projekt aranżacji poradni psychoterapii MeWell. Wnętrza poradni robią ogromne wrażenie, są doceniane przez naszych gości, a z samą Justyną pracuje się świetnie (…) Bardzo polecam!”</blockquote></li>
-  </ul>
- </div>
- <!-- DO-POTWIERDZENIA: zdjęcia poradni MeWell (galeria obecnej strony nie jest podpisana) -->
- <article class="jhs-pk-case">
-  <div class="jhs-pk-case-imgs jhs-rv">
-   <div><img src="img/realizacja-stacja-dzialka-domek-wieczor.webp" width="900" height="600" alt="Domek na palach w Stacji Działka o zmierzchu, z oświetlonym tarasem" loading="lazy"></div>
-   <div><img src="img/realizacja-stacja-dzialka-sypialnia.webp" width="900" height="600" alt="Sypialnia w drewnianym domku z plakatem sarny i zieloną pościelą" loading="lazy"></div>
-   <div><img src="img/realizacja-stacja-dzialka-wnetrze.webp" width="900" height="600" alt="Wnętrze domku z antresolą, kuchnią i schodami" loading="lazy"></div>
-  </div>
-  <div class="jhs-rv">
-   <p class="jhs-eyebrow">Najem krótkoterminowy</p>
-   <h3>Stacja Działka: dwa domki na palach w mazowieckich lasach</h3>
-   <p>Właściciele zbudowali domki sami i poprosili mnie o dekorację, żeby wydobyć z nich potencjał na zdjęciach. Przygotowałam listy zakupowe, a po zamówieniach przyjechałam na stylizację.</p>
-   <p>Dwa dni intensywnej pracy, potem sesja zdjęciowa. Efekty widać w pełnym kalendarzu rezerwacji.</p>
-   <span class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg>Pełny kalendarz rezerwacji</span><br>
-   <a class="jhs-link" href="https://justhomestaging.pl/jak-przygotowac-nieruchomosc-do-krotkiego-najmu-na-przykladzie-stacji-dzialka/">Zobacz realizację <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a>
-  </div>
+</ul>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+<h2>PLIKI COOKIES I TECHNOLOGIE ŚLEDZĄCE</h2>
+<ul>
+<li>Ta strona internetowa, podobnie jak wiele innych, używa plików cookies.</li>
+<li>Podczas pierwszej wizyty na stronie wyświetlana jest informacja na temat stosowania plików cookies. Brak zmiany ustawień przeglądarki jest równoznaczny z wyrażeniem zgody na ich użycie.</li>
+<li>Pliki cookies to krótkie informacje tekstowe, zapisywane na urządzeniu, z którego korzystasz, przeglądając strony internetowe.</li>
+<li>Mogą być one odczytywane przeze mnie („cookies własne”, które wykorzystuję w celu zapewnienia prawidłowego działania tej strony), a także przez systemy należące do innych podmiotów, z których usług korzystam („cookies zewnętrzne”).</li>
+<li>Pamiętaj, proszę, że masz prawo do zmiany ustawień cookies z poziomu swojej przeglądarki albo do ich usunięcia.</li>
+<li>Ta strona internetowa wykorzystuje następujące technologie śledzące:
+<ul>
+<li>wtyczki społecznościowe, takie jak: Facebook, Instagram, LinkedIn, Pinterest, YouTube, Vimeo;</li>
+<li>narzędzia analityczne i marketingowe, takie jak: Google Analytics, Facebook Pixel.</li>
+</ul></li>
+</ul>
+<ul>
+
+</ul>
+<h2>LOGI SERWERA</h2>
+<ul>
+<li>Korzystanie ze strony wiąże się zprzesyłaniem zapytań doserwera, naktórymznajduje się moja strona internetowa.</li>
+<li>Każde zapytanie skierowane doserwera zapisywane jest wlogach serwera, które obejmują na przykład: adres IP, datę i czas serwera, informacje o przeglądarce internetowej i systemie operacyjnym, z którego korzystasz.</li>
+<li>Dane zapisane wlogach serwera niesą kojarzone zkonkretnymi osobami korzystającymi z serwisu isą wykorzystywane jako materiał pomocniczy służący do celów administracyjnych.</li>
+<li>Ich zawartość niejest ujawniana nikomu poza osobami upoważnionymi doadministrowania serwerem.</li>
+</ul>
+<h2>USŁUGA NEWSLETTER</h2>
+<ul>
+<li>Świadomie dobieram dostawców usług, z których korzystam, tak aby zapewnić Ci najwyższy poziom ochrony Twoich danych.</li>
+<li>Dostawcą usługi newsletter jest MailerLite.</li>
+<li>Twoje dane nie będą przekazywane do Państwa Trzeciego poza Unią Europejską w celu wysłania newslettera.</li>
+<li>Twoje dane, tj. imię oraz Twój e-mail, podane w formularzu zapisu do newslettera, będą przetwarzane w celu wysłania newslettera.</li>
+<li>Podanie przez Ciebie danych w formularzu zapisu do newslettera jest dobrowolne, ale niezbędne do wysłania Ci newslettera na podstawie udzielonej przez Ciebie zgody, a także w celu wysłania Ci informacji o marketingu produktów własnych lub usług na podstawie mojego,jako administratora,uzasadnionego interesu (tj. art. 6 lit. f RODO) oraz w celu dochodzenia ewentualnych roszczeń w związku z wysyłką newslettera.</li>
+<li>Gwarantuję Ci, że Twoje dane będą przetwarzane do momentu wycofania przez Ciebie udzielonej zgody, wypisania się z newslettera lub wyrażenia przez Ciebie sprzeciwu.</li>
+<li>Mechanizm wypisania się z usługi newsletter nie jest skomplikowany i polega na kliknięciu aktywnego linku z informacją <em>Wypisuję się z newslettera.</em></li>
+<li>Po skorzystaniu przez Ciebie z tego prawa i wypisaniu się z newslettera Twoje dane dotyczące subskrypcji tej usługi będą przechowywane przez okres niezbędny dla obrony przed potencjalnymi roszczeniami. Jest to uzasadnionymój,jako administratora danych, interes.</li>
+<li>Dane osobowe przekazane podczas zapisania się do newslettera mogę przekazywać następującym podmiotom: serwisowi świadczącemu usługi utrzymania systemu informatycznego i hostingu, dostawcy usługi poczty elektronicznej, dostawcy usługi newsletter.</li>
+<li>Tak jak w każdym przypadku, gdy przetwarzamy Twoje dane, posiadasz prawo dostępu do treści swoich danych, otrzymywania ich kopii, prawo do sprostowania, usunięcia, ograniczenia ich przetwarzania, prawo do przenoszenia danych, prawo wniesienia sprzeciwu, prawo cofnięcia zgody w dowolnym momencie.</li>
+<li>Pamiętaj jednak o tym, że w przypadku wycofania zgody na przetwarzanie danych ten fakt pozostanie bez wpływu na zgodność z prawem przetwarzania danych, które zostało dokonane na podstawie Twojej zgody przed jej wycofaniem.</li>
+<li>Masz także prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych, gdy tylko uznasz, że przetwarzanie Twoich danych narusza przepisy prawa. Twoje dane będą przetwarzane w sposób zautomatyzowany, ale nie będą podlegały profilowaniu.</li>
+</ul>
+<ul>
+
+</ul>
+<h2>USŁUGA GOOGLE ANALYTICS</h2>
+<ul>
+<li>Ta strona internetowa korzysta z Google Analytics. Jest to usługa polegająca na analizowaniu usług i działań internetowych.</li>
+<li>Szczegóły dotyczące tej usługi Google są dostępne po kliknięciu linku: https://analytics.google.com/analytics/web/provision/?hl=pl#/provision</li>
+<li>Google Analytics wykorzystuje tzw. „Cookies”, pliki tekstowe, które są zapisywane na komputerze i umożliwiają przeprowadzenie analizy korzystania ze strony internetowej.</li>
+<li>Masz możliwość wyłączenia funkcji zapisywania plików cookies przez odpowiednie ustawienia w oprogramowaniu przeglądarki. Istnieje jednak ryzyko, że doprowadzić do sytuacji, w które nie będzie możliwości w pełni korzystać ze wszystkich funkcji tej strony internetowej.</li>
+<li>Korzystam z Google Analytics w celu analizowania korzystania z tej strony internetowej oraz jej ulepszania zgodnie z preferencjami użytkowników. Dzięki uzyskanym statystykom mogę np. dopasować moją ofertę.</li>
+<li>Uzyskane przez plik cookie informacje dotyczące sposobu korzystania z tej strony internetowej są zwykle przekazywane na serwer Google w USA i tam zapisywane.</li>
+<li>Google zapewnia jednak, że korzysta z mechanizmów ochrony danych i bezpieczeństwa przewidzianych przez przepis europejskie. Szczegóły dotyczące ochrony danych przez Google są dostępne pod linkiem: https://policies.google.com/privacy?hl=pl</li>
+</ul>
+<h2>MEDIA SPOŁECZNOŚCIOWE</h2>
+<ul>
+<li>Strona internetowa, z której korzystasz, zawiera wtyczki do następujących serwisów społecznościowych: Facebook, Instagram,Pinterest, LinkedIn.</li>
+<li>Poprzez wtyczkę możesz bezpośrednio połączyć się profilem na wskazanych serwisach. Serwisy mogą wówczas uzyskać informacje, że odwiedzasz stronę ze swojego adresu IP.</li>
+<li>Informuję Cię, że jeżeli odwiedzasz moją stronę, będąc jednocześnie zalogowany na swoje profile społecznościowe, wówczas informacja o Twojej wizycie zostanie zarejestrowana w tych serwisach społecznościowych. Nawet jeżeli nie jesteś zalogowany, serwisy społecznościowe są w stanie pozyskiwać informacje o Twoim adresie IP.</li>
+<li>Pragnę podkreślić, że nie dysponuję informacjami od platform społecznościowych o gromadzonych danych i sposobie ich wykorzystania. W celu uzyskania dodatkowych informacji dotyczących prywatności na serwisach społecznościowych proponuję kontakt bezpośrednio z serwisami i zapoznanie się z ich politykami prywatności, które zostały podlinkowane w tym dokumencie.</li>
+<li>Jeżeli nie chcesz, aby serwisy społecznościowe pozyskiwały informacje dotyczące Twoich wizyt na mojej stronie, to rekomenduję wcześniejsze wylogowanie się z portali społecznościowych.</li>
+</ul>
+<h2>KLAUZULA INFORMACYJNA DLA OSÓB ODWIEDZAJĄCYCH MÓJ FANPAGE NA FACEBOOKU</h2>
+<ul>
+<li>Dane osobowe osób odwiedzających mój fanpage będą przetwarzane zgodnie z wymogami ustawy z dnia 10 maja 2018 r. o ochronie danych osobowych oraz zgodnie z wymogami określonymi w Rozporządzeniu Parlamentu Europejskiego i Rady z 27 kwietnia 2016 roku („RODO”).</li>
+<li>Dane te uzyskałam od Facebook Inc. oraz z Twojego publicznego profilu na platformie internetowej Facebook.</li>
+<li>Przetwarzam dane osobowe osób, które:</li>
+<li>Dokonały subskrypcji fanpage poprzez kliknięcie ikony „Lubię to” lub „Obserwuj”</li>
+<li>Dołączyły do grupy tematycznej dostępnej na platformie Facebook zarządzanej przez Administratora poprzez kliknięcie „Dołącz do grupy”</li>
+<li>Skorzystali z opcji chat celem skontaktowania się z Administratorem</li>
+<li>Opublikowali swój komentarz, pod którymkolwiek z postów zamieszczonych na fanpage’u,</li>
+</ul>
+<ul>
+<li>Dane osobowe będą przetwarzane w następujących celach:
+<ul>
+<li>w celu zarządzania niniejszym fanpage’m na portalu społecznościowym Facebook oraz informowania za jego pomocą o naszej aktywności, promowaniu różnych wydarzeń, kampanii, akcji, które organizujemy oraz naszej marki, produktów oraz</li>
+<li>usług, budowaniu i utrzymaniu społeczności z nami związanej a także w celu komunikacji za pośrednictwem dostępnych funkcjonalności serwisu Facebook (komentarze, chat, wiadomości) co jest naszym prawnie uzasadniony interesem (podstawa z art. 6 ust. 1 lit f. RODO),</li>
+<li>w celach statystycznych dotyczących analiz funkcjonowania, popularności, sposobu korzystania z fanpage, co jest naszym prawnie uzasadnionym interesem (podstawa z art. 6 ust. 1 lit. f RODO),</li>
+<li>w celu ewentualnego ustalenia, dochodzenia lub obrony przed roszczeniami, co jest naszym prawnie uzasadnionym interesem (podstawa art. 6 ust. 1 lit. f RODO)</li>
+<li>w celu podjęcia działań zmierzających do zawarcia umowy z uwagi na zainteresowanie naszymi usługami (podstawa art. 6 ust. 1 lit. b RODO),</li>
+<li>w celu podjęcia działań zmierzających do zawarcia umowy z uwagi na zainteresowanie naszymi usługami (podstawa art. 6 ust. 1 lit. b RODO),</li>
+</ul></li>
+<li>Będę przetwarzać następujące kategorie danych osobowych Użytkowników:
+<ul>
+<li>podstawowe dane identyfikacyjne (imię i nazwisko) w zakresie opublikowanym przez Użytkowników na ich własnym/prywatnym profilu na portalu społecznościowym Facebook,</li>
+<li>inne dane opublikowane przez Użytkowników na profilu Facebook, w tym wizerunek (zdjęcie profilowe, jeśli zostało osadzone),</li>
+<li>inne dane opublikowane przez Użytkowników podczas rozmowy prowadzonej poprzez aplikację Messenger, anonimowe dane statystyczne dotyczące Użytkowników odwiedzających fanpage`a gromadzone dzięki plikom cookies, z których każdy zawiera niepowtarzalny kod Użytkownika, który można powiązać z danymi połączenia Użytkowników zarejestrowanych na Facebooku, a który zostaje pobrany i przetworzony w chwili otwarcia fanpage’a.</li>
+</ul></li>
+</ul>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+<ul>
+
+</ul>
+<ul>
+<li>Okres przetwarzania danych jest związany z celami i podstawami ich przetwarzania. W związku z czym:
+<ul>
+<li>dane przetwarzane na podstawie prawnie uzasadnionego interesu Administratora będą przetwarzane do czasu skutecznego złożenia sprzeciwu lub ustania tego interesu,</li>
+<li>dane przetwarzane w celu dochodzenia lub obrony przed roszczeniami będą przetwarzane przez czas równy okresowi przedawnienia tych roszczeń,</li>
+<li>dane osobowe gromadzone przez Facebook tj. historia wpisów, historia aktywności w aplikacji Messenger, historia aktywności poprzez aplikację Instagram podlega retencji na zasadach określonych regulaminem Facebooka;</li>
+<li>dane statystyczne dotyczące osób odwiedzających fanpaga dostępne za pomocą funkcji „Facebook Insights” będą przetwarzane przez czas dostępności tych danych w serwisie Facebook;</li>
+</ul></li>
+</ul>
+<ul>
+<li>Dane osobowe mogą być przekazywane podmiotom trzecim przetwarzającym dane na zlecenie Administratora.</li>
+<li>Podmioty, o których mowa powyżej przetwarzają dane na podstawie umowy z Administratorem i wyłącznie zgodnie z poleceniami Administratora a przetwarzanie danych osobowych będzie uwzględniało konieczne środki bezpieczeństwa.</li>
+<li>Przysługuje Ci prawo dostępu do danych, prawo żądania ich sprostowania, ich usunięcia lub ograniczenia ich przetwarzania jak również prawo do wniesienia sprzeciwu.</li>
+<li>Przysługuje Ci także prawo do wniesienia skargi do organu nadzorczego zajmującego się ochroną danych osobowych (Prezes Urzędu Ochrony Danych Osobowych).</li>
+<li>Informuję Cię, że nie będziesz podlegac decyzji, która opiera się wyłącznie na zautomatyzowanym przetwarzaniu, a która wywołałaby wobec Ciebie skutki prawne lub w podobny sposób by na nie istotnie wpływała.</li>
+<li>Mając na uwadze międzynarodowy charakter przepływu danych w ramach platformy Facebook, serwis Facebook może przekazywać dane poza teren Europejskiego Obszaru Gospodarczego zgodnie z zasadami określonymi przez Facebook w polityce prywatności. Nie martw się jednak, że Twoje dane będą przetwarzane niezgodnie z obowiązującym prawem. Facebook oświadczył, że wdrożył standardowe klauzule umowne między podmiotami przetwarzającymi, co zgodnie z oświadczeniem Facebooka oznacza, że Twoje dane są bezpieczne. Więcej na ten temat możesz przeczytać tutaj.</li>
+</ul>
+<h2>PIKSEL FACEBOOKA</h2>
+<ul>
+<li>Piksel Facebooka to umieszczony na stronie fragment kodu, który działa jak narzędzie analityczne. Umożliwia kierowanie reklam na Facebooku do osób, które odwiedziły naszą stronę lub konkretne produkty.</li>
+<li>Chcę, żebyś był świadomy, że informacje zbierane od Ciebie poprzez korzystanie z Piksela Facebooka są anonimowe. Niemniej mogą być łączone z innymi informacjami o Tobie, zebranymi w ramach platformy społecznościowej, jaką jest Facebook.</li>
+<li>Na swojej stronie korzystam z tego narzędzia. Jest to umotywowane moim, jako administratora, prawnie uzasadnionym interesem w postaci marketingu własnych produktów lub usług.</li>
+<li>Zgromadzone w ten sposób informacje są najczęściej przekazywane do serwera Facebooka w Stanach Zjednoczonych i tam przechowywane. Facebook Inc. zapewnia jednak odpowiedni poziom ochrony danych osobowych wymagany przez przepisy prawa europejskiego.</li>
+</ul>
+<h2>UDOSTĘPNIANIE MATERIAŁÓW WIDEO</h2>
+<ul>
+<li>Umieszczam na swojej stronie internetowej materiały audiowizualne pochodzące z serwisów YouTube oraz Vimeo. W tym celu wykorzystywane są pliki cookies firmy Google LLC oraz Vimeo, Inc.</li>
+<li>Pliki cookies generowane są automatycznie przy odtwarzaniu materiałów audiowizualnych pochodzących z wyżej wskazanych serwisów.</li>
+<li>Jeśli nie wyrażasz na to zgody, nie odtwarzaj materiału video.</li>
+</ul>
+<h2>POSTANOWIENIA KOŃCOWE</h2>
+<ul>
+<li>Treści umieszczone na niniejszej stronie oraz w obsługiwanych serwisach społecznościowych są przejawem mojej własnej twórczości intelektualnej. W związku z tym stanowią one przedmiot moich praw autorskich.</li>
+<li>Nie wyrażam zgody na kopiowanie treści w całości lub w części bez mojej wyraźnej, uprzedniej zgody.</li>
+<li>Jesteś zobowiązana/zobowiązany do korzystania z mojej strony w sposób zgodny z prawem i dobrymi obyczajami, mając na uwadze poszanowanie dóbr osobistych i praw własności intelektualnej osób trzecich.</li>
+<li>Wszystkie zdjęcia zamieszczone na stronie www.justhomestaging.pl pochodzą z realizacji, stylizacji i aranżacji wykonanych przeze mnie. Autorem zdjęć jestem ja i fotografowie z którymi współpracuję.</li>
+</ul>
  </article>
- <h3 class="jhs-pk-gal-h">Z galerii przestrzeni dla firm</h3>
- <!-- DO-POTWIERDZENIA: których realizacji dotyczą zdjęcia komercyjna-* (galeria obecnej strony bez podpisów) -->
- <div class="jhs-pk-gal">
-  <figure class="jhs-rv"><span class="jhs-pk-gal-img"><img src="img/komercyjna-gabinet.webp" width="900" height="600" alt="Gabinet z biurkiem, sofą i czarno-białym dywanem za przeszkloną ścianą" loading="lazy"></span><figcaption><strong>Gabinet</strong> do pracy i rozmów z klientami</figcaption></figure>
-  <figure class="jhs-rv"><span class="jhs-pk-gal-img"><img src="img/komercyjna-detal.webp" width="1067" height="1600" alt="Detal: biała komoda z czarnym wazonem, gałązką i świecami" loading="lazy"></span><figcaption><strong>Detale</strong>, które budują klimat miejsca</figcaption></figure>
-  <figure class="jhs-rv"><span class="jhs-pk-gal-img"><img src="img/komercyjna-salon-las.webp" width="900" height="600" alt="Strefa wypoczynku z beżową sofą i dużym oknem z widokiem na las" loading="lazy"></span><figcaption><strong>Strefa dla gości</strong> z widokiem na zieleń</figcaption></figure>
- </div>
-</div></section>
-
-<!-- 5. Jak pracuję -->
-<section class="wp-section alignfull jhs-sec jhs-sec--white" id="jak-pracuje"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Krok po kroku</p><h2 class="jhs-h2">Jak <span class="jhs-acc">pracuję</span> z firmami</h2></div>
-  <p>Wiesz, co dzieje się na każdym etapie. Zawsze podpisujemy umowę przed rozpoczęciem prac, a ja wystawiam fakturę z 23% VAT.</p>
- </div>
- <!-- DO-POTWIERDZENIA: proces dla klientów komercyjnych (oparty na procesie home stagingu i realizacji Stacji Działka) -->
- <ol class="jhs-steps jhs-pk-steps">
-  <li class="jhs-rv"><h3>Zapytanie</h3><p>Wypełniasz formularz poniżej: rodzaj miejsca, czego potrzebujesz i na kiedy.</p></li>
-  <li class="jhs-rv"><h3>Rozmowa i zdjęcia</h3><p>Oddzwaniam, dopytuję o markę i klientów. Przesyłasz zdjęcia i wymiary.</p></li>
-  <li class="jhs-rv"><h3>Oferta</h3><p>Dostajesz wycenę zakresu dopasowaną do Twojego miejsca i budżetu.</p></li>
-  <li class="jhs-rv"><h3>Koncepcja i zakupy</h3><p>Przygotowuję projekt aranżacji i listę zakupów do zamówienia.</p></li>
-  <li class="jhs-rv"><h3>Stylizacja</h3><p>Przyjeżdżam i ustawiam wszystko na miejscu. Wnętrze jest gotowe na gości i na zdjęcia.</p></li>
- </ol>
-</div></section>
-
-<!-- 6. FAQ -->
-<section class="wp-section alignfull jhs-sec" id="pytania"><div class="wp-content-wrap jhs-wrap">
- <div class="jhs-pk-faq">
-  <div class="jhs-pk-faq-side">
-   <p class="jhs-eyebrow">Pytania</p>
-   <h2 class="jhs-h2">Pytania od <span class="jhs-acc">firm</span></h2>
-   <p>Wolisz porozmawiać? Zadzwoń, a powiem Ci, od czego zacząć w Twoim lokalu.</p>
-   <a class="jhs-btn jhs-btn--dark" href="tel:+48512012909">512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
+ <aside class="jhs-pr-contact" aria-label="Kontakt">
+  <p><strong>Masz pytanie do tego dokumentu?</strong>Napisz albo zadzwoń, odpowiem.</p>
+  <div class="jhs-pr-contact-links">
+   <a class="jhs-btn jhs-btn--dark jhs-btn--sm" href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-mail"/></svg></span></a>
+   <a class="jhs-btn jhs-btn--light jhs-btn--sm" href="tel:+48512012909">512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
   </div>
-  <div class="jhs-faq-list">
-   <details class="jhs-faq"><summary>Ile kosztuje aranżacja lokalu?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Każdą przestrzeń komercyjną wyceniam indywidualnie, bo zależy to od metrażu i zakresu. Wyślij zapytanie z kilkoma informacjami, a przygotuję ofertę.</p></div></details>
-   <details class="jhs-faq"><summary>Czy wystawiasz fakturę VAT?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, wystawiam fakturę z 23% VAT.</p></div></details>
-   <details class="jhs-faq"><summary>Czy przygotowujesz aranżacje sezonowe, na przykład świąteczne?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak. Napisz, na kiedy potrzebujesz nowej odsłony lokalu, a zaplanujemy ją z wyprzedzeniem.</p></div></details>
-   <details class="jhs-faq"><summary>Czy pracujesz poza Warszawą?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Pracuję w Warszawie i okolicach. Stacja Działka to domki w mazowieckich lasach, więc dojazd nie jest przeszkodą. Napisz, gdzie jest Twoje miejsce.</p></div></details>
-   <details class="jhs-faq"><summary>Mam domek lub apartament na krótki najem. To też przestrzeń komercyjna?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, to miejsce, które zarabia na gościach. Przy krótkim najmie liczą się wygoda, spójny wystrój i zdjęcia. Zobacz też <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">home staging pod wynajem</a>.</p></div></details>
-  </div>
- </div>
+ </aside>
 </div></section>
 
-<!-- 7. Formularz (blok końcowy) -->
-<section class="wp-section alignfull jhs-sec" id="zapytanie"><div class="wp-content-wrap jhs-wrap">
- <!-- Formularz Fluent Forms zastępuje dzisiejszy link do Google Forms (tryb /edit) -->
- <div class="jhs-final">
-  <div>
-   <p class="jhs-eyebrow">Zapytanie dla firm</p>
-   <h2>Opowiedz mi o swojej <span class="jhs-acc">przestrzeni</span></h2>
-   <div class="jhs-final-side">
-    <p>Kilka informacji wystarczy, żebym przygotowała się do rozmowy. Oddzwonię i ustalimy zakres. Jeśli masz zdjęcia lokalu, przydadzą się do wyceny.</p>
-    <div class="jhs-final-alt"><strong>Wolisz od razu porozmawiać?</strong><span>Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-link" href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl <svg aria-hidden="true"><use href="#jhs-i-mail"/></svg></a></div>
-   </div>
-  </div>
-  <form class="jhs-form" data-gl-part="ff-komercyjna" action="DZIEKUJEMY.html" method="get">
-   <fieldset class="jhs-choices"><legend>Jaka to przestrzeń?</legend>
-    <label><input type="radio" name="rodzaj" value="gabinet" checked><span>Gabinet lub poradnia</span></label>
-    <label><input type="radio" name="rodzaj" value="lokal"><span>Lokal usługowy</span></label>
-    <label><input type="radio" name="rodzaj" value="gastronomia"><span>Restauracja lub kawiarnia</span></label>
-    <label><input type="radio" name="rodzaj" value="biuro"><span>Biuro</span></label>
-    <label><input type="radio" name="rodzaj" value="najem"><span>Najem krótkoterminowy</span></label>
-    <label><input type="radio" name="rodzaj" value="inne"><span>Inne</span></label>
-   </fieldset>
-   <div class="jhs-form-row">
-    <label class="jhs-field"><span>Czego potrzebujesz?</span><select name="zakres"><option value="">Wybierz</option><option>Aranżacja od podstaw</option><option>Odświeżenie i dekoracje</option><option>Aranżacja sezonowa</option><option>Jeszcze nie wiem</option></select></label>
-    <label class="jhs-field"><span>Na kiedy?</span><select name="termin"><option value="">Wybierz</option><option>Jak najszybciej</option><option>W ciągu 1 do 3 miesięcy</option><option>Za ponad 3 miesiące</option></select></label>
-   </div>
-   <div class="jhs-form-row">
-    <label class="jhs-field"><span>Miejscowość</span><input type="text" name="miejscowosc" autocomplete="address-level2" placeholder="np. Warszawa, Mokotów"></label>
-    <label class="jhs-field"><span>Firma <small>(opcjonalnie)</small></span><input type="text" name="firma" autocomplete="organization" placeholder="np. Studio Urody"></label>
-   </div>
-   <div class="jhs-form-row">
-    <label class="jhs-field"><span>Imię</span><input type="text" name="imie" autocomplete="given-name" placeholder="np. Anna" required></label>
-    <label class="jhs-field"><span>Telefon lub e-mail</span><input type="text" name="kontakt" autocomplete="tel" placeholder="np. 600 000 000" required></label>
-   </div>
-   <label class="jhs-field"><span>Wiadomość <small>(opcjonalnie)</small></span><textarea name="wiadomosc" rows="3" placeholder="Metraż, klienci, styl marki, link do strony lub Instagrama"></textarea></label>
-   <p class="jhs-form-info">Administratorem danych jest Just Home Staging Justyna Zaniewska. Dane wykorzystam wyłącznie do odpowiedzi na zapytanie. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
-   <button class="jhs-btn jhs-btn--acc" type="submit">Wyślij zapytanie <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
-  </form>
- </div>
-</div></section>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Home Staging","item":"https://justhomestaging.pl/"},{"@type":"ListItem","position":2,"name":"Oferta","item":"https://justhomestaging.pl/oferta/"},{"@type":"ListItem","position":3,"name":"Przestrzeń komercyjna","item":"https://justhomestaging.pl/przestrzen-komercyjna/"}]},{"@type":"Service","@id":"https://justhomestaging.pl/przestrzen-komercyjna/#usluga","name":"Aranżacja przestrzeni komercyjnej","serviceType":"Aranżacja wnętrz komercyjnych","description":"Aranżacja lokali usługowych, poradni, salonów, biur i miejsc na krótki najem: projekt aranżacji, lista zakupów, stylizacja na miejscu i aranżacje sezonowe.","url":"https://justhomestaging.pl/przestrzen-komercyjna/","provider":{"@type":"HomeAndConstructionBusiness","@id":"https://justhomestaging.pl/#firma","name":"Just Home Staging","url":"https://justhomestaging.pl/"},"areaServed":[{"@type":"City","name":"Warszawa"},{"@type":"AdministrativeArea","name":"województwo mazowieckie"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://justhomestaging.pl/polityka-prywatnosci/#strona", "url": "https://justhomestaging.pl/polityka-prywatnosci/", "name": "Polityka prywatności", "inLanguage": "pl-PL", "isPartOf": {"@id": "https://justhomestaging.pl/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Just Home Staging", "item": "https://justhomestaging.pl/"}, {"@type": "ListItem", "position": 2, "name": "Polityka prywatności", "item": "https://justhomestaging.pl/polityka-prywatnosci/"}]}]}</script>
 </main>
 
 <!-- SHELL:START stopka (wspólna dla wszystkich podstron) -->
@@ -888,16 +881,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -905,26 +897,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -934,7 +926,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -1005,6 +997,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;if(!locked){const dx=Math.abs(e.clientX-x0),dy=Math.abs(e.clientY-y0);if(dx<6&&dy<6)return;if(dy>dx){id=null;return;}locked=true;try{p.setPointerCapture(id);}catch(_){}ba.classList.add('is-drag');}at(e);});
  const end=e=>{if(e.pointerId!==id)return;if(!locked&&e.type==='pointerup')at(e);id=null;locked=false;ba.classList.remove('is-drag');};
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
+});
+
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
 });
 
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */

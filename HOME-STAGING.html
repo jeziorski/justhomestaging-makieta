@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -595,6 +614,19 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-hs-faq-side .jhs-hs-faq-go{margin-top:12px}
 .jhs-hs-faq-side .jhs-btn{display:inline-flex}
 .jhs-hs-headp p+p{margin-top:10px}
+/* Proces: wariant online i formularz */
+.jhs-hs-alts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+@media (max-width:760px){.jhs-hs-alts{grid-template-columns:1fr}}
+.jhs-hs-alts p{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding:18px 20px;border-radius:var(--jhs-r-s);background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-line);font-size:16px;color:var(--jhs-txt)}
+.jhs-hs-alts svg{width:22px;height:22px;margin-top:2px;color:var(--jhs-sage-d)}
+.jhs-hs-alts strong{color:var(--jhs-ink)}
+.jhs-hs-alts a{color:var(--jhs-acc-d);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+/* Formularz wyceny: zdjecia */
+.jhs-hs-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-hs-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+/* Link do drugiej sciezki */
+.jhs-hs-other{margin-top:22px;text-align:center;font-size:16px;color:var(--jhs-txt)}
+.jhs-hs-other a{display:inline-flex;align-items:center;min-height:44px;color:var(--jhs-acc-d);font-weight:600;text-decoration:underline;text-underline-offset:4px}
 </style>
 </head>
 <body>
@@ -636,9 +668,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -653,20 +686,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -680,12 +710,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -715,7 +746,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-hs-hero-grid">
   <div>
    <!-- DO-POTWIERDZENIA: źródło liczby „nawet 10% więcej” (nagłówek z tekstu Justyny 13.08.2026) -->
-   <h1><span class="jhs-hs-h1k">Home staging mieszkania na sprzedaż i wynajem<span class="jhs-sr">:</span></span> Znajdź nabywcę lub najemcę szybciej i zarób nawet 10% <span class="jhs-acc">więcej</span></h1>
+   <h1><span class="jhs-hs-h1k">Home staging mieszkania na sprzedaż<span class="jhs-sr">:</span></span> Znajdź nabywcę szybciej i zarób nawet 10% <span class="jhs-acc">więcej</span></h1>
    <p class="jhs-lead">Nie czekaj, aż zainteresowani spadną z nieba. Stwórzmy razem wnętrza, do których ludzie będą ustawiać się w kolejce, by w nich zamieszkać.</p>
    <div class="jhs-hs-ctas">
     <a class="jhs-btn jhs-btn--acc" href="#ceny">Tego mi trzeba! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
@@ -763,12 +794,12 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div><h2 class="jhs-h2">Jako właściciel lokum prawdopodobnie popełniasz przynajmniej jeden z trzech <span class="jhs-acc">błędów</span></h2></div>
  </div>
  <ol class="jhs-hs-errs">
-  <li class="jhs-rv"><strong>Pokazujesz mieszkanie takie, jakie jest</strong><span>Bo przecież kolejni lokatorzy mogą zmienić sobie potem je dowolnie pod siebie.</span></li>
-  <li class="jhs-rv"><strong>Odświeżasz wnętrze, ale kierujesz się przy tym swoimi własnymi upodobaniami</strong><span>A one mogą mieć niewiele wspólnego z potrzebami nowych mieszkańców.</span></li>
-  <li class="jhs-rv"><strong>Zaczynasz w panice zmieniać wszystko, co się da</strong><span>I tracisz sporo czasu, energii i pieniędzy na rzeczy, które niewiele wniosą.</span></li>
+  <li class="jhs-rv"><strong>Pokazujesz mieszkanie takie, jakie jest</strong><span>Bo przecież kupujący i tak zmieni je potem dowolnie pod siebie.</span></li>
+  <li class="jhs-rv"><strong>Odświeżasz wnętrze, ale kierujesz się przy tym swoimi własnymi upodobaniami</strong><span>Ty już się stąd wyprowadzasz i masz zupełnie inne potrzeby niż ktoś, kto będzie chciał tu zamieszkać.</span></li>
+  <li class="jhs-rv"><strong>Nie ma zainteresowanych i zaczynasz w panice zmieniać wszystko, co się da</strong><span>I tracisz sporo czasu, energii i pieniędzy na rzeczy, które niewiele wniosą.</span></li>
  </ol>
  <div class="jhs-hs-errs-out jhs-narrow">
-  <p class="jhs-hs-pain-out"><strong>Efekt? Małe zainteresowanie, wydłużony czas bez najemcy, rosnąca frustracja i koszty utrzymania.</strong></p>
+  <p class="jhs-hs-pain-out"><strong>Efekt? Ogłoszenie wisi, kupujący nie dzwonią, rośnie presja na obniżkę ceny, a koszty utrzymania mieszkania płacisz co miesiąc.</strong></p>
   <p>To nie jest Twoja wina: nikt przecież nie uczy nas home stagingu w szkole, a brak doświadczenia wraz z bombardującymi Cię z każdej strony pomysłami na wnętrza potrafi nieźle namieszać w głowie.</p>
   <p><strong>Na szczęście można inaczej: wystarczy skorzystać z mojej pomocy!</strong></p>
   <a class="jhs-btn jhs-btn--dark" href="#ceny">Działajmy! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
@@ -804,33 +835,31 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <span class="jhs-hs-who-ico"><svg aria-hidden="true"><use href="#jhs-i-globe"/></svg></span>
    <h3>Mieszkam za granicą lub w innym mieście</h3>
    <p>Odbieram od Ciebie klucze i pilnuję wszystkiego na miejscu: zakupów, fachowców, sprzątania, stylizacji i fotografa. Poza Warszawą przygotuję koncepcję i zdalnie nadzoruję pracę sprawdzonej homestagerki z Twojego miasta.</p>
-   <span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>„tak jak ja nie mieszka w Warszawie”, Renata Ł.</span>
   </li>
   <li class="jhs-rv" id="sama">
    <span class="jhs-hs-who-ico"><svg aria-hidden="true"><use href="#jhs-i-search"/></svg></span>
    <h3>Chcę zrobić to sama, potrzebuję planu</h3>
-   <p>Masz czas i smykałkę, ale nie chcesz zgadywać. Na konsultacji mówię, co zmienić, a czego nie ruszać, i dostajesz brief z zaleceniami, z którym od razu działasz.</p>
-   <a class="jhs-link" href="#ceny">Zobacz konsultacje <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a>
+   <p>Masz czas i smykałkę, ale nie chcesz zgadywać. Na konsultacji online mówię, co zmienić, a czego nie ruszać, i dostajesz brief z zaleceniami, z którym od razu działasz.</p>
+   <a class="jhs-link" href="#ceny">Zobacz pakiety online <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a>
   </li>
-  <li class="jhs-rv" id="wynajem">
-   <span class="jhs-hs-who-ico"><svg aria-hidden="true"><use href="#jhs-i-key"/></svg></span>
-   <h3>Przygotowuję mieszkanie pod wynajem</h3>
-   <p>Przy wynajmie liczy się co innego niż przy sprzedaży: funkcjonalność, trwałość i krótka przerwa między najemcami. Opisałam to na osobnej stronie.</p>
-   <a class="jhs-link" href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a>
+  <li class="jhs-rv" id="puste">
+   <span class="jhs-hs-who-ico"><svg aria-hidden="true"><use href="#jhs-i-sofa"/></svg></span>
+   <h3>Mieszkanie stoi puste</h3>
+   <p>Kupującemu trudno wyobrazić sobie życie w pustych pokojach. Dobieram meble i dodatki tak, żeby każde pomieszczenie miało jasną funkcję i od razu dało się w nim zamieszkać.</p>
+   <span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-clock"/></svg>Pusty pokój zmieniony w kącik do pracy: sprzedane w 48 godzin</span>
   </li>
  </ul>
- <p class="jhs-hs-who-note">Jesteś pośrednikiem i Twój klient się waha? <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Zobacz, jak współpracuję z agentami nieruchomości</a>.</p>
 </div></section>
 
 
 <!-- 5. Inwestycja (Justyna) -->
 <section class="wp-section alignfull jhs-sec"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
-  <div><h2 class="jhs-h2">Wsparcie home stagerki to inwestycja, która zwraca się <span class="jhs-acc">wielokrotnie</span></h2></div>
+  <div><h2 class="jhs-h2">Wsparcie homestagerki to inwestycja, która zwraca się <span class="jhs-acc">wielokrotnie</span></h2></div>
  </div>
  <ul class="jhs-hs-gets">
   <li class="jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-clock"/></svg><h3>Nie marnujesz czasu na myślenie, co zmienić we wnętrzu</h3><p>Jako doświadczona specjalistka szybko ocenię najbardziej palące potrzeby i zaproponuję konkretne rozwiązania.</p></li>
-  <li class="jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg><h3>Nie tracisz pieniędzy na nietrafione, przypadkowe zakupy</h3><p>Dostajesz ode mnie listę naprawdę niezbędnych mebli i dodatków, które zmienią nawet nudne wnętrze w takie, do którego od razu chce się wprowadzić.</p></li>
+  <li class="jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg><h3>Nie tracisz pieniędzy na nietrafione, przypadkowe zakupy</h3><p>Dostajesz ode mnie listę naprawdę niezbędnych mebli i dodatków, które zmienią każde wnętrze w takie, do którego od razu chce się wprowadzić.</p></li>
   <li class="jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg><h3>Nie spalasz energii, próbując przykuć uwagę kogokolwiek</h3><p>Dokładnie określam to, kto może być nieruchomością najbardziej zainteresowany i jak zaspokoić jego potrzeby, by szybciej dokonać transakcji.</p></li>
  </ul>
 </div></section>
@@ -849,7 +878,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    </ul>
    <a class="jhs-btn jhs-btn--acc" href="#ceny">Tego mi trzeba! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
   </div>
-  <div class="jhs-hs-pain-img jhs-rv"><img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="Salon w bieli i beżu po home stagingu: sofa, okrągły stolik, obrazy i zasłony" loading="lazy"></div>
+  <div class="jhs-hs-pain-img jhs-rv"><img src="img/realizacja-ursus-jadalnia-po.webp" width="900" height="600" alt="Jadalnia z drewnianym stołem i białymi krzesłami po home stagingu mieszkania na sprzedaż w Ursusie" loading="lazy"></div>
  </div>
 </div></section>
 
@@ -857,17 +886,21 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec" id="jak-pracuje"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
   <div><p class="jhs-eyebrow">Jak wygląda współpraca</p><h2 class="jhs-h2">Zanim działamy, <span class="jhs-acc">rozmawiamy</span></h2></div>
-  <p>Najlepsze pomysły to efekt połączenia Twoich potrzeb i celów z moją wiedzą i doświadczeniem. Dlatego zawsze zaczynamy od spotkania i rozmowy.</p>
+  <p>Najlepsze pomysły to efekt połączenia Twoich potrzeb i celów z moją wiedzą i doświadczeniem, dlatego najlepiej zacząć od rozmowy.</p>
  </div>
  <!-- DO-POTWIERDZENIA: „oferta w ciągu 48 godzin” (opis pełnej realizacji w sklepie), czy nadal aktualne; najbliższy wolny termin realizacji -->
  <ol class="jhs-steps">
-  <li class="jhs-rv"><h3>Bezpłatna rozmowa</h3><p>15 minut przez telefon. Opowiadasz o mieszkaniu i o tym, co chcesz osiągnąć.</p></li>
-  <li class="jhs-rv"><h3>Zdjęcia i oferta</h3><p>Wysyłasz zdjęcia pomieszczeń i lokalizację, odpowiadasz na kilka pytań, np. czy jest winda. Ofertę dostajesz w ciągu 48 godzin.</p></li>
-  <li class="jhs-rv"><h3>Umowa i plan</h3><p>Podpisujemy umowę, spotykamy się w mieszkaniu i ustalamy budżet. Zaliczkę płacisz dopiero po podpisaniu umowy.</p></li>
+  <li class="jhs-rv"><h3>Bezpłatna konsultacja</h3><p>15 minut przez telefon. Opowiadasz o mieszkaniu i o tym, co chcesz osiągnąć.</p></li>
+  <li class="jhs-rv"><h3>Zdjęcia i oferta</h3><p>Wysyłasz zdjęcia pomieszczeń oraz miasto i dzielnicę, w której jest mieszkanie. Ofertę dostajesz w ciągu 48 godzin.</p></li>
+  <li class="jhs-rv"><h3>Umowa</h3><p>Podpisujemy umowę, płacisz zaliczkę, przekazujesz mi klucze i działam.</p></li>
   <li class="jhs-rv"><h3>Realizacja</h3><p>Zakupy, złota rączka, sprzątanie i stylizacja. Koordynuję wszystko, Ty nie musisz być na miejscu.</p></li>
   <li class="jhs-rv"><h3>Sesja zdjęciowa</h3><p>Zdjęcia do ogłoszenia i wskazówki do prezentacji. Płatność końcową rozliczamy po sesji.</p></li>
  </ol>
  <p class="jhs-steps-note">Sama stylizacja zajmuje zwykle tydzień lub dwa, z remontem kilka tygodni. „Czerwone mieszkanie” było gotowe do sesji po 10 dniach.</p>
+ <div class="jhs-hs-alts">
+  <p><svg aria-hidden="true"><use href="#jhs-i-globe"/></svg><span><strong>Wybierasz wariant online?</strong> Przygotowuję dla Ciebie plan, a Ty działasz beze mnie. <a href="#ceny">Zobacz pakiety online</a></span></p>
+  <p><svg aria-hidden="true"><use href="#jhs-i-mail"/></svg><span><strong>Nie przepadasz za rozmowami przez telefon?</strong> <a href="#wycena">Wypełnij formularz wyceny</a> i dołącz zdjęcia pomieszczeń.</span></p>
+ </div>
 </div></section>
 
 <!-- 8. Elementy usługi (Justyna; komentarz w dokumencie: „tu takie rozwijane, jak było”) -->
@@ -881,11 +914,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   </div>
   <div class="jhs-faq-list">
    <details class="jhs-faq" open><summary>Wytyczne do przygotowania nieruchomości<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Po sprawdzeniu stacjonarnie lub online stanu nieruchomości i jej wyposażenia otrzymasz ode mnie listę prac i/lub napraw, które moim zdaniem trzeba wykonać przed wystawieniem ogłoszenia, żeby jak najszybciej sfinalizować transakcję.</p></div></details>
-   <details class="jhs-faq"><summary>Projekt inwestycyjny<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Jeśli kupiłeś nieruchomość od dewelopera i chcesz ją wynajmować, mogę przygotować dla Ciebie cały projekt wykonawczy, od odpowiedniego układu funkcjonalnego, przez koncepcję aranżacji po listy zakupowe materiałów, mebli i oświetlenia, jak również projekty zabudów na wymiar. Nie zawsze sieciówki najbardziej się opłacają.</p></div></details>
-   <details class="jhs-faq"><summary>Lista zakupowa<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Dostaniesz ode mnie dokładną listę zakupów, które sprawią, że wnętrze stanie się bardziej atrakcyjne dla przyszłych mieszkańców. Będą to konkretne produkty wraz z linkami do sklepów, a także wskazaniem strefy, w której powinny się znaleźć. Dzięki temu nie wydasz ani grosza na głupoty.</p></div></details>
-   <details class="jhs-faq"><summary>Stylizacja wnętrza<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Przyjadę do Ciebie i przygotuję mieszkanie do profesjonalnej sesji zdjęciowej. Rozpakuję zakupy i sprawię, że każdy element będzie budował przytulność: od blatów i regałów, przez kanapy i łóżka, aż po zasłony. Zaplanuję też odpowiednie kadry, które przykują wzrok przeglądających ogłoszenia.</p></div></details>
+   <details class="jhs-faq"><summary>Lista zakupowa<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Dostaniesz ode mnie dokładną listę zakupów, które sprawią, że wnętrze stanie się bardziej atrakcyjne dla kupujących. Będą to konkretne produkty wraz z linkami do sklepów, a także wskazaniem strefy, w której powinny się znaleźć. Dzięki temu nie wydasz ani grosza na głupoty.</p></div></details>
+   <details class="jhs-faq"><summary>Stylizacja wnętrza<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Przyjadę do Ciebie i przygotuję mieszkanie do profesjonalnej sesji zdjęciowej. Dekoracje kupuję za budżet klienta i uzupełniam stylizację dekoracjami z mojego magazynu. Rozpakuję zakupy i sprawię, że każdy element będzie budował przytulność: od blatów i regałów, przez kanapy i łóżka, aż po zasłony. Zaplanuję też odpowiednie kadry, które przykują wzrok przeglądających ogłoszenia.</p></div></details>
    <details class="jhs-faq"><summary>Sesja zdjęciowa<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Współpracuję ze sprawdzonym fotografem, dzięki temu możesz skorzystać z oferty specjalnej. W ciągu 24 h otrzymasz nieobrobione zdjęcia do wyboru. Po selekcji otrzymasz gotowe do publikacji zdjęcia w ciągu 7 dni.</p></div></details>
-   <details class="jhs-faq"><summary>Usługi dodatkowe<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Jeśli nie masz czasu bądź mieszkasz w innym mieście lub kraju, mogę osobiście zrobić zakupy za Ciebie, zatrudnić ekipę remontową, złotą rączkę, pozbyć się zbędnego wyposażenia z nieruchomości czy też zwrócić do wypożyczalni dekoracje w ustalonym wcześniej terminie. Wszystko po to, żeby zminimalizować Twój wysiłek!</p></div></details>
+   <details class="jhs-faq"><summary>Usługi dodatkowe<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Jeśli nie masz czasu bądź mieszkasz w innym mieście lub kraju, mogę osobiście zrobić zakupy za Ciebie, zatrudnić ekipę remontową, złotą rączkę, pozbyć się zbędnego wyposażenia z nieruchomości, oddać do wypożyczalni dekoracje w ustalonym wcześniej terminie czy też zwrócić dekoracje do sklepów w terminie. Wszystko po to, żeby zminimalizować Twój wysiłek!</p></div></details>
   </div>
  </div>
 </div></section>
@@ -894,9 +926,9 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec jhs-sec--flush"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-hs-plan jhs-rv">
   <div><h2>Potrzebujesz wsparcia w planowaniu, ale nie <span class="jhs-acc">działaniu</span>?</h2>
-   <p>Jeśli masz już pomysł i doświadczenie, ale czujesz, że potrzebujesz opinii eksperta, to konsultacja online lub stacjonarna jest właśnie dla Ciebie! Podczas spotkania trwającego około 1 godziny dowiesz się, jak dobrze i skutecznie przygotować swoją nieruchomość do transakcji.</p>
+   <p>Jeśli masz już pomysł i doświadczenie, ale czujesz, że potrzebujesz opinii eksperta, to konsultacja online jest właśnie dla Ciebie! Wysyłasz mi zdjęcia i pomiary, spotykamy się online, a ja dopytuję o wszystko, co ważne dla sprzedaży.</p>
    <p>A potem otrzymasz ode mnie brief z konkretnymi zaleceniami, z którym od razu będzie można działać.</p></div>
-  <a class="jhs-btn jhs-btn--light" href="#ceny">Zobacz konsultacje <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
+  <a class="jhs-btn jhs-btn--light" href="#ceny">Zobacz pakiety <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
  </div>
  <!-- DO-POTWIERDZENIA: źródło zdania „Badania pokazują, że każda złotówka wydana na home staging średnio zwraca się podwójnie” (tekst Justyny 13.08.2026, brak wskazania badania) -->
  <p class="jhs-hs-band jhs-rv">Badania pokazują, że każda złotówka wydana na home staging średnio zwraca się podwójnie!</p>
@@ -932,7 +964,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <p class="jhs-hs-story-num">48 godzin<small>od publikacji ogłoszenia do kupującej</small></p>
     <h3>Czerwone mieszkanie przygotowane w 10 dni</h3>
     <dl class="jhs-hs-facts">
-     <div><dt>Stan wyjściowy</dt><dd>Mieszkanie po lokatorach, czerwona kanapa, fartuch kuchenny i płytki. Właścicielka chciała wszystko wymieniać.</dd></div>
+     <div><dt>Stan wyjściowy</dt><dd>Czerwona kanapa, czerwony fartuch kuchenny i płytki. Właścicielka chciała wszystko wymieniać.</dd></div>
      <div><dt>Co zrobiłam</dt><dd>Zostawiłam czerwień, która była w dobrym stanie, i oswoiłam ją dodatkami. Naprawy ścian, malowanie, oświetlenie, sprzątanie, sesja.</dd></div>
      <div><dt>Czas</dt><dd>10 dni: od przejęcia kluczy w poniedziałek do sesji zdjęciowej w środę kolejnego tygodnia.</dd></div>
      <div><dt>Wynik</dt><dd>Kupująca odkupiła nawet kilka dekoracji.</dd></div>
@@ -1009,17 +1041,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <!-- 12. Opinie (Justyna: nagłówek i wybór opinii) -->
 <section class="wp-section alignfull jhs-sec jhs-sec--white" id="opinie"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Opinie</p><h2 class="jhs-h2">Nie tylko kupujący i wynajmujący są <span class="jhs-acc">zachwyceni</span></h2></div>
+  <div><p class="jhs-eyebrow">Opinie</p><h2 class="jhs-h2">Nie tylko kupujący są <span class="jhs-acc">zachwyceni</span></h2></div>
   <!-- DO-POTWIERDZENIA: liczba i średnia opinii Google, link do wizytówki -->
-  <div><span class="jhs-gbadge"><span class="jhs-gbadge-g"><svg aria-hidden="true"><use href="#jhs-i-google"/></svg></span><span><strong>Ponad 30 opinii</strong><small>w Google i od uczestniczek warsztatów</small></span></span></div>
+  <div><span class="jhs-gbadge"><span class="jhs-gbadge-g"><svg aria-hidden="true"><use href="#jhs-i-google"/></svg></span><span><strong>+30 opinii</strong><small>w Google i od uczestniczek warsztatów</small></span></span></div>
  </div>
+ <!-- Opinie wyłącznie z home stagingu pod sprzedaż (crawl/opinie.json): Agnieszka K., Emilia G., Katarzyna M. -->
  <div class="jhs-rev-grid">
  <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#625d52" aria-hidden="true">A</span><span><strong>Agnieszka K.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Sprzedane mimo przestoju na rynku</span><blockquote>„Uważałam, że nie jest szczególnie rokujące, a tymczasem Justyna zmieniła je tak, że agenci i klienci dzwoniący w odpowiedzi na ogłoszenie pytali czy to jest wizualizacja czy naprawdę jest tak pięknie. (…) Mieszkanie sprzedało się sprawnie pomimo przestoju na rynku.”</blockquote></div>
- <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#b4501a" aria-hidden="true">H</span><span><strong>Helena I.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Bez generalnego remontu</span><blockquote>„Byliśmy pewni, że nic nie da się zrobić, by poprawić jego wygląd bez ponoszenia dużych wydatków, na które nie mogliśmy sobie pozwolić. Mieszkanie było do generalnego remontu, ale okazało się, że bez remontu można je całkiem odmienić i pokazać jego walory”</blockquote></div>
- <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#7a8f80" aria-hidden="true">T</span><span><strong>Tomasz Sz.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-key"/></svg>Wynajęte w kilka dni</span><blockquote>„Dzięki ich pracy mieszkanie wynajęło się w kilka dni po opublikowaniu oferty. Wszystkie prace wykonane zostały terminowo i zgodnie z wcześniejszymi ustaleniami.”</blockquote></div>
- <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">R</span><span><strong>Renata Ł.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wszystko dopilnowane na miejscu</span><blockquote>„Była na miejscu w razie nieoczekiwanych zdarzeń, załatwiała rzetelnie mnóstwo spraw. Polecam każdemu, kto nie ma czasu lub tak jak ja nie mieszka w Warszawie.”</blockquote></div>
- <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#9a3f10" aria-hidden="true">B</span><span><strong>Bogna B.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-camera"/></svg>Stylizacja do sesji zdjęciowej</span><blockquote>„Justyna stworzyła stylizację mieszkania mojego projektu do sesji zdjęciowej. Stylizacja była wisienką na torcie, a efekt finalny wyszedł świetnie.”</blockquote></div>
- <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#3a3632" aria-hidden="true">A</span><span><strong>Anna M.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-heart"/></svg>Metamorfoza sypialni</span><blockquote>„Realizacja usługi (…) wykonana została na najwyższym poziomie i z doskonałym zrozumieniem moich potrzeb.”</blockquote></div>
+ <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#b4501a" aria-hidden="true">E</span><span><strong>Emilia G.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-search"/></svg>Wskazówki do prezentacji mieszkania</span><blockquote>„Oprócz takich zmian jak dodanie tekstyliów, kwiatów i dekoracji zadbała o detale, które nawet nie przyszły mi do głowy (…) Justyna dała mi pakiet istotnych informacji jak prezentować mieszkanie na sprzedaż, o której godzinie jest najlepsze światło”</blockquote></div>
+ <div class="jhs-rev"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">K</span><span><strong>Katarzyna M.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-clock"/></svg>Sprzedane błyskawicznie</span><blockquote>„Współpraca z Panią Justyną przebiegła super sprawnie i efektywnie. (…) Mieszkanie sprzedane błyskawicznie. Zdecydowanie polecam.”</blockquote></div>
  </div>
  <div class="jhs-sec-cta"><a class="jhs-btn jhs-btn--dark" href="#ceny">Też tak chcę! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a><a class="jhs-link" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Przeczytaj wszystkie opinie <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a></div>
 </div></section>
@@ -1027,15 +1057,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <!-- 13. Opcje i ceny (Justyna) -->
 <section class="wp-section alignfull jhs-sec jhs-sec--sand" id="ceny"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
-  <div><p class="jhs-eyebrow">Ile kosztuje home staging</p><h2 class="jhs-h2">Ty decydujesz, jakiego wsparcia <span class="jhs-acc">potrzebujesz</span></h2></div>
-  <div class="jhs-hs-headp"><p>Możemy działać stacjonarnie w Warszawie lub online w całej Polsce. Możemy spotkać się na jednej konsultacji i przegadać Twoje wątpliwości, a potem samodzielnie wdrożysz moje wskazówki.</p><p>A możemy też umówić się na cały proces, w którym zdejmę z Twoich barków, co się da, i pozostanie Ci tylko czekanie na efekt. Oczywiście są możliwe też opcje pośrednie. Jeśli chcesz, mogę opowiedzieć Ci o nich na spotkaniu!</p></div>
+  <div><p class="jhs-eyebrow">Ile kosztuje home staging</p><h2 class="jhs-h2">Sam plan czy cała <span class="jhs-acc">realizacja</span>?</h2></div>
+  <div class="jhs-hs-headp"><p>Ty decydujesz, jakiego wsparcia potrzebujesz. Możesz dostać ode mnie plan online i wdrożyć go samodzielnie albo powierzyć mi cały proces, w którym zdejmę z Twoich barków, co się da, i pozostanie Ci tylko czekanie na efekt.</p></div>
  </div>
  <div class="jhs-prices jhs-hs-prices">
-  <div class="jhs-price jhs-rv"><h3>Konsultacja Home Staging</h3><p class="jhs-price-sub">1 h online</p><p class="jhs-price-val">547 zł <small>z VAT</small></p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Spotkanie online, około godziny</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Brief z zaleceniami w PDF</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Także gdy wahasz się: sprzedać czy wynająć</li></ul><a class="jhs-btn jhs-btn--dark jhs-btn--sm" href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Kupuję! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
-  <div class="jhs-price jhs-rv"><h3>Konsultacja Home Staging</h3><p class="jhs-price-sub">1 h stacjonarnie (Warszawa)</p><p class="jhs-price-val">697 zł <small>z VAT</small></p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Odpowiedzi na miejscu</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Brief z zaleceniami w PDF</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Termin zwykle w ciągu tygodnia lub dwóch</li></ul><a class="jhs-btn jhs-btn--dark jhs-btn--sm" href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-stacjonarna/">Kupuję! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
-  <div class="jhs-price jhs-price--dark jhs-rv"><h3>Home Staging</h3><p class="jhs-price-sub">Pełna realizacja</p><p class="jhs-price-val"><small>od</small> 2 500 zł</p><p>Wycena indywidualna.</p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Koncepcja, zakupy, fachowcy</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Stylizacja i sesja zdjęciowa</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Płatność w dwóch etapach</li></ul><a class="jhs-btn jhs-btn--light jhs-btn--sm" href="#wycena">Porozmawiamy o współpracy! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
+  <div class="jhs-price jhs-rv"><h3>Konsultacja + brief</h3><p class="jhs-price-sub">Online</p><p class="jhs-price-val">697 zł <small>brutto</small></p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wysyłasz zdjęcia i pomiary</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Spotykamy się online, dopytuję o wszystko</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Dostajesz brief z wytycznymi, co zrobić</li></ul><a class="jhs-btn jhs-btn--dark jhs-btn--sm" href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Kupuję! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
+  <!-- DO-POTWIERDZENIA: 1845 zł czy 1847 zł (jak Metamorfoza w sklepie)? -->
+  <!-- DO-POTWIERDZENIA: adres nowego produktu w sklepie (konsultacja + brief + lista zakupów); do tego czasu przycisk prowadzi na listę produktów -->
+  <div class="jhs-price jhs-rv"><h3>Konsultacja + brief + lista zakupów</h3><p class="jhs-price-sub">Online</p><p class="jhs-price-val">1845 zł <small>brutto</small></p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wszystko z pakietu konsultacji z briefem</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Lista zakupów z linkami do sklepów</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Dalej działasz sam</li></ul><a class="jhs-btn jhs-btn--dark jhs-btn--sm" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Kupuję! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
+  <div class="jhs-price jhs-price--dark jhs-rv"><h3>Pełna realizacja</h3><p class="jhs-price-sub">Robię wszystko za Ciebie</p><p class="jhs-price-val"><small>od</small> 2 500 zł <small>netto</small></p><ul><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Koncepcja, zakupy, fachowcy</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Stylizacja i sesja zdjęciowa</li><li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Płatność w dwóch etapach</li></ul><a class="jhs-btn jhs-btn--light jhs-btn--sm" href="#wycena">Poproś o wycenę <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a></div>
  </div>
- <div class="jhs-hs-mid jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-leaf"/></svg><p><strong>Są też opcje pośrednie.</strong> Przy mieszkaniu nagrodzonym na Gali 2022 właściciele sami zrobili porządki i zakupy według mojej listy, a ja przyjechałam tylko na stylizację. Opowiem Ci o takich wariantach w rozmowie.</p></div>
+ <div class="jhs-hs-mid jhs-rv"><svg aria-hidden="true"><use href="#jhs-i-leaf"/></svg><p><strong>Są też warianty mieszane.</strong> Przy mieszkaniu nagrodzonym na Gali 2022 właściciele sami zrobili porządki i zakupy według mojej listy, a ja przyjechałam tylko na stylizację. Opowiem Ci o takich wariantach w rozmowie.</p></div>
  <div class="jhs-sec-cta"><a class="jhs-link" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Pełny cennik home stagingu <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a></div>
 </div></section>
 
@@ -1068,20 +1100,21 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <a class="jhs-btn jhs-btn--acc jhs-hs-faq-go" href="#ceny">Przekonałaś mnie, działamy! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
   </div>
   <div class="jhs-faq-list">
-   <details class="jhs-faq"><summary>Czym się różni usługa online i stacjonarna?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>W przypadku współpracy stacjonarnej (w Warszawie) mogę odebrać od Ciebie klucze i zrobić wszystko za Ciebie. Jeśli wybierzesz usługę online, będziesz musiał samodzielnie zaangażować się w realizację moich wytycznych lub skorzystać ze wsparcia innej home stagerki. Ze względu na szkolenia, które prowadzę, jestem w stanie polecić Ci sprawdzone osoby w Twoim mieście i zdalnie nadzorować ich pracę.</p></div></details>
+   <details class="jhs-faq"><summary>Czym się różni usługa online i stacjonarna?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>W przypadku współpracy stacjonarnej (w Warszawie) mogę odebrać od Ciebie klucze i zrobić wszystko za Ciebie. Jeśli wybierzesz usługę online, będziesz musiał samodzielnie zaangażować się w realizację moich wytycznych lub skorzystać ze wsparcia innej homestagerki. Ze względu na szkolenia, które prowadzę, jestem w stanie polecić Ci sprawdzone osoby w Twoim mieście i zdalnie nadzorować ich pracę.</p></div></details>
    <details class="jhs-faq"><summary>Ile czasu trwa przygotowanie nieruchomości?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Jeśli musimy tylko zająć się dekoracją lub stylizacją, jesteśmy w stanie wyrobić się w tydzień lub dwa. Jeśli jednak w grę wchodzi remont, może to zająć kilka tygodni.</p></div></details>
    <details class="jhs-faq"><summary>Czy podpisujemy jakąś umowę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac.</p></div></details>
    <details class="jhs-faq"><summary>Czy dostanę fakturę za usługę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, wystawiam fakturę z 23% VAT.</p></div></details>
    <details class="jhs-faq"><summary>Jak długo czeka się na termin konsultacji?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Po opłaceniu konsultacji w sklepie wyślę Ci listę dostępnych terminów konsultacji. Zwykle udaje się ją umówić w ciągu najbliższego tygodnia lub dwóch.</p></div></details>
    <details class="jhs-faq"><summary>Jak wygląda płatność za usługę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Płatność jest podzielona zazwyczaj na dwa etapy. Zaliczkę pobieram przed rozpoczęciem prac po podpisaniu umowy, a płatność końcową po sesji zdjęciowej, która jest szczęśliwym zakończeniem naszej współpracy.</p></div></details>
-   <details class="jhs-faq"><summary>A co jeśli efekt końcowy mi się nie spodoba?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Nasz cel jest jasny: sprzedać lub wynająć nieruchomość możliwie szybko i drogo. Dlatego nieruchomość przygotowuję pod potrzeby określonej grupy docelowej, bo to ona ma oszaleć z zachwytu, nie Ty. Może brzmi to brutalnie, ale w praktyce to podejście jest najbardziej skuteczne. W home stagingu liczy się czas: nie ma co marnować go na wymianę poduszki czy wazonu tylko dlatego, że nie jest w Twoim guście. Zaufaj mi!</p></div></details>
-   <details class="jhs-faq"><summary>Co z tymi wszystkimi nowymi dekoracjami i meblami, czy mieszkanie sprzedaję/wynajmuję z nimi?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Meble i dekoracje mogą być elementem negocjacji, jeśli sprzedajemy nieruchomość. Zdarzają się klienci, którzy chcą kupić mieszkanie w dokładnie takim kształcie, jaki zobaczą na zdjęciach i podczas prezentacji. Jeśli nie, niepotrzebne produkty możemy często zwrócić do sklepu lub sprzedać na portalach ogłoszeniowych. W przypadku wynajmu nieruchomości wiele zależy od tego, czy stawiasz na najem długo- czy krótkoterminowy. W pierwszej opcji meblujemy wnętrza, ale dekoracji zostawiamy jak najmniej. W drugiej pozostawione dekoracje wyglądają jak na zdjęciach.</p></div></details>
+   <details class="jhs-faq"><summary>A co jeśli efekt końcowy mi się nie spodoba?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Nasz cel jest jasny: sprzedać nieruchomość możliwie szybko i drogo. Dlatego nieruchomość przygotowuję pod potrzeby określonej grupy docelowej, bo to ona ma oszaleć z zachwytu, nie Ty. Może brzmi to brutalnie, ale w praktyce to podejście jest najbardziej skuteczne. W home stagingu liczy się czas: nie ma co marnować go na wymianę poduszki czy wazonu tylko dlatego, że nie jest w Twoim guście. Zaufaj mi!</p></div></details>
+   <details class="jhs-faq"><summary>Co z tymi wszystkimi nowymi dekoracjami i meblami, czy mieszkanie sprzedaję z nimi?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Meble i dekoracje mogą być elementem negocjacji przy sprzedaży. Zdarzają się klienci, którzy chcą kupić mieszkanie w dokładnie takim kształcie, jaki zobaczą na zdjęciach i podczas prezentacji. Jeśli nie, niepotrzebne produkty możemy często zwrócić do sklepu lub sprzedać na portalach ogłoszeniowych.</p></div></details>
+   <details class="jhs-faq"><summary>Skąd biorą się dekoracje do stylizacji?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Dekoracje kupuję za budżet klienta i uzupełniam stylizację dekoracjami z mojego magazynu.</p></div></details>
    <details class="jhs-faq"><summary>Czy na potrzeby usługi mogę wypożyczyć też meble?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Nie mam w ofercie mebli do wypożyczenia. Jednak jeśli będzie istniała taka potrzeba, mogę wycenić dla Ciebie taką ofertę w profesjonalnej wypożyczalni.</p></div></details>
-   <details class="jhs-faq"><summary>Czy home staging naprawdę działa? Dostanę jakąś gwarancję skuteczności?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Home staging działa, ale gwarancji na piśmie nie będzie. Z prostej przyczyny: to, jak wygląda mieszkanie wewnątrz, to tylko jeden z elementów, na które zwracają uwagę potencjalni klienci. Na inne nie mam wpływu, więc nie mogę zagwarantować, że mieszkanie sprzeda się lub znajdzie najemcę błyskawicznie.</p></div></details>
+   <details class="jhs-faq"><summary>Czy home staging naprawdę działa? Dostanę jakąś gwarancję skuteczności?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Home staging działa, ale gwarancji na piśmie nie będzie. Z prostej przyczyny: to, jak wygląda mieszkanie wewnątrz, to tylko jeden z elementów, na które zwracają uwagę potencjalni klienci. Na inne nie mam wpływu, więc nie mogę zagwarantować, że mieszkanie sprzeda się błyskawicznie.</p></div></details>
    <!-- Pytania z researchu (zostają) -->
    <details class="jhs-faq"><summary>Kupujący i tak urządzi mieszkanie po swojemu. Po co home staging?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Większość osób nie potrafi wyobrazić sobie potencjału pustego albo zagraconego pokoju. Dlatego nie urządzam mieszkania pod siebie ani pod Ciebie, tylko tworzę tło, w którym kupujący widzi swoje życie. Przy jednej realizacji właścicielka chciała zostawić pusty pokój. Urządziłam w nim przytulny kącik do pracy i mieszkanie sprzedało się w 48 godzin od publikacji.</p></div></details>
    <details class="jhs-faq"><summary>Czy home staging się opłaca?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Porównaj koszt przygotowania z jedną obniżką ceny albo z kolejnym miesiącem czynszu i mediów za puste mieszkanie. W Ursusie cała realizacja kosztowała 8 tys. zł, a mieszkanie sprzedało się za 600 zł/m² powyżej średnich cen w okolicy. Zakres dobieram do mieszkania i zaczynam od zmian, które kosztują najmniej. Więcej we wpisie <a href="https://justhomestaging.pl/home-staging-zbedny-koszt-czy-inwestycja/">Home staging: zbędny koszt czy inwestycja?</a></p></div></details>
-   <details class="jhs-faq"><summary>Ile kosztuje home staging?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Konsultacja kosztuje 547 zł online i 697 zł stacjonarnie (z VAT). Pełna realizacja kosztuje od 2 500 zł, a dokładną kwotę wyceniam indywidualnie. Szczegóły znajdziesz w <a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">cenniku</a>.</p></div></details>
+   <details class="jhs-faq"><summary>Ile kosztuje home staging?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Konsultacja z briefem (online) kosztuje 697 zł brutto, a konsultacja z briefem i listą zakupów 1845 zł brutto. Pełna realizacja kosztuje od 2 500 zł netto, a dokładną kwotę wyceniam indywidualnie. Szczegóły znajdziesz w <a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">cenniku</a>.</p></div></details>
   </div>
  </div>
 </div></section>
@@ -1090,33 +1123,37 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec jhs-sec--flush" id="wycena"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-final">
   <div>
-   <p class="jhs-eyebrow">Bezpłatna rozmowa wstępna</p>
+   <p class="jhs-eyebrow">Bezpłatna konsultacja</p>
    <h2>Potrzebujesz więcej <span class="jhs-acc">informacji</span>?</h2>
    <div class="jhs-final-side">
-    <p>Umów się na bezpłatną rozmowę wstępną, a pomogę Ci dobrać usługę skrojoną pod Twoje potrzeby i zasoby.</p>
+    <p>Umów się na bezpłatną konsultację, a pomogę Ci dobrać usługę skrojoną pod Twoje potrzeby i zasoby.</p>
     <!-- DO-POTWIERDZENIA: kalendarz Zencal (widget czy link), jak w dokumencie Justyny -->
-    <div class="jhs-final-alt"><strong>15-minutowa bezpłatna konsultacja</strong><span>Rozmawiamy przez telefon. Wolisz, żebym oddzwoniła? Zostaw trzy informacje w formularzu.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-btn jhs-btn--acc jhs-btn--sm" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umawiam się na spotkanie <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span></a></div>
+    <div class="jhs-final-alt"><strong>Bezpłatna konsultacja, 15 minut przez telefon</strong><span>Nie przepadasz za rozmowami przez telefon? Wypełnij formularz wyceny i dołącz zdjęcia pomieszczeń.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-btn jhs-btn--acc jhs-btn--sm" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umawiam się na spotkanie <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span></a></div>
    </div>
   </div>
   <form class="jhs-form" data-gl-part="ff-wycena-krotka" action="DZIEKUJEMY.html" method="get">
-   <fieldset class="jhs-choices"><legend>Czego potrzebujesz?</legend>
-    <label><input type="radio" name="cel" value="sprzedaz" checked><span>Sprzedaż</span></label>
-    <label><input type="radio" name="cel" value="wynajem"><span>Wynajem</span></label>
-    <label><input type="radio" name="cel" value="metamorfoza"><span>Metamorfoza dla siebie</span></label>
-    <label><input type="radio" name="cel" value="firma"><span>Przestrzeń firmowa</span></label>
+   <input type="hidden" name="cel" value="sprzedaz">
+   <fieldset class="jhs-choices"><legend>Liczba pomieszczeń</legend>
+    <label><input type="radio" name="pomieszczenia" value="1" required><span>1</span></label>
+    <label><input type="radio" name="pomieszczenia" value="2"><span>2</span></label>
+    <label><input type="radio" name="pomieszczenia" value="3"><span>3</span></label>
+    <label><input type="radio" name="pomieszczenia" value="4"><span>4</span></label>
+    <label><input type="radio" name="pomieszczenia" value="5+"><span>5 i więcej</span></label>
    </fieldset>
+   <label class="jhs-field jhs-hs-file"><span>Zdjęcia pomieszczeń</span><input type="file" name="zdjecia" accept="image/*" multiple required aria-describedby="jhs-hs-zdj-hint"><small class="jhs-field-hint" id="jhs-hs-zdj-hint">Zdjęcia każdego pomieszczenia, mogą być z telefonu.</small></label>
+   <label class="jhs-field"><span>Miasto i dzielnica</span><input type="text" name="lokalizacja" autocomplete="address-level2" placeholder="np. Warszawa, Ursus" required></label>
    <div class="jhs-form-row">
-    <label class="jhs-field"><span>Metraż</span><select name="metraz"><option value="">Wybierz</option><option>do 40 m²</option><option>40 do 60 m²</option><option>60 do 80 m²</option><option>80 do 120 m²</option><option>ponad 120 m²</option></select></label>
     <label class="jhs-field"><span>Imię</span><input type="text" name="imie" autocomplete="given-name" placeholder="np. Anna" required></label>
+    <label class="jhs-field"><span>Telefon lub e-mail</span><input type="text" name="kontakt" autocomplete="tel" placeholder="np. 600 000 000" required></label>
    </div>
-   <label class="jhs-field"><span>Telefon lub e-mail</span><input type="text" name="kontakt" autocomplete="tel" placeholder="np. 600 000 000" required></label>
    <p class="jhs-form-info">Administratorem danych jest Just Home Staging Justyna Zaniewska. Dane wykorzystam wyłącznie do odpowiedzi na zapytanie. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
    <button class="jhs-btn jhs-btn--acc" type="submit">Poproś o wycenę <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></button>
   </form>
  </div>
+ <p class="jhs-hs-other"><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Wynajmujesz? Zobacz home staging pod wynajem</a></p>
 </div></section>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "@id": "https://justhomestaging.pl/home-staging/#usluga", "name": "Home staging mieszkania na sprzedaż i wynajem", "serviceType": "Home staging", "description": "Przygotowanie nieruchomości na sprzedaż lub wynajem: wytyczne, projekt inwestycyjny, lista zakupowa, stylizacja wnętrza, sesja zdjęciowa i usługi dodatkowe.", "url": "https://justhomestaging.pl/home-staging/", "provider": {"@id": "https://justhomestaging.pl/#firma"}, "areaServed": [{"@type": "City", "name": "Warszawa"}, {"@type": "Country", "name": "Polska"}], "offers": [{"@type": "Offer", "name": "Konsultacja Home Staging online (1 h)", "price": "547", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"}, {"@type": "Offer", "name": "Konsultacja Home Staging stacjonarnie (1 h, Warszawa)", "price": "697", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-stacjonarna/"}, {"@type": "Offer", "name": "Home Staging: pełna realizacja", "priceSpecification": {"@type": "PriceSpecification", "minPrice": "2500", "priceCurrency": "PLN"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Just Home Staging", "item": "https://justhomestaging.pl/"}, {"@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://justhomestaging.pl/oferta/"}, {"@type": "ListItem", "position": 3, "name": "Home staging", "item": "https://justhomestaging.pl/home-staging/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Czym się różni usługa online i stacjonarna?", "acceptedAnswer": {"@type": "Answer", "text": "W przypadku współpracy stacjonarnej (w Warszawie) mogę odebrać od Ciebie klucze i zrobić wszystko za Ciebie. Jeśli wybierzesz usługę online, będziesz musiał samodzielnie zaangażować się w realizację moich wytycznych lub skorzystać ze wsparcia innej home stagerki. Ze względu na szkolenia, które prowadzę, jestem w stanie polecić Ci sprawdzone osoby w Twoim mieście i zdalnie nadzorować ich pracę."}}, {"@type": "Question", "name": "Ile czasu trwa przygotowanie nieruchomości?", "acceptedAnswer": {"@type": "Answer", "text": "Jeśli musimy tylko zająć się dekoracją lub stylizacją, jesteśmy w stanie wyrobić się w tydzień lub dwa. Jeśli jednak w grę wchodzi remont, może to zająć kilka tygodni."}}, {"@type": "Question", "name": "Czy podpisujemy jakąś umowę?", "acceptedAnswer": {"@type": "Answer", "text": "Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac."}}, {"@type": "Question", "name": "Czy dostanę fakturę za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Tak, wystawiam fakturę z 23% VAT."}}, {"@type": "Question", "name": "Jak długo czeka się na termin konsultacji?", "acceptedAnswer": {"@type": "Answer", "text": "Po opłaceniu konsultacji w sklepie wyślę Ci listę dostępnych terminów konsultacji. Zwykle udaje się ją umówić w ciągu najbliższego tygodnia lub dwóch."}}, {"@type": "Question", "name": "Jak wygląda płatność za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Płatność jest podzielona zazwyczaj na dwa etapy. Zaliczkę pobieram przed rozpoczęciem prac po podpisaniu umowy, a płatność końcową po sesji zdjęciowej, która jest szczęśliwym zakończeniem naszej współpracy."}}, {"@type": "Question", "name": "A co jeśli efekt końcowy mi się nie spodoba?", "acceptedAnswer": {"@type": "Answer", "text": "Nasz cel jest jasny: sprzedać lub wynająć nieruchomość możliwie szybko i drogo. Dlatego nieruchomość przygotowuję pod potrzeby określonej grupy docelowej, bo to ona ma oszaleć z zachwytu, nie Ty. Może brzmi to brutalnie, ale w praktyce to podejście jest najbardziej skuteczne. W home stagingu liczy się czas: nie ma co marnować go na wymianę poduszki czy wazonu tylko dlatego, że nie jest w Twoim guście. Zaufaj mi!"}}, {"@type": "Question", "name": "Co z tymi wszystkimi nowymi dekoracjami i meblami, czy mieszkanie sprzedaję/wynajmuję z nimi?", "acceptedAnswer": {"@type": "Answer", "text": "Meble i dekoracje mogą być elementem negocjacji, jeśli sprzedajemy nieruchomość. Zdarzają się klienci, którzy chcą kupić mieszkanie w dokładnie takim kształcie, jaki zobaczą na zdjęciach i podczas prezentacji. Jeśli nie, niepotrzebne produkty możemy często zwrócić do sklepu lub sprzedać na portalach ogłoszeniowych. W przypadku wynajmu nieruchomości wiele zależy od tego, czy stawiasz na najem długo- czy krótkoterminowy. W pierwszej opcji meblujemy wnętrza, ale dekoracji zostawiamy jak najmniej. W drugiej pozostawione dekoracje wyglądają jak na zdjęciach."}}, {"@type": "Question", "name": "Czy na potrzeby usługi mogę wypożyczyć też meble?", "acceptedAnswer": {"@type": "Answer", "text": "Nie mam w ofercie mebli do wypożyczenia. Jednak jeśli będzie istniała taka potrzeba, mogę wycenić dla Ciebie taką ofertę w profesjonalnej wypożyczalni."}}, {"@type": "Question", "name": "Czy home staging naprawdę działa? Dostanę jakąś gwarancję skuteczności?", "acceptedAnswer": {"@type": "Answer", "text": "Home staging działa, ale gwarancji na piśmie nie będzie. Z prostej przyczyny: to, jak wygląda mieszkanie wewnątrz, to tylko jeden z elementów, na które zwracają uwagę potencjalni klienci. Na inne nie mam wpływu, więc nie mogę zagwarantować, że mieszkanie sprzeda się lub znajdzie najemcę błyskawicznie."}}, {"@type": "Question", "name": "Kupujący i tak urządzi mieszkanie po swojemu. Po co home staging?", "acceptedAnswer": {"@type": "Answer", "text": "Większość osób nie potrafi wyobrazić sobie potencjału pustego albo zagraconego pokoju. Dlatego nie urządzam mieszkania pod siebie ani pod Ciebie, tylko tworzę tło, w którym kupujący widzi swoje życie. Przy jednej realizacji właścicielka chciała zostawić pusty pokój. Urządziłam w nim przytulny kącik do pracy i mieszkanie sprzedało się w 48 godzin od publikacji."}}, {"@type": "Question", "name": "Czy home staging się opłaca?", "acceptedAnswer": {"@type": "Answer", "text": "Porównaj koszt przygotowania z jedną obniżką ceny albo z kolejnym miesiącem czynszu i mediów za puste mieszkanie. W Ursusie cała realizacja kosztowała 8 tys. zł, a mieszkanie sprzedało się za 600 zł/m² powyżej średnich cen w okolicy. Zakres dobieram do mieszkania i zaczynam od zmian, które kosztują najmniej."}}, {"@type": "Question", "name": "Ile kosztuje home staging?", "acceptedAnswer": {"@type": "Answer", "text": "Konsultacja kosztuje 547 zł online i 697 zł stacjonarnie (z VAT). Pełna realizacja kosztuje od 2 500 zł, a dokładną kwotę wyceniam indywidualnie."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "@id": "https://justhomestaging.pl/home-staging/#usluga", "name": "Home staging mieszkania na sprzedaż", "serviceType": "Home staging", "description": "Przygotowanie mieszkania do sprzedaży: wytyczne, lista zakupowa, stylizacja wnętrza, sesja zdjęciowa i usługi dodatkowe. Pakiety online i pełna realizacja w Warszawie.", "url": "https://justhomestaging.pl/home-staging/", "provider": {"@id": "https://justhomestaging.pl/#firma"}, "areaServed": [{"@type": "City", "name": "Warszawa"}, {"@type": "Country", "name": "Polska"}], "offers": [{"@type": "Offer", "name": "Konsultacja + brief (online)", "url": "https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/", "priceSpecification": {"@type": "PriceSpecification", "price": "697", "priceCurrency": "PLN", "valueAddedTaxIncluded": true}}, {"@type": "Offer", "name": "Konsultacja + brief + lista zakupów (online)", "priceSpecification": {"@type": "PriceSpecification", "price": "1845", "priceCurrency": "PLN", "valueAddedTaxIncluded": true}}, {"@type": "Offer", "name": "Home staging: pełna realizacja", "priceSpecification": {"@type": "PriceSpecification", "minPrice": "2500", "priceCurrency": "PLN", "valueAddedTaxIncluded": false}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Just Home Staging", "item": "https://justhomestaging.pl/"}, {"@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://justhomestaging.pl/oferta/"}, {"@type": "ListItem", "position": 3, "name": "Home staging", "item": "https://justhomestaging.pl/home-staging/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Czym się różni usługa online i stacjonarna?", "acceptedAnswer": {"@type": "Answer", "text": "W przypadku współpracy stacjonarnej (w Warszawie) mogę odebrać od Ciebie klucze i zrobić wszystko za Ciebie. Jeśli wybierzesz usługę online, będziesz musiał samodzielnie zaangażować się w realizację moich wytycznych lub skorzystać ze wsparcia innej homestagerki. Ze względu na szkolenia, które prowadzę, jestem w stanie polecić Ci sprawdzone osoby w Twoim mieście i zdalnie nadzorować ich pracę."}}, {"@type": "Question", "name": "Ile czasu trwa przygotowanie nieruchomości?", "acceptedAnswer": {"@type": "Answer", "text": "Jeśli musimy tylko zająć się dekoracją lub stylizacją, jesteśmy w stanie wyrobić się w tydzień lub dwa. Jeśli jednak w grę wchodzi remont, może to zająć kilka tygodni."}}, {"@type": "Question", "name": "Czy podpisujemy jakąś umowę?", "acceptedAnswer": {"@type": "Answer", "text": "Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac."}}, {"@type": "Question", "name": "Czy dostanę fakturę za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Tak, wystawiam fakturę z 23% VAT."}}, {"@type": "Question", "name": "Jak długo czeka się na termin konsultacji?", "acceptedAnswer": {"@type": "Answer", "text": "Po opłaceniu konsultacji w sklepie wyślę Ci listę dostępnych terminów konsultacji. Zwykle udaje się ją umówić w ciągu najbliższego tygodnia lub dwóch."}}, {"@type": "Question", "name": "Jak wygląda płatność za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Płatność jest podzielona zazwyczaj na dwa etapy. Zaliczkę pobieram przed rozpoczęciem prac po podpisaniu umowy, a płatność końcową po sesji zdjęciowej, która jest szczęśliwym zakończeniem naszej współpracy."}}, {"@type": "Question", "name": "A co jeśli efekt końcowy mi się nie spodoba?", "acceptedAnswer": {"@type": "Answer", "text": "Nasz cel jest jasny: sprzedać nieruchomość możliwie szybko i drogo. Dlatego nieruchomość przygotowuję pod potrzeby określonej grupy docelowej, bo to ona ma oszaleć z zachwytu, nie Ty. Może brzmi to brutalnie, ale w praktyce to podejście jest najbardziej skuteczne. W home stagingu liczy się czas: nie ma co marnować go na wymianę poduszki czy wazonu tylko dlatego, że nie jest w Twoim guście. Zaufaj mi!"}}, {"@type": "Question", "name": "Co z tymi wszystkimi nowymi dekoracjami i meblami, czy mieszkanie sprzedaję z nimi?", "acceptedAnswer": {"@type": "Answer", "text": "Meble i dekoracje mogą być elementem negocjacji przy sprzedaży. Zdarzają się klienci, którzy chcą kupić mieszkanie w dokładnie takim kształcie, jaki zobaczą na zdjęciach i podczas prezentacji. Jeśli nie, niepotrzebne produkty możemy często zwrócić do sklepu lub sprzedać na portalach ogłoszeniowych."}}, {"@type": "Question", "name": "Skąd biorą się dekoracje do stylizacji?", "acceptedAnswer": {"@type": "Answer", "text": "Dekoracje kupuję za budżet klienta i uzupełniam stylizację dekoracjami z mojego magazynu."}}, {"@type": "Question", "name": "Czy na potrzeby usługi mogę wypożyczyć też meble?", "acceptedAnswer": {"@type": "Answer", "text": "Nie mam w ofercie mebli do wypożyczenia. Jednak jeśli będzie istniała taka potrzeba, mogę wycenić dla Ciebie taką ofertę w profesjonalnej wypożyczalni."}}, {"@type": "Question", "name": "Czy home staging naprawdę działa? Dostanę jakąś gwarancję skuteczności?", "acceptedAnswer": {"@type": "Answer", "text": "Home staging działa, ale gwarancji na piśmie nie będzie. Z prostej przyczyny: to, jak wygląda mieszkanie wewnątrz, to tylko jeden z elementów, na które zwracają uwagę potencjalni klienci. Na inne nie mam wpływu, więc nie mogę zagwarantować, że mieszkanie sprzeda się błyskawicznie."}}, {"@type": "Question", "name": "Kupujący i tak urządzi mieszkanie po swojemu. Po co home staging?", "acceptedAnswer": {"@type": "Answer", "text": "Większość osób nie potrafi wyobrazić sobie potencjału pustego albo zagraconego pokoju. Dlatego nie urządzam mieszkania pod siebie ani pod Ciebie, tylko tworzę tło, w którym kupujący widzi swoje życie. Przy jednej realizacji właścicielka chciała zostawić pusty pokój. Urządziłam w nim przytulny kącik do pracy i mieszkanie sprzedało się w 48 godzin od publikacji."}}, {"@type": "Question", "name": "Czy home staging się opłaca?", "acceptedAnswer": {"@type": "Answer", "text": "Porównaj koszt przygotowania z jedną obniżką ceny albo z kolejnym miesiącem czynszu i mediów za puste mieszkanie. W Ursusie cała realizacja kosztowała 8 tys. zł, a mieszkanie sprzedało się za 600 zł/m² powyżej średnich cen w okolicy. Zakres dobieram do mieszkania i zaczynam od zmian, które kosztują najmniej."}}, {"@type": "Question", "name": "Ile kosztuje home staging?", "acceptedAnswer": {"@type": "Answer", "text": "Konsultacja z briefem (online) kosztuje 697 zł brutto, a konsultacja z briefem i listą zakupów 1845 zł brutto. Pełna realizacja kosztuje od 2 500 zł netto, a dokładną kwotę wyceniam indywidualnie."}}]}]}</script>
 </main>
 
 <!-- SHELL:START stopka (wspólna dla wszystkich podstron) -->
@@ -1124,16 +1161,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -1141,26 +1177,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -1170,7 +1206,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -1241,6 +1277,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;if(!locked){const dx=Math.abs(e.clientX-x0),dy=Math.abs(e.clientY-y0);if(dx<6&&dy<6)return;if(dy>dx){id=null;return;}locked=true;try{p.setPointerCapture(id);}catch(_){}ba.classList.add('is-drag');}at(e);});
  const end=e=>{if(e.pointerId!==id)return;if(!locked&&e.type==='pointerup')at(e);id=null;locked=false;ba.classList.remove('is-drag');};
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
+});
+
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
 });
 
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */

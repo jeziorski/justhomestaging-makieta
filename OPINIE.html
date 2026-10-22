@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -458,16 +477,11 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <style data-wp-block-html="css">
 /* Opinie (klasy jhs-op-*) */
 .jhs-op-hero{padding-block:clamp(28px,4vw,56px) clamp(40px,5vw,64px)}
-.jhs-op-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,72px);align-items:end}
+.jhs-op-hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:end}
 @media (max-width:900px){.jhs-op-hero-grid{grid-template-columns:1fr}}
 .jhs-op-hero h1{font-size:clamp(38px,4.8vw,64px);line-height:1.02;letter-spacing:-.04em;margin-bottom:20px}
 .jhs-op-hero .jhs-lead{max-width:620px}
 .jhs-op-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.jhs-op-sum{display:grid;gap:10px;padding:22px;border-radius:var(--jhs-r);background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-line)}
-.jhs-op-sum li{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--jhs-ink-2)}
-.jhs-op-sum li strong{color:var(--jhs-ink)}
-.jhs-op-sum svg{flex:none;width:20px;height:20px;color:var(--jhs-sage-d)}
-.jhs-op-sum li+li{padding-top:10px;border-top:1px solid var(--jhs-line)}
 .jhs-op-feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
 @media (max-width:980px){.jhs-op-feat{grid-template-columns:1fr}}
 .jhs-op-feat-card{display:flex;flex-direction:column;gap:16px;padding:clamp(22px,2.6vw,32px);border-radius:var(--jhs-r);background:var(--jhs-night);color:#e6ded3}
@@ -548,9 +562,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -565,20 +580,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -592,12 +604,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -632,13 +645,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-btn jhs-btn--light" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">Zobacz realizacje <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
    </div>
   </div>
-  <!-- DO-POTWIERDZENIA: aktualna liczba i średnia opinii w wizytówce Google (na stronie pokazujemy 29 opinii ze strony, bez średniej i bez AggregateRating) -->
-  <ul class="jhs-op-sum" aria-label="W skrócie">
-   <li><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><span><strong>29 opinii</strong> klientów i uczestniczek warsztatów</span></li>
-   <li><svg aria-hidden="true"><use href="#jhs-i-trend"/></svg><span><strong>6 opinii</strong> o sprzedaży i wynajmie z wynikiem</span></li>
-   <li><svg aria-hidden="true"><use href="#jhs-i-home"/></svg><span><strong>16 opinii</strong> o metamorfozach i projektach</span></li>
-   <li><svg aria-hidden="true"><use href="#jhs-i-users"/></svg><span><strong>7 opinii</strong> z warsztatów dla homestagerek</span></li>
-  </ul>
+  <!-- Zestawienie liczb opinii (29 / 6 / 16 / 7) usunięte 19.10.2026 na prośbę Justyny. DO-POTWIERDZENIA: aktualna liczba i średnia opinii w wizytówce Google (bez AggregateRating). -->
  </div>
 </div></section>
 
@@ -657,23 +664,28 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- 3. Wszystkie opinie w grupach (kotwice, bez JS) -->
 <section class="wp-section alignfull jhs-op-nav-sec" aria-label="Grupy opinii"><div class="wp-content-wrap jhs-wrap">
- <nav class="jhs-op-nav" aria-label="Przejdź do grupy opinii"><a href="#home-staging">Sprzedaż i wynajem <small>6</small></a><a href="#metamorfozy">Metamorfozy i projekty <small>16</small></a><a href="#warsztaty">Warsztaty <small>7</small></a><a href="#dodaj-opinie">Dodaj opinię</a></nav>
+ <nav class="jhs-op-nav" aria-label="Przejdź do grupy opinii"><a href="#home-staging">Pod sprzedaż</a><a href="#wynajem">Pod wynajem</a><a href="#metamorfozy">Metamorfozy i projekty</a><a href="#warsztaty">Warsztaty</a><a href="#dodaj-opinie">Dodaj opinię</a></nav>
 </div></section>
 
 <section class="wp-section alignfull jhs-sec" id="opinie"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-op-grp" id="home-staging">
-  <div class="jhs-op-grp-head"><h2>Home staging: sprzedaż i <span class="jhs-acc">wynajem</span></h2><p>Opinie osób, które przygotowywały mieszkanie do sprzedaży lub wynajmu. Przy każdej zaznaczam wynik, o którym piszą.</p></div>
+  <div class="jhs-op-grp-head"><h2>Home staging pod <span class="jhs-acc">sprzedaż</span></h2><p>Opinie osób, które przygotowywały mieszkanie do sprzedaży. Przy każdej zaznaczam wynik, o którym piszą.</p></div>
   <ul class="jhs-rev-grid">
   <li class="jhs-rev" id="opinia-helena-i"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#b4501a" aria-hidden="true">H</span><span><strong>Helena I.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Sprzedaż mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Sprzedane kilka dni po home stagingu, wcześniej ponad 2 miesiące bez skutku</span><blockquote class="jhs-op-q"><p>„Justyna świetnie wydobyła potencjał z mieszkania, które sprzedawaliśmy, do tego stopnia, że aż szkoda było sprzedawać. Byliśmy pewni, że nic nie da się zrobić, by poprawić jego wygląd bez ponoszenia dużych wydatków, na które nie mogliśmy sobie pozwolić.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Mieszkanie było do generalnego remontu, ale okazało się, że bez remontu można je całkiem odmienić i pokazać jego walory (które wcześniej były bardzo głęboko ukryte!) Finalnie mieszkanie sprzedaliśmy kilka dni po wykonaniu home stagingu przez Justynę, a wcześniej nie udało nam się go sprzedać przez ponad 2 miesiące (mimo obniżania ceny!) Z perspektywy, polecam skorzystać z wprawnego oka Justyny, zanim obniży się cenę, bo ta inwestycja na prawdę się zwraca.”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-emilia-g"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">E</span><span><strong>Emilia G.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Sprzedaż mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wystawione o 40 tys. zł drożej, sprzedane w niecałe 2 tygodnie</span><blockquote class="jhs-op-q"><p>„Justyna to wyjątkowa osoba, której usługi z czystym sumieniem można polecić każdemu. Skorzystaliśmy z home stagingu w mieszkaniu w którym w mojej opinii nie dało się zrobić już nic. Ciemne mieszkanie urządzone 18 lat temu w stylu glamour, jak za dotknięciem magicznej różdżki zmieniło się piękne, klastyczne wnętrze.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Balkon z zacienionego i nieustawnego zamienił się w cudowne miejsce do wypoczynku i jednocześnie przedłużenie salonu. Oprócz takich zmian jak dodanie tekstyliów, kwiatów i dekoracji zadbała o detale, które nawet nie przyszły mi do głowy, jak niedomykająca się szafa czy wymiana wizjera w drzwiach. Oprócz idealnie wykonanej ogromnej pracy, Justyna dała mi pakiet istotnych informacji jak prezentować mieszkanie na sprzedaż, o której godzinie jest najlepsze światło, na co zwracać uwagę i jakie zalety mieszkania warto wymieniać. Telefony rozdzwoniły się momentalnie po wystawieniu ogłoszenia i byłam w szoku ile pozytywnych słów usłyszałam od oglądających. Nie muszę wspominać, że mieszkanie sprzedało się w niecałe 2 tygodnie mimo, że po home stagingu wystawiłam je za 40tys wiecej?! Z czystym sumieniem polecam! Pełen profesjonalizm, zaangażowanie i usługa warta każdej złotówki!”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-wioletta-m"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#3a3632" aria-hidden="true">W</span><span><strong>Wioletta M.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Sprzedaż mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Nabywcy po 2 dniach od publikacji</span><blockquote class="jhs-op-q"><p>„Pani Justyna Zaniewska zrealizowała projekt aranżacji naszego mieszkania, które po 2 dniach od publikacji znalazło swoich nabywców. Dzięki kompleksowej dekoracji wnętrza i wykonaniu profesjonalnej sesji zdjęciowej wykorzystaliśmy maksymalnie potencjał pomieszczeń, a mieszkanie zdecydowanie wyróżniało się na rynku nieruchomości.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Wszystkie prace przebiegły terminowo i zgodnie z ustaleniami. Pani Justyna ma doskonały zmysł koncepcyjno-aranżacyjny i bezbłędnie dobiera przedmioty, kolory i dodatki do wnętrz, jest zaangażowana, co znajduje wyraz w oszałamiającym efekcie końcowym. Serdecznie polecam firmę Just Home Staging!”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-agnieszka-k"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#9a3f10" aria-hidden="true">A</span><span><strong>Agnieszka K.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Sprzedaż mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Pytali, czy to wizualizacja</span><blockquote class="jhs-op-q"><p>„Justyna pomogła mi przygotować mieszkanie do sprzedaży. Uważałam, że nie jest szczególnie rokujące, a tymczasem Justyna zmieniła je tak, że agenci i klienci dzwoniący w odpowiedzi na ogłoszenie pytali czy to jest wizualizacja czy naprawdę jest tak pięknie.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Justyna jest bardzo zaangażowana w swoją pracę, uparta kiedy trzeba 😉 i kiedy wie, że Jej propozycja poparta wiedzą zaprocentuje. Mieszkanie sprzedało się sprawnie pomimo przestoju na rynku. Polecam!”</p></details></blockquote></li>
-  <li class="jhs-rev" id="opinia-tomasz-sz"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#5a2a0e" aria-hidden="true">T</span><span><strong>Tomasz Sz.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Wynajem mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wynajęte w kilka dni po publikacji oferty</span><blockquote class="jhs-op-q"><p>„Pani Justyna we współpracy z p. Agnieszką dokonały kompletnej metamorfozy mieszkania żony. Dzięki ich pracy mieszkanie wynajęło się w kilka dni po opublikowaniu oferty. Wszystkie prace wykonane zostały terminowo i zgodnie z wcześniejszymi ustaleniami.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>W przyszłości z pewnością ponownie skorzystamy z ich usług, które każdemu polecam. Ostatnio mieliśmy również okazję współpracować przy dekorowaniu naszego domu, i efekty przerosły nasze oczekiwania. Pani Justyna i p. Agnieszka profesjonalnie doradziły nam w wyborze kolorów, mebli i dodatków, tworząc wnętrze, które odzwierciedla nasze indywidualne style. Ich zaangażowanie, umiejętności i troska o zadowolenie klienta są niezwykłe. Dlatego z czystym sumieniem polecam ich usługi wszystkim, którzy pragną pięknie urządzić swoje wnętrza.”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-katarzyna-m"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#6d655a" aria-hidden="true">K</span><span><strong>Katarzyna M.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Sprzedaż mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wyższa cena, sprzedane błyskawicznie</span><blockquote class="jhs-op-q"><p>„Współpraca z Panią Justyną przebiegła super sprawnie i efektywnie. Dzięki niej podniosłam cenę sprzedawanej nieruchomości, a dodatkowo zaoszczędziłam swój czas nie musząc angażować się w zakupy, kontrolę ekipy remontowej czy szukanie fotografa. Mieszkanie sprzedane błyskawicznie. Zdecydowanie polecam.”</p></blockquote></li>
   </ul>
  </div>
+ <div class="jhs-op-grp" id="wynajem">
+  <div class="jhs-op-grp-head"><h2>Home staging pod <span class="jhs-acc">wynajem</span></h2><p>Opinie osób, które przygotowywały mieszkanie pod wynajem. Przy każdej zaznaczam wynik, o którym piszą.</p></div>
+  <ul class="jhs-rev-grid">
+  <li class="jhs-rev" id="opinia-tomasz-sz"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#5a2a0e" aria-hidden="true">T</span><span><strong>Tomasz Sz.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Wynajem mieszkania</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wynajęte w kilka dni po publikacji oferty</span><blockquote class="jhs-op-q"><p>„Pani Justyna we współpracy z p. Agnieszką dokonały kompletnej metamorfozy mieszkania żony. Dzięki ich pracy mieszkanie wynajęło się w kilka dni po opublikowaniu oferty. Wszystkie prace wykonane zostały terminowo i zgodnie z wcześniejszymi ustaleniami.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>W przyszłości z pewnością ponownie skorzystamy z ich usług, które każdemu polecam. Ostatnio mieliśmy również okazję współpracować przy dekorowaniu naszego domu, i efekty przerosły nasze oczekiwania. Pani Justyna i p. Agnieszka profesjonalnie doradziły nam w wyborze kolorów, mebli i dodatków, tworząc wnętrze, które odzwierciedla nasze indywidualne style. Ich zaangażowanie, umiejętności i troska o zadowolenie klienta są niezwykłe. Dlatego z czystym sumieniem polecam ich usługi wszystkim, którzy pragną pięknie urządzić swoje wnętrza.”</p></details></blockquote></li>
+  </ul>
+ </div>
  <div class="jhs-op-grp" id="metamorfozy">
-  <div class="jhs-op-grp-head"><h2>Metamorfozy i <span class="jhs-acc">projekty</span></h2><p>Metamorfozy, remonty, projekty, balkony i przestrzenie firmowe: wnętrza, w których klienci mieszkają i pracują.</p></div>
+  <div class="jhs-op-grp-head"><h2>Metamorfozy i <span class="jhs-acc">projekty</span></h2><p>Metamorfozy, remonty, projekty i balkony: wnętrza, w których klienci mieszkają na co dzień.</p></div>
   <ul class="jhs-rev-grid">
   <li class="jhs-rev" id="opinia-kinga"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#b4501a" aria-hidden="true">K</span><span><strong>Kinga</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Dekoracje mieszkania 100 m²</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Wybór spośród kilku ofert</span><blockquote class="jhs-op-q"><p>„Powierzyliśmy pani Justynie kompleksową aranżację dekoracji i dodatków do świeżo wykończonego mieszkania. Choć mieszkanie było zaprojektowane przez architekta, to dalej brakowało w nim „tego czegoś”. Długo zastanawiałam, się nad ofertą i wyborem osoby, której powierzę zbudowanie klimatu w wyczekanym i wymarzonym mieszkaniu.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Pani Justyna przygotowała dla nas ofertę uwzględniającą dobór dekoracji, roślinności oraz drobnych mebli do mieszkania składającego się z salonu z kuchnią, sypialni, pokoju dziecka, gabinetu, łazienki oraz toalety, łącznie 100 m2. Dzięki wybranym przez panią Justynę dekoracjom i dodatkom to jest zdecydowanie inne mieszkanie, a klimat jest nie do opisania. KAŻDE z pomieszczeń w 100% wpisuje się w naszą estetykę. Pani Justyna perfekcyjnie zrozumiała, o co nam chodzi. Była dla nas wsparciem i rozwiewała wątpliwości na każdym etapie, była otwarta na zmiany i sugestie jeśli do czegoś nie byliśmy przekonani. Zawsze i na każdym etapie czuliśmy, że to nasza decyzja. Ostatnim krokiem była aranżacja, czyli montaż i rozdysponowanie wszystkich dekoracji. Na każdym kroku, będąc w mieszkaniu, mój wzrok napotykają tylko piękne przedmioty, z których każdy jest przemyślany i dopasowany. Polecam każdemu, kto ma wątpliwości. Bardzo cieszę, się, że wybrałam panią Justynę spośród kilku innych firm, od których otrzymaliśmy oferty. Choć cena na etapie porównywania ofert była najwyższa, to od momentu kiedy pani Justyna odwiedziła nas, wiedzieliśmy, że była to najlepsza decyzja. W domu spędzamy najwięcej czasu, to tu odpoczywamy, śpimy, spędzamy czas z rodziną, przyjmujemy gości, a aktualnie również pracujemy. Od kiedy Pani Justyna rozlokowała wszystkie dekoracje, żyje nam się jakoś piękniej :). Jeszcze raz baaaardzo dziękujemy!”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-renata-l"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">R</span><span><strong>Renata Ł.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Remont mieszkania w Warszawie</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Remont bez mieszkania w Warszawie</span><blockquote class="jhs-op-q"><p>„Panią Justynę poleciła nam znajoma znajomej. Chcąc szybko wyremontować mieszkanie w Warszawie szukałam osoby, która ogarnie ekipę. Kiedy okazało się, że potrzebny jest elektryk i parkieciarz znalazła dobrych fachowców. Sprawnie zrealizowała projekt, wręcz poganiała mnie w podejmowaniu decyzji.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Była na miejscu w razie nieoczekiwanych zdarzeń, załatwiała rzetelnie mnóstwo spraw. Polecam każdemu, kto nie ma czasu lub tak jak ja nie mieszka w Warszawie.”</p></details></blockquote></li>
@@ -685,7 +697,6 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <li class="jhs-rev" id="opinia-dominika-d"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">D</span><span><strong>Dominika D.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Metamorfoza salonu</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Polecam współpracę z Panią Justyną 🙂 mój smutny, szary salon zamieniła w przytulne miejsce. Współpraca była przyjemna, szybka i konkretna z braniem pod uwagą moich potrzeb i sugestii. Polecam serdecznie!”</p></blockquote></li>
   <li class="jhs-rev" id="opinia-marta-s"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#3a3632" aria-hidden="true">M</span><span><strong>Marta S.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Projekt balkonu</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Współpraca z Justyną była strzałem w 10! Dzięki Justynie nasz balkon stał się dla nas ulubionym miejscem, w którym można odpocząć, napić się kawy, zjeść posiłek, a nasze dziecko uwielbia tam spędzać czas- dzięki podziałowi na strefy, mimo ograniczonej przestrzeni, znalazło się miejsce na wszystkie nasze potrzeby.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Uważam, że dzięki projektowi Justyny zaoszczędziliśmy mnóstwo czasu i pieniędzy- nie wydając ich na niepotrzebne i niefunkcjonalne meble, dekoracje. Serdecznie dziękujemy za współpracę, pomoc i wyczekujemy cieplejszych dni aby móc zacząć się cieszyć naszym balkonem ♥️”</p></details></blockquote></li>
   <li class="jhs-rev" id="opinia-piotr-p"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#9a3f10" aria-hidden="true">P</span><span><strong>Piotr P.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Dekoracje do sesji, biuro projektowe</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Współpraca z Panią Justyną w zakresie dekoracji i współtworzenia sesji zdjęciowej mieszkania dla biura projektowego to czysta przyjemność i profesjonalizm. Wszystkie etapy przebiegały bardzo sprawnie, zgodnie ze wspólnymi ustaleniami i co najważniejsze kompleksowo.</p><details class="jhs-op-more"><summary>Czytaj całą opinię</summary><p>Zależało nam, aby zaprojektowane mieszkania zostały udekorowane zgodnie z ustaloną stylistyką wnętrz i tutaj Pani Justyna spisała się rewelacyjnie. Wszystkie dodatki świetnie współgrały z zaprojektowaną przestrzenią i tworzyły spójny klimat. Niektóre nawet do tego stopnia, że właściciele po zobaczeniu zdjęć testowych postanowili się pozostawić i odkupić część przygotowanych dekoracji 🙂”</p></details></blockquote></li>
-  <li class="jhs-rev" id="opinia-aneta-s"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#5a2a0e" aria-hidden="true">A</span><span><strong>Aneta S.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Aranżacja poradni MeWell</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Justyna odpowiadała za projekt aranżacji poradni psychoterapii MeWell. Wnętrza poradni robią ogromne wrażenie, są doceniane przez naszych gości, a z samą Justyną pracuje się świetnie, sprawnie, profesjonalnie. Bardzo polecam!”</p></blockquote></li>
   <li class="jhs-rev" id="opinia-marcin-o"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#6d655a" aria-hidden="true">M</span><span><strong>Marcin O.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Projekt wnętrza</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Współpraca przebiegła bardzo sprawnie i bezproblemowo. Kontakt w każdej formie super. Projekt zgodny z oczekiwaniami. Szybka reakcja na zmianę pomysłu. Propozycje ciekawych i praktycznych rozwiązań. Jednym słowem polecam.”</p></blockquote></li>
   <li class="jhs-rev" id="opinia-marta-m"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#b4501a" aria-hidden="true">M</span><span><strong>Marta M.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Konsultacja dekoratorska</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Gorąco polecam konsultacje u Justyny odnośnie dekorowania wnętrz. Dopiero wkraczam w ten świat, a dzięki Justynie nabrałam ogromnego wiatru w żagle 😉”</p></blockquote></li>
   <li class="jhs-rev" id="opinia-klaudia-k"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">K</span><span><strong>Klaudia K.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span><span class="jhs-op-ctx">Metamorfoza salonu</span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><blockquote class="jhs-op-q"><p>„Justyna Zaniewska z Just Home Staging przeprowadziła metamorfozę mojego salonu. Efekt jest zachwycający! Wprowadzone zmiany sprawiły że salon jest dużo bardziej przestronny i funkcjonalny a spędzanie w nim czasu stało się przyjemnością. Justyna ma ogromną wiedzę i pasję, co widać było na każdym etapie współpracy. Dziękuję!”</p></blockquote></li>
@@ -713,7 +724,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div>
    <p class="jhs-eyebrow">Pracowaliśmy razem?</p>
    <h2>Dodaj opinię w <span class="jhs-acc">Google</span></h2>
-   <p>Twoje kilka zdań pomaga osobom, które właśnie zastanawiają się, czy home staging ma sens. Napisz, w jakiej sytuacji był Twój dom lub mieszkanie i co zmieniło się po naszej współpracy.</p>
+   <p>Twoje kilka zdań pomaga osobom, które właśnie zastanawiają się nad zmianą swojego wnętrza. Napisz, w jakiej sytuacji byłeś i co zmieniło się po naszej współpracy.</p>
   </div>
   <div class="jhs-op-add-btns">
    <!-- DO-POTWIERDZENIA: link do formularza opinii w wizytówce Google (Justyna) -->
@@ -729,12 +740,12 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <p class="jhs-eyebrow">Twoje mieszkanie</p>
    <h2>Napiszmy razem Twoją <span class="jhs-acc">historię</span></h2>
    <div class="jhs-final-side">
-    <p>Prześlij mi zdjęcia pomieszczeń albo link do ogłoszenia. Powiem Ci, co warto zmienić, zanim pomyślisz o obniżce ceny.</p>
+    <p>Prześlij mi zdjęcia pomieszczeń oraz miasto i dzielnicę. Powiem Ci, co warto zmienić i jak mogę Ci pomóc.</p>
    </div>
   </div>
   <div class="jhs-final-side">
    <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Poproś o bezpłatną wycenę <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
-   <div class="jhs-final-alt"><strong>Wolisz od razu porozmawiać?</strong><span>Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-link" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Wybierz termin rozmowy w kalendarzu <svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></a></div>
+   <div class="jhs-final-alt"><strong>Wolisz od razu porozmawiać?</strong><span>Bezpłatna konsultacja, 15 minut przez telefon.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-link" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Wybierz termin konsultacji w kalendarzu <svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></a></div>
   </div>
  </div>
 </div></section>
@@ -747,16 +758,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -764,26 +774,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -793,7 +803,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -864,6 +874,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;if(!locked){const dx=Math.abs(e.clientX-x0),dy=Math.abs(e.clientY-y0);if(dx<6&&dy<6)return;if(dy>dx){id=null;return;}locked=true;try{p.setPointerCapture(id);}catch(_){}ba.classList.add('is-drag');}at(e);});
  const end=e=>{if(e.pointerId!==id)return;if(!locked&&e.type==='pointerup')at(e);id=null;locked=false;ba.classList.remove('is-drag');};
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
+});
+
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
 });
 
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */

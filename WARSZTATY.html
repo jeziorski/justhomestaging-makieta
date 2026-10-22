@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kurs home staging: warsztaty stacjonarne Warszawa</title>
-<meta name="description" content="Dwudniowe warsztaty home staging w kameralnej grupie: wyceny, oferty, klienci i biznes homestagerki. Program, prowadzące, opinie i zapisy.">
+<meta name="description" content="Kurs home staging w formie dwudniowych warsztatów stacjonarnych: 8 miejsc, certyfikat, wyceny, klienci i biznes homestagerki. Program i zapisy.">
 <link rel="icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -581,9 +600,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -598,20 +618,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -625,12 +642,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -649,7 +667,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-crumbs-sec" aria-label="Okruszki"><div class="wp-content-wrap jhs-wrap">
  <nav class="jhs-crumbs" aria-label="Jesteś tutaj"><ol>
   <li><a href="index.html" data-href="https://justhomestaging.pl/">Just Home Staging</a></li>
-  <li><span aria-current="page">Kurs home staging</span></li>
+  <li><span aria-current="page">Warsztaty</span></li>
  </ol></nav>
 </div></section>
 
@@ -658,7 +676,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-ws-hero-grid">
   <div>
    <p class="jhs-eyebrow">Warsztaty stacjonarne „Między Nami Homestagerkami”</p>
-   <h1>Kurs home staging: warsztaty dla przyszłych i obecnych <span class="jhs-acc">homestagerek</span></h1>
+   <h1>Warsztaty stacjonarne home staging dla przyszłych i obecnych <span class="jhs-acc">homestagerek</span></h1>
    <p class="jhs-lead">Dwa dni, które pomogą Ci zamienić pasję w rentowny biznes. <strong>Wyjeżdżasz z konkretnym planem, gotowymi narzędziami i większą pewnością siebie</strong>, a nie tylko z inspiracjami.</p>
    <div class="jhs-ws-ctas">
     <a class="jhs-btn jhs-btn--acc" href="#terminy">Zapisz się na listę oczekujących <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
@@ -666,13 +684,14 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    </div>
    <ul class="jhs-ws-facts" aria-label="W skrócie">
     <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg>2 dni stacjonarnie</li>
-    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg>Kameralna grupa</li>
+    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-users"/></svg>8 miejsc</li>
+    <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Certyfikat na koniec</li>
     <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-tag"/></svg>5900 zł, raty 0%</li>
    </ul>
-   <!-- DO-POTWIERDZENIA: liczba miejsc (6 czy 8: strona /warsztaty/ i sklep mówią 8, poczta z 01.2026 mówi 6) oraz miejsce (Piaseczno, Warszawa czy Kraków) -->
+   <!-- DO-POTWIERDZENIA: miejsce najbliższej edycji (Piaseczno, Warszawa czy Kraków) -->
   </div>
   <div class="jhs-ws-visual">
-   <img src="img/warsztaty-duet-prowadzacych.webp" width="960" height="1030" alt="Prowadzące kurs home staging: Justyna Zaniewska i Agnieszka Stefanowicz">
+   <img src="img/warsztaty-duet-prowadzacych.webp" width="960" height="1030" alt="Prowadzące warsztaty home staging: Justyna Zaniewska i Agnieszka Stefanowicz">
    <p class="jhs-ws-tag"><span><strong>Justyna i Agnieszka</strong>prowadzące warsztaty</span></p>
   </div>
  </div>
@@ -681,7 +700,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <!-- 2. Dla kogo -->
 <section class="wp-section alignfull jhs-sec jhs-sec--white" id="dla-kogo"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-ws-who">
-  <div class="jhs-ws-who-img jhs-rv"><img src="img/warsztaty-praca-z-telefonem.webp" width="1144" height="800" alt="Prowadząca pomaga uczestniczkom kursu home staging w pracy z telefonem" loading="lazy"></div>
+  <div class="jhs-ws-who-img jhs-rv"><img src="img/warsztaty-praca-z-telefonem.webp" width="1144" height="800" alt="Prowadząca pomaga uczestniczkom warsztatów home staging w pracy z telefonem" loading="lazy"></div>
   <div class="jhs-rv">
    <p class="jhs-eyebrow">Dla kogo</p>
    <h2 class="jhs-h2">Dla kogo są te <span class="jhs-acc">warsztaty</span></h2>
@@ -713,18 +732,18 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <li class="jhs-rv"><span class="jhs-ws-ico"><svg aria-hidden="true"><use href="#jhs-i-camera"/></svg></span><h3>Stylizacja i fotograf</h3><p>Zajęcia praktyczne ze stylizacji i praca z fotografem wnętrz przy prawdziwych kadrach.</p></li>
  </ul>
  <div class="jhs-ws-get jhs-rv">
-  <div><h3>Co dostajesz po <span class="jhs-acc">kursie</span></h3><p>Przyjeżdżasz ze swoimi pytaniami i tym, co dziś Cię blokuje. Wyjeżdżasz z wiedzą, co zrobić dalej.</p></div>
+  <div><h3>Co dostajesz po <span class="jhs-acc">warsztatach</span></h3><p>Przyjeżdżasz ze swoimi pytaniami i tym, co dziś Cię blokuje. Wyjeżdżasz z wiedzą, co zrobić dalej.</p></div>
   <ul>
    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span><strong>Gotowe narzędzia:</strong> tabele, checklisty i wzory dokumentów do wdrożenia od razu.</span></li>
    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span><strong>Plan działania</strong> dla Twojego biznesu, a nie tylko inspiracje.</span></li>
    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span><strong>Prawdziwe case study:</strong> od kontaktu z klientem, przez ofertę i realizację, aż po opinię.</span></li>
    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span><strong>Wsparcie po warsztatach.</strong> Mamy ze sobą kontakt, zawsze możesz napisać i się poradzić.</span></li>
+   <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg><span><strong>Certyfikat</strong> ukończenia warsztatów, który dostajesz na koniec.</span></li>
   </ul>
-  <!-- DO-POTWIERDZENIA: czy uczestniczki dostają certyfikat lub zaświadczenie (obecna strona pisze „certyfikat”); do potwierdzenia nie pokazujemy -->
  </div>
  <div class="jhs-ws-gal">
   <figure class="jhs-rv"><img src="img/warsztaty-powitanie.webp" width="1600" height="1066" alt="Powitanie uczestniczek warsztatów home staging w drzwiach mieszkania" loading="lazy"></figure>
-  <figure class="jhs-rv"><img src="img/warsztaty-praca-przy-stole.webp" width="1600" height="1066" alt="Uczestniczki kursu home staging pracują przy stole z notatkami" loading="lazy"></figure>
+  <figure class="jhs-rv"><img src="img/warsztaty-praca-przy-stole.webp" width="1600" height="1066" alt="Uczestniczki warsztatów home staging pracują przy stole z notatkami" loading="lazy"></figure>
   <figure class="jhs-rv"><img src="img/warsztaty-zajecia-z-fotografem.webp" width="1600" height="1066" alt="Zajęcia praktyczne z fotografowania stylizacji wnętrza" loading="lazy"></figure>
   <figure class="jhs-rv"><img src="img/warsztaty-grupa.webp" width="1600" height="1066" alt="Uczestniczki i prowadzące warsztaty na wspólnym zdjęciu na sofie" loading="lazy"></figure>
  </div>
@@ -741,14 +760,14 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div class="jhs-ws-people">
    <!-- DO-POTWIERDZENIA: staż Justyny („od ponad 5 lat” na /warsztaty/ vs „od trzech lat” na starszych stronach); do potwierdzenia bez liczby lat -->
    <div class="jhs-ws-person jhs-rv"><h3>Justyna Zaniewska</h3><span class="jhs-ws-role">Just Home Staging · <a href="https://www.instagram.com/justhomestaging/">@justhomestaging</a></span><p>Homestagerka, projektantka wnętrz, dekoratorka i stylistka. Pomaga właścicielom nieruchomości tworzyć wnętrza, które sprzedają się, wynajmują i dobrze służą mieszkańcom. Łączy estetykę z biznesowym podejściem. <a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">Poznaj Justynę</a></p></div>
-   <div class="jhs-ws-person jhs-rv"><h3>Agnieszka Stefanowicz</h3><span class="jhs-ws-role">@homestaging_daily</span><p>Certyfikowana homestagerka i współzałożycielka EAHSP Polska. Na co dzień wspiera homestagerki konsultacjami 1:1 i prowadzi lokalne branżowe spotkania w Krakowie.</p></div>
+   <div class="jhs-ws-person jhs-rv"><h3>Agnieszka Stefanowicz</h3><span class="jhs-ws-role">@homestaging_daily</span><p>Certyfikowana homestagerka. Na co dzień wspiera homestagerki konsultacjami 1:1 i prowadzi lokalne branżowe spotkania w Krakowie.</p></div>
   </div>
  </div>
  <h3 class="jhs-ws-exp-h">Eksperci na warsztatach</h3>
  <!-- DO-POTWIERDZENIA: skład ekspertów na najbliższej edycji -->
  <div class="jhs-ws-exp">
   <div class="jhs-ws-expc jhs-rv"><img src="img/ekspert-iwona-matysiak.webp" width="1144" height="800" alt="Iwona Matysiak, coachka na warsztatach home staging" loading="lazy"><div><h4>Iwona Matysiak</h4><p>Coach i towarzyszka zmiany dla przedsiębiorców. Łączy coaching, narzędzia rozwoju osobistego i neuronauki.</p></div></div>
-  <div class="jhs-ws-expc jhs-rv"><img src="img/ekspert-mateusz-pawelski.webp" width="1498" height="1050" alt="Mateusz Pawelski, fotograf wnętrz na warsztatach home staging" loading="lazy"><div><h4>Mateusz Pawelski</h4><p>Fotograf wnętrz z 10-letnim doświadczeniem, absolwent warszawskiej Akademii Fotografii. Pracuje z biurami nieruchomości, architektami i deweloperami.</p></div></div>
+  <div class="jhs-ws-expc jhs-rv"><img src="img/ekspert-mateusz-pawelski.webp" width="1498" height="1050" alt="Mateusz Pawelski, fotograf wnętrz na warsztatach home staging" loading="lazy"><div><h4>Mateusz Pawelski</h4><p>Fotograf wnętrz z 10-letnim doświadczeniem, absolwent warszawskiej Akademii Fotografii. Pracuje z architektami i deweloperami.</p></div></div>
  </div>
 </div></section>
 
@@ -774,17 +793,18 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-ws-price">
   <div class="jhs-rv">
    <p class="jhs-eyebrow">Cena i raty</p>
-   <h2 class="jhs-h2">Cena kursu i płatność w <span class="jhs-acc">ratach</span></h2>
+   <h2 class="jhs-h2">Cena warsztatów i płatność w <span class="jhs-acc">ratach</span></h2>
    <p class="jhs-lead">Zapis i płatność odbywają się w sklepie. Możesz rozłożyć kwotę na 10 rat 0% przez PayU. Wystawiamy fakturę z 23% VAT.</p>
   </div>
   <div class="jhs-ws-pcard jhs-rv">
    <span class="jhs-svc-kicker">Warsztaty stacjonarne, 2 dni</span>
    <p class="jhs-ws-pval">5900 zł <small>z VAT</small></p>
    <ul>
-    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Dwa dni warsztatów w kameralnej grupie</li>
+    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Dwa dni warsztatów w grupie do 8 osób</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Zajęcia z coachką i fotografem wnętrz</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Tabele, checklisty i wzory dokumentów</li>
     <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Kontakt i wsparcie po warsztatach</li>
+    <li><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Certyfikat na koniec warsztatów</li>
    </ul>
    <a class="jhs-btn jhs-btn--dark" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/produkt/warsztaty-stacjonarne-miedzy-nami-homestagerkami/">Zobacz warsztaty w sklepie <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-bag"/></svg></span></a>
    <p class="jhs-note">Raty 0% od PayU, 10 rat. Faktura VAT.</p>
@@ -803,6 +823,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
   <div class="jhs-faq-list">
    <details class="jhs-faq"><summary>Jestem na początku drogi. Czy warsztaty są dla mnie?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak. W warsztatach biorą udział zarówno dziewczyny, które planują rozpocząć pracę w branży, jak i te, które już działają, ale mają wiele pytań. Wsparcie dajemy także po zakończeniu warsztatów.</p></div></details>
    <details class="jhs-faq"><summary>Czym te warsztaty różnią się od innych?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Skupiamy się głównie na biznesowej stronie home stagingu. Dostajesz aktualną wiedzę z pierwszej ręki od osób, które na co dzień prowadzą wiele projektów równocześnie. Mówimy o wycenach i pokazujemy prawdziwe case study, od kontaktu z klientem po opinię.</p></div></details>
+   <details class="jhs-faq"><summary>Czy to kurs home stagingu z certyfikatem?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>To dwudniowe warsztaty stacjonarne w grupie do 8 osób, z zajęciami praktycznymi. Na koniec każda uczestniczka dostaje certyfikat.</p></div></details>
    <details class="jhs-faq"><summary>Kiedy jest najbliższy termin?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Najbliższy termin ogłaszam na Instagramie i w newsletterze. Zapisz się na <a href="#terminy">listę oczekujących</a>, a dam Ci znać mailem.</p></div></details>
    <details class="jhs-faq"><summary>Czy mogę zapłacić w ratach?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, w sklepie możesz skorzystać z płatności w 10 ratach 0% przez PayU.</p></div></details>
    <details class="jhs-faq"><summary>Czy dostanę fakturę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, wystawiamy fakturę z 23% VAT.</p></div></details>
@@ -812,13 +833,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- 8. Terminy i lista oczekujących (blok końcowy) -->
 <section class="wp-section alignfull jhs-sec" id="terminy"><div class="wp-content-wrap jhs-wrap">
- <!-- DO-POTWIERDZENIA: termin, miejsce i liczba miejsc najbliższej edycji (5 różnych wersji na stronach: 24 i 25.03.2026 w sklepie, 14 i 15.10.2026 w opisie produktu, Kraków w jednym wpisie, Piaseczno i Warszawa na /warsztaty/). Po potwierdzeniu: data w widoku, przycisk „Zapisz się w sklepie” i CourseInstance w danych strukturalnych -->
+ <!-- DO-POTWIERDZENIA: termin i miejsce najbliższej edycji (5 różnych wersji na stronach: 24 i 25.03.2026 w sklepie, 14 i 15.10.2026 w opisie produktu, Kraków w jednym wpisie, Piaseczno i Warszawa na /warsztaty/). Po potwierdzeniu: data w widoku, przycisk „Zapisz się w sklepie” i CourseInstance w danych strukturalnych -->
  <div class="jhs-final">
   <div>
    <p class="jhs-eyebrow">Terminy i miejsce</p>
    <h2>Najbliższy termin ogłaszam na <span class="jhs-acc">Instagramie</span> i w newsletterze</h2>
    <div class="jhs-final-side">
-    <p>Grupy są kameralne, więc warto być na liście. Zostaw imię i e-mail, a dam Ci znać, gdy ruszą zapisy na kolejną edycję.</p>
+    <p>Na każdej edycji jest tylko 8 miejsc, więc warto być na liście. Zostaw imię i e-mail, a dam Ci znać, gdy ruszą zapisy na kolejną edycję.</p>
     <div class="jhs-final-alt"><strong>Obserwuj nas na Instagramie</strong><span>Tam pojawia się ogłoszenie terminu.</span><a class="jhs-link" href="https://www.instagram.com/justhomestaging/">@justhomestaging <svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a class="jhs-link" href="https://www.instagram.com/homestaging_daily/">@homestaging_daily <svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a></div>
    </div>
   </div>
@@ -837,8 +858,8 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 </div></section>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Home Staging","item":"https://justhomestaging.pl/"},{"@type":"ListItem","position":2,"name":"Kurs home staging","item":"https://justhomestaging.pl/warsztaty/"}]},
-{"@type":"Course","@id":"https://justhomestaging.pl/warsztaty/#kurs","name":"Kurs home staging: warsztaty stacjonarne „Między Nami Homestagerkami”","description":"Dwudniowe warsztaty stacjonarne dla przyszłych i obecnych homestagerek: oferty i wyceny, klienci i komunikacja, zarządzanie projektami, automatyzacje i AI, mindset przedsiębiorczyni, stylizacja i praca z fotografem wnętrz.","url":"https://justhomestaging.pl/warsztaty/","inLanguage":"pl-PL","provider":{"@type":"Organization","@id":"https://justhomestaging.pl/#firma","name":"Just Home Staging","sameAs":"https://justhomestaging.pl/"},"offers":{"@type":"Offer","category":"Paid","price":"5900","priceCurrency":"PLN","url":"https://sklep.justhomestaging.pl/produkt/warsztaty-stacjonarne-miedzy-nami-homestagerkami/"}}
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Just Home Staging","item":"https://justhomestaging.pl/"},{"@type":"ListItem","position":2,"name":"Warsztaty","item":"https://justhomestaging.pl/warsztaty/"}]},
+{"@type":"Course","@id":"https://justhomestaging.pl/warsztaty/#kurs","name":"Warsztaty stacjonarne home staging „Między Nami Homestagerkami”","description":"Dwudniowe warsztaty stacjonarne dla przyszłych i obecnych homestagerek: oferty i wyceny, klienci i komunikacja, zarządzanie projektami, automatyzacje i AI, mindset przedsiębiorczyni, stylizacja i praca z fotografem wnętrz.","url":"https://justhomestaging.pl/warsztaty/","inLanguage":"pl-PL","provider":{"@type":"Organization","@id":"https://justhomestaging.pl/#firma","name":"Just Home Staging","sameAs":"https://justhomestaging.pl/"},"offers":{"@type":"Offer","category":"Paid","price":"5900","priceCurrency":"PLN","url":"https://sklep.justhomestaging.pl/produkt/warsztaty-stacjonarne-miedzy-nami-homestagerkami/"}}
 ]}</script>
 </main>
 
@@ -847,16 +868,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -864,26 +884,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -893,7 +913,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -964,6 +984,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;if(!locked){const dx=Math.abs(e.clientX-x0),dy=Math.abs(e.clientY-y0);if(dx<6&&dy<6)return;if(dy>dx){id=null;return;}locked=true;try{p.setPointerCapture(id);}catch(_){}ba.classList.add('is-drag');}at(e);});
  const end=e=>{if(e.pointerId!==id)return;if(!locked&&e.type==='pointerup')at(e);id=null;locked=false;ba.classList.remove('is-drag');};
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
+});
+
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
 });
 
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */

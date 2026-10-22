@@ -98,6 +98,7 @@
 .jhs-mega-col a:hover{background:var(--jhs-sand)}
 .jhs-mega-col strong{display:block;font-weight:600;font-size:16px;color:var(--jhs-ink);line-height:1.3}
 .jhs-mega-col span{display:block;font-size:14px;line-height:1.45;color:var(--jhs-txt);margin-top:2px}
+.jhs-mega-col--sm strong{font-size:15px;font-weight:500;color:var(--jhs-ink-2)}
 .jhs-mega-coll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 4px}
 .jhs-mega-coll a{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:8px;border-radius:16px;background:var(--jhs-bg);box-shadow:inset 0 0 0 1px var(--jhs-line);transition:background-color .2s,box-shadow .2s}
 .jhs-mega-coll a:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--jhs-acc)}
@@ -421,6 +422,24 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 .jhs-check-row{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:var(--jhs-ink-2);cursor:pointer}
 .jhs-check-row input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--jhs-acc)}
 .jhs-form .jhs-btn{justify-self:start}
+/* Formularz wyceny w 2 krokach (ff-wycena, ten sam na głównej i w kontakcie). Bez JS widać oba kroki; z JS krok 2 odsłania przycisk „Dalej” */
+.jhs-wf-step{display:grid;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.jhs-wf-step>legend{display:flex;align-items:center;gap:12px;width:100%;margin-bottom:16px;padding:0;font-size:19px;font-weight:700;color:var(--jhs-ink);letter-spacing:-.01em}
+.jhs-wf-step>legend small{display:block;font-size:15px;font-weight:500;color:var(--jhs-txt);letter-spacing:0}
+.jhs-wf-num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--jhs-ink);color:#fff;font-size:15px;font-weight:700}
+.jhs-wf-step--2{margin-top:10px;padding-top:24px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-step--2 .jhs-wf-num{background:var(--jhs-sand-2);color:var(--jhs-acc-dd)}
+.jhs-wf-step--2 legend:focus{outline:none}
+.jhs-wf-in{display:grid;gap:16px}
+.jhs-wf-next{display:none}
+html.jhs-js .jhs-wf.is-steps .jhs-wf-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.jhs-wf-next p{font-size:15px;color:var(--jhs-txt)}
+html.jhs-js .jhs-wf.is-steps:not(.is-open) .jhs-wf-step--2{display:none}
+html.jhs-js .jhs-wf.is-open .jhs-wf-next{display:none}
+.jhs-wf-file input{padding:12px 14px;min-height:58px;background:var(--jhs-bg);cursor:pointer}
+.jhs-wf-file input::file-selector-button{margin-right:12px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--jhs-ink);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.jhs-wf-foot{display:grid;gap:14px;margin-top:6px;padding-top:20px;border-top:1px solid var(--jhs-line)}
+.jhs-wf-foot .jhs-btn{justify-self:start}
 /* Blok końcowy (jeden na stronę) */
 .jhs-final{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);padding:clamp(28px,5vw,64px);border-radius:var(--jhs-r);background:radial-gradient(60% 90% at 100% 0%,rgba(242,163,107,.45),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(151,174,158,.35),transparent 60%),var(--jhs-sand-2)}
 .jhs-final h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08}
@@ -647,9 +666,10 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 
 <!-- SHELL:START naglowek (wspólny dla wszystkich podstron; pasek informacji + pigułka z mega menu) -->
 <div class="jhs-topbar"><div class="jhs-wrap jhs-topbar-in">
- <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna rozmowa telefoniczna, 15 minut</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i okolice, projekty zdalne w całej Polsce</span>
- <span><svg aria-hidden="true"><use href="#jhs-i-award"/></svg>Zwyciężczyni Gali Home Stagingu 2022</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg>Bezpłatna konsultacja, 15 minut przez telefon</span>
+ <span><svg aria-hidden="true"><use href="#jhs-i-pin"/></svg>Warszawa i realizacje zdalne</span>
+ <!-- Gala Home Stagingu 2022 tylko na stronie O mnie jako krótka historia (rekomendacja 19.10.2026, Justyna pytała, czy po 4 latach to ważne) -->
+ <span><svg aria-hidden="true"><use href="#jhs-i-star"/></svg>+30 opinii klientów</span>
 </div></div>
 <header class="jhs-head">
  <nav class="jhs-nav" aria-label="Nawigacja główna">
@@ -664,20 +684,17 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <details class="jhs-item">
      <summary class="jhs-toplink">Usługi <svg class="jhs-caret" aria-hidden="true"><use href="#jhs-i-caret"/></svg></summary>
      <div class="jhs-mega">
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Sprzedaż i wynajem</span>
+      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Home staging</span>
        <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/"><strong>Home staging pod sprzedaż</strong><span>Mieszkanie, które dobrze wygląda w ogłoszeniu i na żywo</span></a>
        <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/"><strong>Home staging pod wynajem</strong><span>Najem długi i krótki, wyposażenie i zdjęcia</span></a>
-       <a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/"><strong>Konsultacja home stagingu</strong><span>Plan zmian do zrobienia samodzielnie</span></a>
       </div>
       <div class="jhs-mega-col"><span class="jhs-mega-lbl">Twoje wnętrze</span>
        <a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/"><strong>Metamorfozy wnętrz</strong><span>Nowe wrażenie bez wielkiego remontu</span></a>
-       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projekt wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
-       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong><span>Mały balkon, który zaczyna być pokojem</span></a>
+       <a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/"><strong>Projektowanie wnętrz</strong><span>Od układu po dekoracje, także zdalnie</span></a>
       </div>
-      <div class="jhs-mega-col"><span class="jhs-mega-lbl">Dla firm</span>
-       <a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/"><strong>Przestrzeń komercyjna</strong><span>Gabinety, biura i lokale, które robią wrażenie</span></a>
-       <a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/"><strong>Dla pośredników</strong><span>Oferta Twojego klienta, która się wyróżnia</span></a>
-       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong><span>Porównaj, co pasuje do Twojej sytuacji</span></a>
+      <div class="jhs-mega-col jhs-mega-col--sm"><span class="jhs-mega-lbl">Więcej</span>
+       <a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/"><strong>Projekt balkonu online</strong></a>
+       <a href="OFERTA.html" data-href="https://justhomestaging.pl/oferta/"><strong>Wszystkie usługi</strong></a>
       </div>
       <a class="jhs-mega-tile" href="REALIZACJE.html" data-href="https://justhomestaging.pl/realizacje/">
        <img src="img/realizacja-wilanow-24h-salon-po.webp" width="1600" height="1066" alt="" loading="lazy">
@@ -691,12 +708,13 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
     <a class="jhs-toplink" href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a>
     <a class="jhs-toplink" href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a>
     <a class="jhs-toplink" href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a>
-    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs</a>
+    <a class="jhs-toplink" href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty</a>
     <a class="jhs-toplink" href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a>
     <a class="jhs-toplink" href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a>
+    <a class="jhs-toplink" href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a>
 
     <div class="jhs-drawer-foot">
-     <p>Opowiedz mi o mieszkaniu. Bezpłatna rozmowa trwa 15 minut i odbywa się przez telefon.</p>
+     <p>Opowiedz mi o mieszkaniu. Bezpłatna konsultacja trwa 15 minut i odbywa się przez telefon.</p>
      <a class="jhs-btn jhs-btn--acc" href="KONTAKT.html#wycena" data-href="https://justhomestaging.pl/kontakt/#wycena">Bezpłatna wycena <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
      <a class="jhs-btn jhs-btn--light" href="tel:+48512012909">Zadzwoń: 512 012 909 <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-phone"/></svg></span></a>
     </div>
@@ -729,7 +747,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <p class="jhs-lead">Sypialnia, salon czy kuchnia same z siebie nie zmienią się w miejsca, w których jest Ci tak dobrze, że nie chce Ci się z nich wychodzić. Pomóżmy im!</p>
    <div class="jhs-mw-ctas">
     <a class="jhs-btn jhs-btn--acc" href="#cena">Tego mi trzeba! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
-    <a class="jhs-btn jhs-btn--light" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umów bezpłatną rozmowę <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
+    <a class="jhs-btn jhs-btn--light" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umów bezpłatną konsultację <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></span></a>
    </div>
    <ul class="jhs-mw-trust" aria-label="W skrócie">
     <li class="jhs-chip"><svg aria-hidden="true"><use href="#jhs-i-tag"/></svg><span>Jedno pomieszczenie <strong>od 1847 zł</strong></span></li>
@@ -868,28 +886,9 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec" id="przed-i-po"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-sec-head">
   <div><p class="jhs-eyebrow">Realizacje przed i po</p><h2 class="jhs-h2">Nie tylko widać zmianę, ale i ją <span class="jhs-acc">czuć</span></h2></div>
-  <p>Przesuń suwak: te same metry, zupełnie inna codzienność.</p>
+  <p>Te same metry, zupełnie inna codzienność.</p>
  </div>
- <div class="jhs-mw-ba-grid jhs-mw-ba-grid--2">
-  <figure class="jhs-ba jhs-rv" style="--ar:3/2" data-jhs-ba>
-   <div class="jhs-ba-pair">
-    <figure class="jhs-ba-before"><img src="img/realizacja-ursynow-salon-przed.webp" width="900" height="600" alt="Ciemny salon na Ursynowie przed metamorfozą, ciężkie meble i zasłony" loading="lazy"><span class="jhs-ba-tag">Przed</span></figure>
-    <figure class="jhs-ba-after"><img src="img/realizacja-ursynow-salon-po.webp" width="900" height="600" alt="Ten sam salon po metamorfozie: jasny narożnik, stoliki kawowe i zasłony na szynach" loading="lazy"><span class="jhs-ba-tag jhs-ba-tag--po">Po</span></figure>
-    <input class="jhs-ba-range" type="range" min="0" max="100" value="50" aria-label="Salon na Ursynowie: porównaj przed i po">
-    <span class="jhs-ba-line" aria-hidden="true"></span>
-   </div>
-   <figcaption><strong>Salon, Ursynów.</strong> Z ciężkiego glamour w jasne wnętrze na wynajem. <a class="jhs-link" href="https://justhomestaging.pl/metamorfoza-mieszkania-na-ursynowie-jak-z-ociezalego-glamour-powstaly-jasne-funkcjonalne-wnetrza-gotowe-na-wynajem/">Metamorfoza mieszkania na Ursynowie <svg aria-hidden="true"><use href="#jhs-i-arrow"/></svg></a></figcaption>
-  </figure>
-  <figure class="jhs-ba jhs-rv" style="--ar:3/2" data-jhs-ba>
-   <div class="jhs-ba-pair">
-    <figure class="jhs-ba-before"><img src="img/realizacja-ursynow-sypialnia-przed.webp" width="900" height="600" alt="Sypialnia przed: amarantowe ściany i czarne łóżko glamour" loading="lazy"><span class="jhs-ba-tag">Przed</span></figure>
-    <figure class="jhs-ba-after"><img src="img/realizacja-ursynow-sypialnia-po.webp" width="900" height="600" alt="Sypialnia po metamorfozie: jasne ściany, beżowa pościel i toaletka" loading="lazy"><span class="jhs-ba-tag jhs-ba-tag--po">Po</span></figure>
-    <input class="jhs-ba-range" type="range" min="0" max="100" value="50" aria-label="Sypialnia na Ursynowie: porównaj przed i po">
-    <span class="jhs-ba-line" aria-hidden="true"></span>
-   </div>
-   <figcaption><strong>Sypialnia, Ursynów.</strong> Z różu i czerni w jasne, spokojne wnętrze.</figcaption>
-  </figure>
- </div>
+ <!-- Suwaki z Ursynowa usunięte 19.10.2026: to realizacja innej usługi (realizacje.json: ursynow-glamour), strona pokazuje tylko metamorfozy dla siebie -->
  <div class="jhs-mw-ba-more">
   <h3>Salon w Gdańsku, współpraca online</h3>
   <div class="jhs-mw-gal">
@@ -912,7 +911,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-sec-head">
   <div><p class="jhs-eyebrow">Opinie</p><h2 class="jhs-h2">Moi klienci wreszcie czują się jak w <span class="jhs-acc">domu</span></h2></div>
   <!-- DO-POTWIERDZENIA: liczba i średnia opinii Google oraz link do wizytówki -->
-  <div><span class="jhs-gbadge"><span class="jhs-gbadge-g"><svg aria-hidden="true"><use href="#jhs-i-google"/></svg></span><span><strong>Ponad 30 opinii</strong><small>w Google i od uczestniczek warsztatów</small></span></span></div>
+  <div><span class="jhs-gbadge"><span class="jhs-gbadge-g"><svg aria-hidden="true"><use href="#jhs-i-google"/></svg></span><span><strong>+30 opinii</strong><small>w Google i od uczestniczek warsztatów</small></span></span></div>
  </div>
  <ul class="jhs-rev-grid">
   <li class="jhs-rev jhs-rv"><div class="jhs-rev-top"><span class="jhs-rev-av" style="--c:#4f6b5a" aria-hidden="true">K</span><span><strong>Klaudia K.</strong><small><span class="jhs-stars" role="img" aria-label="Ocena 5 na 5"><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg><svg aria-hidden="true"><use href="#jhs-i-star"/></svg></span></small></span><svg class="jhs-rev-g" role="img" aria-label="Opinia z Google"><use href="#jhs-i-google"/></svg></div><span class="jhs-rev-res"><svg aria-hidden="true"><use href="#jhs-i-check"/></svg>Salon przestronny i funkcjonalny</span><blockquote>„Wprowadzone zmiany sprawiły że salon jest dużo bardziej przestronny i funkcjonalny a spędzanie w nim czasu stało się przyjemnością. Justyna ma ogromną wiedzę i pasję, co widać było na każdym etapie współpracy.”</blockquote></li>
@@ -991,7 +990,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <details class="jhs-faq"><summary>Czy podpisujemy jakąś umowę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac.</p></div></details>
    <details class="jhs-faq"><summary>Czy dostanę fakturę za usługę?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Tak, wystawiam fakturę z 23% VAT.</p></div></details>
    <!-- Pytanie z researchu (zostaje) -->
-   <details class="jhs-faq"><summary>Czym metamorfoza różni się od home stagingu?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Metamorfozę robię dla Ciebie, bo zostajesz w mieszkaniu i ma Ci się w nim dobrze żyć. Home staging przygotowuje mieszkanie pod kupującego lub najemcę. Więcej piszę we wpisie <a href="https://justhomestaging.pl/home-staging-a-metamorfoza-wnetrz-czym-sie-roznia-i-ktora-usluga-jest-dla-ciebie/">home staging a metamorfoza wnętrz</a>.</p></div></details>
+   <details class="jhs-faq"><summary>Czym metamorfoza różni się od home stagingu?<span class="jhs-faq-pm" aria-hidden="true"></span></summary><div class="jhs-faq-a"><p>Metamorfozę robię dla Ciebie, bo zostajesz w mieszkaniu i ma Ci się w nim dobrze żyć. Jeśli przygotowujesz mieszkanie na rynek, zobacz <a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">home staging pod sprzedaż</a> albo <a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">home staging pod wynajem</a>. Więcej piszę we wpisie <a href="https://justhomestaging.pl/home-staging-a-metamorfoza-wnetrz-czym-sie-roznia-i-ktora-usluga-jest-dla-ciebie/">home staging a metamorfoza wnętrz</a>.</p></div></details>
   </div>
  </div>
 </div></section>
@@ -1000,12 +999,12 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <section class="wp-section alignfull jhs-sec jhs-sec--white" id="zacznij"><div class="wp-content-wrap jhs-wrap">
  <div class="jhs-final">
   <div>
-   <p class="jhs-eyebrow">Bezpłatna rozmowa wstępna</p>
+   <p class="jhs-eyebrow">Bezpłatna konsultacja</p>
    <h2>Chcesz wiedzieć <span class="jhs-acc">więcej</span>?</h2>
    <div class="jhs-final-side">
-    <p>Umów się na bezpłatną rozmowę wstępną, a porozmawiamy o tym, co mogę dla Ciebie zrobić, żeby mieszkało Ci się przytulniej.</p>
+    <p>Umów się na bezpłatną konsultację, a porozmawiamy o tym, co mogę dla Ciebie zrobić, żeby mieszkało Ci się przytulniej.</p>
     <!-- DO-POTWIERDZENIA: kalendarz Zencal (widget czy link), jak w dokumencie Justyny -->
-    <div class="jhs-final-alt"><strong>15-minutowa bezpłatna konsultacja</strong><span>Rozmawiamy przez telefon.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-btn jhs-btn--acc jhs-btn--sm" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umawiam się na spotkanie! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span></a></div>
+    <div class="jhs-final-alt"><strong>Bezpłatna konsultacja</strong><span>15 minut przez telefon.</span><a class="jhs-tel" href="tel:+48512012909">512 012 909</a><a class="jhs-btn jhs-btn--acc jhs-btn--sm" href="KONTAKT.html#rozmowa" data-href="https://justhomestaging.pl/kontakt/#rozmowa">Umawiam się na spotkanie! <span class="jhs-btn-ico"><svg aria-hidden="true"><use href="#jhs-i-calendar"/></svg></span></a></div>
    </div>
   </div>
   <div class="jhs-mw-final-box">
@@ -1020,7 +1019,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  </div>
 </div></section>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Just Home Staging", "item": "https://justhomestaging.pl/"}, {"@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://justhomestaging.pl/oferta/"}, {"@type": "ListItem", "position": 3, "name": "Metamorfozy wnętrz", "item": "https://justhomestaging.pl/metamorfozy-wnetrz/"}]}, {"@type": "Service", "@id": "https://justhomestaging.pl/metamorfozy-wnetrz/#usluga", "name": "Metamorfoza Twojego Wnętrza", "serviceType": "Metamorfoza wnętrz", "description": "Koncepcja aranżacji jednego pomieszczenia: układ funkcjonalny, model 3D, moodboardy, wytyczne remontowe i lista zakupów. Stacjonarnie w Warszawie lub online.", "url": "https://justhomestaging.pl/metamorfozy-wnetrz/", "provider": {"@type": "HomeAndConstructionBusiness", "@id": "https://justhomestaging.pl/#firma", "name": "Just Home Staging", "url": "https://justhomestaging.pl/"}, "areaServed": [{"@type": "City", "name": "Warszawa"}, {"@type": "Country", "name": "Polska"}], "offers": [{"@type": "Offer", "name": "Metamorfoza Twojego Wnętrza, online", "price": "1847", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/"}, {"@type": "Offer", "name": "Metamorfoza Twojego Wnętrza, stacjonarnie", "price": "2847", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Czym się różni usługa online i stacjonarna?", "acceptedAnswer": {"@type": "Answer", "text": "W przypadku współpracy stacjonarnej (w Warszawie) spotykamy się u Ciebie w mieszkaniu i osobiście wykonuję pomiary, by zaplanować układ stref i mebli. Jeśli wybierzesz usługę online, samodzielnie wymierzysz pomieszczenie, a Twoje potrzeby i oczekiwania omówimy przez internet."}}, {"@type": "Question", "name": "Czy mieszkając w Warszawie mogę skorzystać z usługi online?", "acceptedAnswer": {"@type": "Answer", "text": "Jasne: to Ty wybierasz, która usługa lepiej odpowiada na Twoje potrzeby."}}, {"@type": "Question", "name": "Chciałabym zaaranżować więcej pomieszczeń, ile to kosztuje?", "acceptedAnswer": {"@type": "Answer", "text": "Takie zlecenia zawsze wyceniam indywidualnie. Prześlij mi zdjęcia wybranych pomieszczeń wraz z wstępnym pomiarem na mój e-mail justyna@justhomestaging.pl, a ja odeślę Ci wycenę."}}, {"@type": "Question", "name": "Co jeśli interesuje mnie tylko część wymienionych usług?", "acceptedAnswer": {"@type": "Answer", "text": "Może się tak zdarzyć! W takiej sytuacji napisz mi maila lub zadzwoń do mnie, a przygotuję dla Ciebie indywidualną ofertę współpracy."}}, {"@type": "Question", "name": "Ile trwa przygotowanie koncepcji metamorfozy wnętrza i listy zakupowej?", "acceptedAnswer": {"@type": "Answer", "text": "Gotową koncepcję metamorfozy otrzymasz ode mnie do 20 dni roboczych od naszego spotkania. Kiedy zaakceptujesz zawarte w niej moodboardy, w ciągu kolejnych 20 dni roboczych otrzymasz ode mnie listę zakupową."}}, {"@type": "Question", "name": "Jak długo czeka się na współpracę?", "acceptedAnswer": {"@type": "Answer", "text": "To zależy od ilości klientów, z którymi współpracuję w danym czasie, i stopnia złożoności ich projektów. Najlepiej będzie, jeśli napiszesz do mnie wiadomość na e-mail, jak tylko zaczniesz zastanawiać się nad skorzystaniem z moich usług."}}, {"@type": "Question", "name": "Co jeśli wybrane przez Ciebie meble i dodatki mi się nie spodobają?", "acceptedAnswer": {"@type": "Answer", "text": "To wnętrze ma odzwierciedlać także Twój gust, dlatego zawsze staram się proponować produkty w Twoim stylu. Właśnie po to tyle rozmawiamy o nim w trakcie naszego pierwszego spotkania. Jeśli mimo wszystko jakieś elementy listy zakupów nie przypadną Ci do gustu, zaproponuję zamiennik. Według umowy mamy na to aż dwie serie poprawek."}}, {"@type": "Question", "name": "Jak wygląda płatność za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Przy jednym pomieszczeniu pobieram całą płatność z góry. Taką metamorfozę możesz kupić za pośrednictwem sklepu online, gdzie płatność możesz również rozłożyć na raty 0%. Jeśli zdecydujesz się podjąć współpracę przy większej ilości pomieszczeń, Twoja płatność zostanie rozdzielona na dwa etapy."}}, {"@type": "Question", "name": "Czy podpisujemy jakąś umowę?", "acceptedAnswer": {"@type": "Answer", "text": "Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac."}}, {"@type": "Question", "name": "Czy dostanę fakturę za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Tak, wystawiam fakturę z 23% VAT."}}, {"@type": "Question", "name": "Czym metamorfoza różni się od home stagingu?", "acceptedAnswer": {"@type": "Answer", "text": "Metamorfozę robię dla Ciebie, bo zostajesz w mieszkaniu i ma Ci się w nim dobrze żyć. Home staging przygotowuje mieszkanie pod kupującego lub najemcę."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Just Home Staging", "item": "https://justhomestaging.pl/"}, {"@type": "ListItem", "position": 2, "name": "Oferta", "item": "https://justhomestaging.pl/oferta/"}, {"@type": "ListItem", "position": 3, "name": "Metamorfozy wnętrz", "item": "https://justhomestaging.pl/metamorfozy-wnetrz/"}]}, {"@type": "Service", "@id": "https://justhomestaging.pl/metamorfozy-wnetrz/#usluga", "name": "Metamorfoza Twojego Wnętrza", "serviceType": "Metamorfoza wnętrz", "description": "Koncepcja aranżacji jednego pomieszczenia: układ funkcjonalny, model 3D, moodboardy, wytyczne remontowe i lista zakupów. Stacjonarnie w Warszawie lub online.", "url": "https://justhomestaging.pl/metamorfozy-wnetrz/", "provider": {"@type": "HomeAndConstructionBusiness", "@id": "https://justhomestaging.pl/#firma", "name": "Just Home Staging", "url": "https://justhomestaging.pl/"}, "areaServed": [{"@type": "City", "name": "Warszawa"}, {"@type": "Country", "name": "Polska"}], "offers": [{"@type": "Offer", "name": "Metamorfoza Twojego Wnętrza, online", "price": "1847", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/"}, {"@type": "Offer", "name": "Metamorfoza Twojego Wnętrza, stacjonarnie", "price": "2847", "priceCurrency": "PLN", "url": "https://sklep.justhomestaging.pl/produkt/metamorfoza-twojego-wnetrza/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Czym się różni usługa online i stacjonarna?", "acceptedAnswer": {"@type": "Answer", "text": "W przypadku współpracy stacjonarnej (w Warszawie) spotykamy się u Ciebie w mieszkaniu i osobiście wykonuję pomiary, by zaplanować układ stref i mebli. Jeśli wybierzesz usługę online, samodzielnie wymierzysz pomieszczenie, a Twoje potrzeby i oczekiwania omówimy przez internet."}}, {"@type": "Question", "name": "Czy mieszkając w Warszawie mogę skorzystać z usługi online?", "acceptedAnswer": {"@type": "Answer", "text": "Jasne: to Ty wybierasz, która usługa lepiej odpowiada na Twoje potrzeby."}}, {"@type": "Question", "name": "Chciałabym zaaranżować więcej pomieszczeń, ile to kosztuje?", "acceptedAnswer": {"@type": "Answer", "text": "Takie zlecenia zawsze wyceniam indywidualnie. Prześlij mi zdjęcia wybranych pomieszczeń wraz z wstępnym pomiarem na mój e-mail justyna@justhomestaging.pl, a ja odeślę Ci wycenę."}}, {"@type": "Question", "name": "Co jeśli interesuje mnie tylko część wymienionych usług?", "acceptedAnswer": {"@type": "Answer", "text": "Może się tak zdarzyć! W takiej sytuacji napisz mi maila lub zadzwoń do mnie, a przygotuję dla Ciebie indywidualną ofertę współpracy."}}, {"@type": "Question", "name": "Ile trwa przygotowanie koncepcji metamorfozy wnętrza i listy zakupowej?", "acceptedAnswer": {"@type": "Answer", "text": "Gotową koncepcję metamorfozy otrzymasz ode mnie do 20 dni roboczych od naszego spotkania. Kiedy zaakceptujesz zawarte w niej moodboardy, w ciągu kolejnych 20 dni roboczych otrzymasz ode mnie listę zakupową."}}, {"@type": "Question", "name": "Jak długo czeka się na współpracę?", "acceptedAnswer": {"@type": "Answer", "text": "To zależy od ilości klientów, z którymi współpracuję w danym czasie, i stopnia złożoności ich projektów. Najlepiej będzie, jeśli napiszesz do mnie wiadomość na e-mail, jak tylko zaczniesz zastanawiać się nad skorzystaniem z moich usług."}}, {"@type": "Question", "name": "Co jeśli wybrane przez Ciebie meble i dodatki mi się nie spodobają?", "acceptedAnswer": {"@type": "Answer", "text": "To wnętrze ma odzwierciedlać także Twój gust, dlatego zawsze staram się proponować produkty w Twoim stylu. Właśnie po to tyle rozmawiamy o nim w trakcie naszego pierwszego spotkania. Jeśli mimo wszystko jakieś elementy listy zakupów nie przypadną Ci do gustu, zaproponuję zamiennik. Według umowy mamy na to aż dwie serie poprawek."}}, {"@type": "Question", "name": "Jak wygląda płatność za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Przy jednym pomieszczeniu pobieram całą płatność z góry. Taką metamorfozę możesz kupić za pośrednictwem sklepu online, gdzie płatność możesz również rozłożyć na raty 0%. Jeśli zdecydujesz się podjąć współpracę przy większej ilości pomieszczeń, Twoja płatność zostanie rozdzielona na dwa etapy."}}, {"@type": "Question", "name": "Czy podpisujemy jakąś umowę?", "acceptedAnswer": {"@type": "Answer", "text": "Oczywiście! Zależy mi na tym, żeby interesy obu stron były dobrze zabezpieczone, dlatego zawsze podpisujemy umowę przed rozpoczęciem prac."}}, {"@type": "Question", "name": "Czy dostanę fakturę za usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Tak, wystawiam fakturę z 23% VAT."}}, {"@type": "Question", "name": "Czym metamorfoza różni się od home stagingu?", "acceptedAnswer": {"@type": "Answer", "text": "Metamorfozę robię dla Ciebie, bo zostajesz w mieszkaniu i ma Ci się w nim dobrze żyć. Jeśli przygotowujesz mieszkanie na rynek, zobacz home staging pod sprzedaż albo home staging pod wynajem."}}]}]}</script>
 </main>
 
 <!-- SHELL:START stopka (wspólna dla wszystkich podstron) -->
@@ -1028,16 +1027,15 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
  <div class="jhs-foot-grid">
   <div class="jhs-foot-brand">
    <a class="jhs-foot-logo" href="index.html" data-href="https://justhomestaging.pl/" aria-label="Just Home Staging, strona główna"><img src="img/logo.webp" width="500" height="500" alt="Just Home Staging" loading="lazy"></a>
-   <p class="jhs-foot-promise">Przygotowuję mieszkania do sprzedaży i wynajmu oraz wnętrza, w których chce się mieszkać.</p>
+   <p class="jhs-foot-promise">Przygotowuję mieszkania na sprzedaż, mieszkania pod wynajem i wnętrza, w których chce się mieszkać.</p>
    <div class="jhs-foot-socials"><a href="https://www.instagram.com/justhomestaging/" aria-label="Just Home Staging na Instagramie"><svg aria-hidden="true"><use href="#jhs-i-ig"/></svg></a><a href="https://www.facebook.com/justhomestaging" aria-label="Just Home Staging na Facebooku"><svg aria-hidden="true"><use href="#jhs-i-fb"/></svg></a><a href="https://www.linkedin.com/in/justynazaniewska/" aria-label="Justyna Zaniewska na LinkedIn"><svg aria-hidden="true"><use href="#jhs-i-in"/></svg></a></div>
   </div>
   <nav aria-labelledby="jhs-f1"><h2 id="jhs-f1">Usługi</h2><ul>
    <li><a href="HOME-STAGING.html" data-href="https://justhomestaging.pl/home-staging/">Home staging pod sprzedaż</a></li>
    <li><a href="HOME-STAGING-WYNAJEM.html" data-href="https://justhomestaging.pl/home-staging-pod-wynajem/">Home staging pod wynajem</a></li>
    <li><a href="METAMORFOZY-WNETRZ.html" data-href="https://justhomestaging.pl/metamorfozy-wnetrz/">Metamorfozy wnętrz</a></li>
-   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projekt wnętrz</a></li>
+   <li><a href="PROJEKT-WNETRZ.html" data-href="https://justhomestaging.pl/projekt-wnetrz/">Projektowanie wnętrz</a></li>
    <li><a href="METAMORFOZA-BALKONU.html" data-href="https://justhomestaging.pl/metamorfoza-balkonu/">Projekt balkonu online</a></li>
-   <li><a href="PRZESTRZEN-KOMERCYJNA.html" data-href="https://justhomestaging.pl/przestrzen-komercyjna/">Przestrzeń komercyjna</a></li>
   </ul></nav>
   <nav aria-labelledby="jhs-f2"><h2 id="jhs-f2">Poznaj mnie</h2><ul>
    <li><a href="O-MNIE.html" data-href="https://justhomestaging.pl/o-mnie/">O mnie</a></li>
@@ -1045,26 +1043,26 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
    <li><a href="OPINIE.html" data-href="https://justhomestaging.pl/opinie-o-just-home-staging/">Opinie</a></li>
    <li><a href="CENNIK.html" data-href="https://justhomestaging.pl/cennik/">Cennik</a></li>
    <li><a href="BLOG.html" data-href="https://justhomestaging.pl/blog/">Blog</a></li>
-   <li><a href="DLA-POSREDNIKOW.html" data-href="https://justhomestaging.pl/wspolpraca-z-posrednikami/">Dla pośredników</a></li>
+   <li><a href="KONTAKT.html" data-href="https://justhomestaging.pl/kontakt/">Kontakt</a></li>
   </ul></nav>
-  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i kurs</h2><ul>
+  <nav aria-labelledby="jhs-f3"><h2 id="jhs-f3">Sklep i warsztaty</h2><ul>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">Sklep</a></li>
    <li><a href="SKLEP-PRODUKT.html" data-href="https://sklep.justhomestaging.pl/produkt/konsultacja-home-staging-online/">Konsultacje</a></li>
-   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Kurs home staging</a></li>
+   <li><a href="WARSZTATY.html" data-href="https://justhomestaging.pl/warsztaty/">Warsztaty dla homestagerek</a></li>
    <li><a href="SKLEP.html" data-href="https://sklep.justhomestaging.pl/sklep/">E-book o balkonie</a></li>
   </ul></nav>
   <div class="jhs-foot-contact">
    <h2>Porozmawiajmy</h2>
    <a class="jhs-foot-tel" href="tel:+48512012909">512 012 909</a>
-   <p class="jhs-foot-sub">Bezpłatna rozmowa: 15 minut przez telefon</p>
+   <p class="jhs-foot-sub">Bezpłatna konsultacja: 15 minut przez telefon</p>
    <p><a href="mailto:justyna@justhomestaging.pl">justyna@justhomestaging.pl</a></p>
-   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i okolice, projekty zdalne w całej Polsce<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
+   <p class="jhs-foot-sub jhs-foot-addr">Warszawa i realizacje zdalne<br>Just Home Staging Justyna Zaniewska, NIP 5461379170</p>
   </div>
  </div>
  <div class="jhs-foot-bottom">
   <span>© 2026 Just Home Staging Justyna Zaniewska</span>
   <a class="jhs-foot-wm" href="https://weblymate.com/" rel="noopener">Projekt i wdrożenie: <strong>Webly Mate</strong></a>
-  <nav aria-label="Dokumenty"><a href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
+  <nav aria-label="Dokumenty"><a href="REGULAMIN.html" data-href="https://justhomestaging.pl/regulamin/">Regulamin</a><a href="SKLEP-REGULAMIN.html" data-href="https://sklep.justhomestaging.pl/regulamin/">Regulamin sklepu</a><a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">Polityka prywatności</a><button class="jhs-linkbtn" type="button" data-jhs-cookie-open>Ustawienia cookies</button></nav>
  </div>
  <p class="jhs-foot-big" aria-hidden="true">Just Home Staging</p>
 </div></footer>
@@ -1074,7 +1072,7 @@ html.jhs-js .jhs-marq-track[data-dup]{animation:jhs-marq 90s linear infinite}
 <div class="jhs-cookie" id="jhs-cookie" role="region" aria-labelledby="jhs-cookie-h">
  <span class="jhs-cookie-tag">Podgląd banera (makieta)</span>
  <h2 id="jhs-cookie-h">Pliki cookies</h2>
- <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
+ <p>Używam plików cookies niezbędnych do działania strony. Za Twoją zgodą także analitycznych i marketingowych, żeby wiedzieć, które treści Ci pomagają. Szczegóły w <a href="POLITYKA-PRYWATNOSCI.html" data-href="https://justhomestaging.pl/polityka-prywatnosci/">polityce prywatności</a>.</p>
  <div class="jhs-cookie-btns">
   <button type="button" data-jhs-cookie="accept">Akceptuję</button>
   <button type="button" data-jhs-cookie="reject">Odrzucam</button>
@@ -1145,6 +1143,15 @@ page.querySelectorAll('[data-jhs-ba]').forEach(ba=>{const r=ba.querySelector('.j
  p.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;if(!locked){const dx=Math.abs(e.clientX-x0),dy=Math.abs(e.clientY-y0);if(dx<6&&dy<6)return;if(dy>dx){id=null;return;}locked=true;try{p.setPointerCapture(id);}catch(_){}ba.classList.add('is-drag');}at(e);});
  const end=e=>{if(e.pointerId!==id)return;if(!locked&&e.type==='pointerup')at(e);id=null;locked=false;ba.classList.remove('is-drag');};
  p.addEventListener('pointerup',end);p.addEventListener('pointercancel',end);
+});
+
+/* 6a. Formularz wyceny w 2 krokach: krok 2 odsłaniany przyciskiem „Dalej”; wysyłka możliwa zawsze */
+page.querySelectorAll('form.jhs-wf').forEach(f=>{
+ const btn=f.querySelector('[data-jhs-next]'),step=f.querySelector('.jhs-wf-step--2');if(!btn||!step)return;
+ f.classList.add('is-steps');
+ const open=()=>{f.classList.add('is-open');btn.setAttribute('aria-expanded','true');};
+ btn.addEventListener('click',()=>{open();const lg=step.querySelector('legend');if(lg)lg.focus({preventScroll:false});});
+ f.addEventListener('invalid',e=>{if(step.contains(e.target)&&!f.classList.contains('is-open'))open();},true);
 });
 
 /* 6. Podgląd banera zgód (w WP obsługuje wm-zgody). Makieta pamięta wybór */
